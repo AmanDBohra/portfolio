@@ -626,6 +626,75 @@ export const projects: Project[] = [
     featured: false,
   },
 
+  /* ---- Leadership & delivery ownership (grounded in real engagements) ---- */
+  {
+    name: "Leading the International Analytics Module",
+    context: "LTIMindtree · US Insurance Major (P&C) · Leadership",
+    description:
+      "Own the International module of a major US P&C insurance engagement end to end — setting delivery priorities, managing dependencies and risk, and coordinating a cross-functional team of analysts, data engineers, BI developers, and data scientists.",
+    problem:
+      "A large international insurance programme needed a single accountable lead to turn shifting business requirements into reliable, on-time analytics delivery.",
+    tech: ["Delivery Leadership", "Stakeholder Management", "Qlik Sense", "Power BI", "Databricks"],
+    features: [
+      "End-to-end ownership: requirements → deployment → support",
+      "Cross-functional coordination across four disciplines",
+      "Priorities, timelines & risk managed against business goals",
+      "Model outputs transitioned into business-facing decisions",
+    ],
+    image: "",
+    featured: true,
+  },
+  {
+    name: "Building & Mentoring a 10+ BI Team",
+    context: "Icon Business Solutions · Leadership",
+    description:
+      "Led and mentored a BI team of 10+ across multiple client engagements — establishing reusable delivery standards, growing junior talent, and keeping quality consistent as the team scaled.",
+    problem:
+      "Delivery quality and speed varied by individual; the team needed shared standards, mentoring, and repeatable practices to scale.",
+    tech: ["Team Leadership", "Mentoring", "BI Delivery Standards", "QlikView", "Qlik Sense"],
+    features: [
+      "Improved delivery efficiency by 25% and data accessibility by 30%",
+      "Standardized, reusable reporting frameworks",
+      "Grew junior analysts into confident, independent contributors",
+      "Multiple client appreciations for delivery quality",
+    ],
+    image: "",
+    featured: true,
+  },
+  {
+    name: "Governance & Data-Quality Rollout",
+    context: "LTIMindtree / Icon · Governance",
+    description:
+      "Introduced maker/checker governance and data-quality controls across reporting pipelines so insights leadership relied on were validated, auditable, and trustworthy by default.",
+    problem:
+      "Reporting was trusted by habit, not by evidence — leaving gaps that surfaced as audit findings and rework.",
+    tech: ["Data Governance", "Maker/Checker Controls", "Data Quality", "ETL", "SQL"],
+    features: [
+      "Reduced audit findings by 15% via governed, validated insights",
+      "Maker/checker controls embedded into delivery",
+      "Raised data accuracy by up to 35% on re-engineered pipelines",
+      "Governance made routine, not an afterthought",
+    ],
+    image: "",
+    featured: false,
+  },
+  {
+    name: "AI Mentor — CSR Rural Education",
+    context: "CSR Initiative · Community Leadership",
+    description:
+      "Volunteer AI mentor supporting rural education — translating complex AI and data concepts into simple, accessible learning for students with limited prior exposure.",
+    problem:
+      "Students in under-resourced settings rarely get a plain-language on-ramp to AI and data skills.",
+    tech: ["Mentoring", "AI Literacy", "Knowledge Sharing"],
+    features: [
+      "Explained AI & data concepts in layman terms",
+      "Supported rural learners with limited access",
+      "Recognized as Volunteer of the Month",
+    ],
+    image: "",
+    featured: false,
+  },
+
   /* ---- Self-built demonstration projects (synthetic data, open code) ---- */
   {
     name: "ETL → Star Schema Pipeline",
