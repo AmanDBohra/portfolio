@@ -1,0 +1,3 @@
+Your real resume (resume.pdf) is already in this folder and wired to the
+"Download Resume" buttons. To update it later, just replace resume.pdf with a
+newer file of the same name. You can safely delete this .txt note.

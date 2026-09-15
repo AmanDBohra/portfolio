@@ -1,0 +1,303 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Industry Analytics — Sample Dashboards | Aman Bohra</title>
+<meta name="description" content="Illustrative BI dashboards across industries by Aman Bohra — synthetic data, no confidential information." />
+<link rel="icon" href="favicon.svg" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<style>
+  :root{
+    --midnight:#071a2b; --deep:#0b2740; --ent:#123f66; --roy:#1769aa;
+    --an:#2386c8; --cy:#46c7e8; --teal:#18a6a6; --white:#f5f8fa; --sil:#b8c5cf;
+    --line:rgba(255,255,255,.08); --panel:rgba(255,255,255,.035);
+    --font:Inter,'Helvetica Neue',Arial,sans-serif;
+  }
+  *{box-sizing:border-box} html,body{margin:0}
+  body{font-family:var(--font);color:var(--white);background:var(--midnight);
+    background-image:
+      radial-gradient(900px 500px at 85% -10%, rgba(35,134,200,.16), transparent 60%),
+      radial-gradient(700px 500px at 0% 5%, rgba(18,63,102,.35), transparent 55%),
+      linear-gradient(180deg,#071a2b,#0b2740);
+    background-attachment:fixed;min-height:100vh;-webkit-font-smoothing:antialiased;}
+  .wrap{max-width:1160px;margin:0 auto;padding:26px 20px 64px}
+  a{color:var(--cy);text-decoration:none}
+  .top{display:flex;flex-wrap:wrap;gap:16px;align-items:flex-start;justify-content:space-between}
+  .badge{display:inline-flex;align-items:center;gap:8px;border:1px solid rgba(70,199,232,.35);
+    background:rgba(70,199,232,.08);color:var(--cy);border-radius:999px;padding:5px 12px;
+    font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase}
+  h1{font-size:25px;font-weight:800;letter-spacing:-.02em;margin:14px 0 4px}
+  .sub{color:var(--sil);font-size:14px;margin:0;max-width:70ch}
+  .backlink{font-size:13px;color:var(--sil)}.backlink:hover{color:var(--cy)}
+  .tabs{display:flex;flex-wrap:wrap;gap:8px;margin:20px 0 4px}
+  .tabs button{border:1px solid var(--line);background:var(--panel);color:var(--sil);font:inherit;
+    font-size:13px;font-weight:500;padding:8px 14px;border-radius:10px;cursor:pointer;transition:.18s}
+  .tabs button[aria-pressed="true"]{border-color:rgba(70,199,232,.5);background:rgba(70,199,232,.10);color:#cdeefb}
+  .filters{display:flex;flex-wrap:wrap;gap:10px;margin:14px 0 4px}
+  .fgroup{display:flex;gap:6px;background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:5px}
+  .fgroup button{border:0;background:transparent;color:var(--sil);font:inherit;font-size:13px;font-weight:500;
+    padding:7px 13px;border-radius:8px;cursor:pointer;transition:.18s}
+  .fgroup button[aria-pressed="true"]{background:var(--roy);color:#fff}
+  .flabel{align-self:center;font-size:11px;text-transform:uppercase;letter-spacing:.12em;color:#7c93a6;margin-right:2px}
+  .kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin:18px 0}
+  .kpi{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:18px}
+  .kpi .lab{font-size:12px;color:#8ba0b2;text-transform:uppercase;letter-spacing:.08em}
+  .kpi .val{font-size:24px;font-weight:800;margin-top:6px;letter-spacing:-.01em}
+  .kpi .delta{font-size:12px;margin-top:4px}.up{color:#5fd0a6}.down{color:#ff8f8f}
+  .grid{display:grid;grid-template-columns:1.5fr 1fr;gap:16px;margin-top:4px}
+  .card{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:18px}
+  .card h3{margin:0 0 2px;font-size:15px;font-weight:700}
+  .card .hint{margin:0 0 12px;font-size:12px;color:#7c93a6}
+  .chart-box{position:relative;height:260px}.chart-box.sm{height:230px}
+  .kpi-list{margin:10px 0 0;padding-left:18px;color:var(--sil);font-size:13px;line-height:1.7}
+  table{width:100%;border-collapse:collapse;font-size:13px}
+  th,td{text-align:left;padding:9px 8px;border-bottom:1px solid var(--line)}
+  th{color:#8ba0b2;font-weight:600;font-size:11px;text-transform:uppercase;letter-spacing:.06em}
+  td.num,th.num{text-align:right;font-variant-numeric:tabular-nums}
+  .bar{height:6px;border-radius:3px;background:linear-gradient(90deg,var(--roy),var(--cy))}
+  .foot{margin-top:26px;font-size:12px;color:#6f8697;line-height:1.6}
+  @media(max-width:860px){.kpis{grid-template-columns:repeat(2,1fr)}.grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="top">
+    <div>
+      <span class="badge">● Illustrative demo · synthetic data</span>
+      <h1 id="title">Industry Analytics — Sample Dashboard</h1>
+      <p class="sub" id="subtitle"></p>
+    </div>
+    <a class="backlink" href="./">← Back to portfolio</a>
+  </div>
+
+  <div class="tabs" id="tabs" role="tablist" aria-label="Industries"></div>
+
+  <div class="filters">
+    <div class="fgroup" id="region">
+      <span class="flabel">Region</span>
+      <button data-v="all" aria-pressed="true">All</button>
+      <button data-v="na">North America</button>
+      <button data-v="eu">Europe</button>
+      <button data-v="apac">APAC</button>
+    </div>
+    <div class="fgroup" id="period">
+      <span class="flabel">Period</span>
+      <button data-v="12" aria-pressed="true">12 months</button>
+      <button data-v="6">6 months</button>
+    </div>
+  </div>
+
+  <div class="kpis" id="kpis"></div>
+
+  <div class="grid">
+    <div class="card">
+      <h3 id="trend-title">Trend</h3>
+      <p class="hint" id="trend-hint"></p>
+      <div class="chart-box"><canvas id="trend"></canvas></div>
+    </div>
+    <div class="card">
+      <h3 id="mix-title">Mix</h3>
+      <p class="hint">Share of total</p>
+      <div class="chart-box sm"><canvas id="mix"></canvas></div>
+    </div>
+  </div>
+
+  <div class="grid" style="margin-top:16px">
+    <div class="card">
+      <h3 id="bar-title">Breakdown</h3>
+      <p class="hint" id="bar-hint"></p>
+      <div class="chart-box sm"><canvas id="bar"></canvas></div>
+    </div>
+    <div class="card">
+      <h3 id="table-title">Top performers</h3>
+      <p class="hint">Ranked by primary metric</p>
+      <table id="tbl"><thead><tr id="thead"></tr></thead><tbody></tbody></table>
+    </div>
+  </div>
+
+  <div class="card" style="margin-top:16px">
+    <h3>KPIs this dashboard tracks</h3>
+    <p class="hint">The metrics leaders decide on in this domain</p>
+    <ul class="kpi-list" id="kpi-detail"></ul>
+  </div>
+
+  <p class="foot">
+    <strong>About this demo:</strong> all figures are randomly generated sample data for portfolio
+    illustration only — no real or confidential client information. Switch industries above; filters
+    recompute every view. Built with vanilla JS + Chart.js. © <span id="yr"></span> Aman Bohra.
+  </p>
+</div>
+
+<script>
+const C={cy:'#46c7e8',an:'#2386c8',roy:'#1769aa',teal:'#18a6a6',sil:'#b8c5cf',line:'rgba(255,255,255,.08)'};
+const months=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+const regionFactor={all:1,na:0.52,eu:0.31,apac:0.17};
+let seed=42; function seedreset(s){seed=s;} function rnd(){seed=(seed*1103515245+12345)&0x7fffffff;return seed/0x7fffffff;}
+
+const IND={
+  insurance:{
+    name:'Insurance (P&C)',
+    subtitle:'Distributor performance & premium overview for a P&C insurer.',
+    kpis:[['Written Premium','TOTAL_A','4.2% vs prev',true],['Earned Premium','TOTAL_B','3.1% vs prev',true],
+          ['Loss Ratio','58.4%','1.4 pts',false],['Active Distributors','COUNT','6 new',true]],
+    unit:'$M',trend:{a:'Written Premium',b:'Earned Premium',base:38,ratio:.86},
+    mix:{title:'Product Mix',items:[['Property',.34],['Auto',.27],['Liability',.18],['Marine',.11],['Specialty',.10]]},
+    bar:{title:'Premium by Region',hint:'Written premium, $M',labels:['North America','Europe','APAC']},
+    table:{title:'Top Distributors',col2:'Loss Ratio',names:['Meridian Brokers','Atlas Partners','Cardinal Group','Northwind Agency','Summit Risk','Vantage Cover'],pctBase:.5,pctSpan:.25},
+    detail:['Written & Earned Premium','Distributor / producer performance','Loss & combined ratio','Policy, renewal & retention','International portfolio performance']
+  },
+  banking:{
+    name:'Banking & Financial Services',
+    subtitle:'Deposits, lending, channels and portfolio health for a retail bank.',
+    kpis:[['Total Deposits','TOTAL_A','2.8% vs prev',true],['Total Loans','TOTAL_B','3.6% vs prev',true],
+          ['NPL Ratio','2.1%','0.3 pts',false],['Digital Adoption','74%','5 pts',true]],
+    unit:'$M',trend:{a:'Deposits',b:'Loans',base:120,ratio:.72},
+    mix:{title:'Product Mix',items:[['Savings',.30],['Current',.22],['Cards',.18],['Loans',.20],['Wealth',.10]]},
+    bar:{title:'Transactions by Channel',hint:'Volume index',labels:['Mobile','Web','ATM','Branch']},
+    table:{title:'Top Branches',col2:'NPL %',names:['Downtown','Harbour','Tech Park','Uptown','Riverside','Airport'],pctBase:.01,pctSpan:.04},
+    detail:['Portfolio & branch performance','Transaction & digital-banking metrics','Risk & compliance reporting','Customer sentiment & experience','Data quality & governance controls']
+  },
+  retail:{
+    name:'Retail',
+    subtitle:'Sales, categories and store performance for a multi-store retailer.',
+    kpis:[['Net Sales','TOTAL_A','6.1% vs prev',true],['Sales vs Target','TOTAL_B','on track',true],
+          ['Avg Basket','$62.40','2.1% vs prev',true],['Conversion','24.8%','0.9 pts',true]],
+    unit:'$M',trend:{a:'Net Sales',b:'Target',base:26,ratio:.95},
+    mix:{title:'Category Mix',items:[['Apparel',.36],['Footwear',.24],['Accessories',.16],['Home',.14],['Beauty',.10]]},
+    bar:{title:'Sales by Region',hint:'Net sales, $M',labels:['North America','Europe','APAC']},
+    table:{title:'Top Stores',col2:'Margin %',names:['Flagship 5th Ave','Mall of Asia','Oxford St','Orchard Rd','Bandra West','Marina Bay'],pctBase:.28,pctSpan:.14},
+    detail:['Sales tracking & category performance','Store & regional performance','Promotion & pricing effectiveness','Market-basket / affinity analysis','Self-service reporting adoption']
+  },
+  supplychain:{
+    name:'Supply Chain & Manufacturing',
+    subtitle:'Inventory, demand and service levels across the network.',
+    kpis:[['Inventory Value','TOTAL_A','-4.0% vs prev',true],['Demand','TOTAL_B','2.2% vs prev',true],
+          ['Fill Rate','96.3%','0.8 pts',true],['Inventory Turns','8.4','0.6',true]],
+    unit:'$M',trend:{a:'Inventory',b:'Demand',base:44,ratio:1.05},
+    mix:{title:'Inventory by Category',items:[['Raw Material',.30],['WIP',.18],['Components',.22],['Finished',.20],['Spares',.10]]},
+    bar:{title:'Plant Output',hint:'Units index',labels:['Plant A','Plant B','Plant C','Plant D']},
+    table:{title:'Top SKUs',col2:'Fill %',names:['SKU-1042','SKU-2288','SKU-3310','SKU-4501','SKU-5127','SKU-6093'],pctBase:.9,pctSpan:.09},
+    detail:['Inventory levels & carrying cost','Bill-of-Materials (BOM) analysis','Material management & planning','Production & quality reporting','Supply-chain accuracy']
+  },
+  automotive:{
+    name:'Automotive',
+    subtitle:'Sales, service and dealer performance for an auto OEM.',
+    kpis:[['Vehicle Sales','TOTAL_A','3.4% vs prev',true],['Service Revenue','TOTAL_B','5.0% vs prev',true],
+          ['Dealer CSI','88.2','1.1',true],['Warranty Cost','2.6%','0.2 pts',false]],
+    unit:'$M',trend:{a:'Vehicle Sales','b':'Service Revenue',base:60,ratio:.35},
+    mix:{title:'Model Mix',items:[['Compact',.30],['Sedan',.24],['SUV',.28],['EV',.12],['Commercial',.06]]},
+    bar:{title:'Sales by Region',hint:'Units index',labels:['North America','Europe','APAC']},
+    table:{title:'Top Dealers',col2:'CSI',names:['Prime Motors','Highway Auto','Metro Wheels','Coastal Cars','Summit Drive','Union Auto'],pctBase:.82,pctSpan:.14,pctIsIndex:true},
+    detail:['After-sales & service performance','Dealer / distribution performance','Inventory & DMS reporting','Sales & material management']
+  },
+  pharma:{
+    name:'Pharmaceutical',
+    subtitle:'Revenue, volume and field performance across therapy areas.',
+    kpis:[['Net Revenue','TOTAL_A','4.7% vs prev',true],['Volume (M units)','TOTAL_B','3.0% vs prev',true],
+          ['Field Coverage','91%','2 pts',true],['Compliance','99.2%','0.1 pts',true]],
+    unit:'$M',trend:{a:'Net Revenue',b:'Volume',base:34,ratio:.8},
+    mix:{title:'Therapy Area Mix',items:[['Cardio',.26],['Respiratory',.22],['Anti-infective',.20],['CNS',.18],['Others',.14]]},
+    bar:{title:'Sales by Zone',hint:'Net revenue, $M',labels:['North','South','East','West']},
+    table:{title:'Top Products',col2:'Growth %',names:['Cardex','Respira','Amoxil-R','Neurocalm','Gastroease','Dermacare'],pctBase:.02,pctSpan:.18,pctIsIndex:false,pctSigned:true},
+    detail:['Sales & distribution performance','Material management & inventory','Compliance & governed reporting','Maker / checker data controls']
+  }
+};
+
+let state={ind:'insurance',region:'all',period:12};
+const q=new URLSearchParams(location.search).get('industry');
+if(q && IND[q]) state.ind=q;
+
+const fmt=n=>n.toFixed(1);
+let trendChart,mixChart,barChart;
+
+function buildTabs(){
+  const el=document.getElementById('tabs');
+  el.innerHTML=Object.entries(IND).map(([k,v])=>
+    `<button role="tab" data-k="${k}" aria-pressed="${k===state.ind}">${v.name}</button>`).join('');
+  el.querySelectorAll('button').forEach(b=>b.onclick=()=>{state.ind=b.dataset.k;
+    history.replaceState(null,'','?industry='+b.dataset.k);
+    el.querySelectorAll('button').forEach(x=>x.setAttribute('aria-pressed',x===b));render();});
+}
+
+function compute(){
+  const cfg=IND[state.ind], f=regionFactor[state.region], n=state.period;
+  seedreset(state.ind.length*97+7);
+  const A=[],B=[]; let base=cfg.trend.base;
+  for(let i=0;i<12;i++){base+=(rnd()-0.42)*base*0.06; const a=Math.max(base*0.6,base+rnd()*base*0.1);
+    A.push(a*f); B.push(a*cfg.trend.ratio*(0.95+rnd()*0.1)*f);}
+  const ms=months.slice(12-n), As=A.slice(12-n), Bs=B.slice(12-n);
+  const totalA=As.reduce((x,y)=>x+y,0), totalB=Bs.reduce((x,y)=>x+y,0);
+  const mix=cfg.mix.items.map(([label,w])=>({label,v:totalA*w}));
+  seedreset(11);
+  const bar=cfg.bar.labels.map((label,i)=>({label, v: totalA*(0.5+rnd()*0.9)/cfg.bar.labels.length}));
+  seedreset(23);
+  const rows=cfg.table.names.map((nm,i)=>{const share=(0.24-i*0.03)*(0.8+rnd()*0.4);
+    let p=cfg.table.pctBase+rnd()*cfg.table.pctSpan;
+    return {nm, m1: totalA*Math.max(0.03,share), p};}).sort((a,b)=>b.m1-a.m1);
+  return {cfg,ms,As,Bs,totalA,totalB,mix,bar,rows};
+}
+
+function kpiVal(spec,d){
+  if(spec==='TOTAL_A') return '$'+fmt(d.totalA)+'M';
+  if(spec==='TOTAL_B') return state.ind==='pharma' ? fmt(d.totalB)+' M' : '$'+fmt(d.totalB)+'M';
+  if(spec==='COUNT') return ''+(40+Math.round(regionFactor[state.region]*45));
+  return spec;
+}
+
+function render(){
+  const d=compute(), cfg=d.cfg;
+  document.getElementById('title').textContent=cfg.name+' — Sample Dashboard';
+  document.getElementById('subtitle').textContent=cfg.subtitle+' Synthetic data for illustration only.';
+  // KPIs
+  document.getElementById('kpis').innerHTML=cfg.kpis.map(k=>{
+    const val=kpiVal(k[1],d);
+    return `<div class="kpi"><div class="lab">${k[0]}</div><div class="val">${val}</div>
+      <div class="delta ${k[3]?'up':'down'}">${k[3]?'▲':'▼'} ${k[2]}</div></div>`;}).join('');
+  // trend
+  document.getElementById('trend-title').textContent=cfg.trend.a+' vs '+cfg.trend.b;
+  document.getElementById('trend-hint').textContent='Monthly · '+cfg.unit;
+  const td={labels:d.ms,datasets:[
+    {label:cfg.trend.a,data:d.As,borderColor:C.cy,backgroundColor:'rgba(70,199,232,.12)',fill:true,tension:.35,borderWidth:2,pointRadius:0},
+    {label:cfg.trend.b,data:d.Bs,borderColor:C.roy,tension:.35,borderWidth:2,pointRadius:0,borderDash:[5,4]}]};
+  if(trendChart){trendChart.data=td;trendChart.update();}else trendChart=new Chart(trend,{type:'line',data:td,options:opts(true)});
+  // mix
+  document.getElementById('mix-title').textContent=cfg.mix.title;
+  const md={labels:d.mix.map(m=>m.label),datasets:[{data:d.mix.map(m=>m.v),
+    backgroundColor:[C.cy,C.an,C.roy,C.teal,'#3a6f92'],borderColor:'#0b2740',borderWidth:2}]};
+  if(mixChart){mixChart.data=md;mixChart.update();}else mixChart=new Chart(mix,{type:'doughnut',data:md,
+    options:{plugins:{legend:{position:'right',labels:{color:C.sil,boxWidth:12,font:{size:12}}}},cutout:'62%',responsive:true,maintainAspectRatio:false}});
+  // bar
+  document.getElementById('bar-title').textContent=cfg.bar.title;
+  document.getElementById('bar-hint').textContent=cfg.bar.hint;
+  const bd={labels:d.bar.map(b=>b.label),datasets:[{data:d.bar.map(b=>b.v),backgroundColor:C.an,borderRadius:6,barThickness:30}]};
+  if(barChart){barChart.data=bd;barChart.update();}else barChart=new Chart(bar,{type:'bar',data:bd,options:opts(false)});
+  // table
+  document.getElementById('table-title').textContent=cfg.table.title;
+  document.getElementById('thead').innerHTML=
+    `<th>${cfg.table.title.replace('Top ','')}</th><th class="num">${cfg.unit}</th><th class="num">${cfg.table.col2}</th><th style="width:84px">Perf.</th>`;
+  const max=Math.max(...d.rows.map(r=>r.m1));
+  document.querySelector('#tbl tbody').innerHTML=d.rows.map(r=>{
+    let p2; const t=cfg.table;
+    if(t.pctIsIndex) p2=(r.p*100).toFixed(1);
+    else if(t.pctSigned) p2=((r.p*100)>0?'+':'')+(r.p*100).toFixed(1)+'%';
+    else p2=(r.p*100).toFixed(0)+'%';
+    return `<tr><td>${r.nm}</td><td class="num">${fmt(r.m1)}</td><td class="num">${p2}</td>
+      <td><div class="bar" style="width:${Math.round(r.m1/max*100)}%"></div></td></tr>`;}).join('');
+  // KPI detail list
+  document.getElementById('kpi-detail').innerHTML=cfg.detail.map(x=>`<li>${x}</li>`).join('');
+}
+
+function opts(legend){return{responsive:true,maintainAspectRatio:false,
+  plugins:{legend:{display:legend,labels:{color:C.sil,boxWidth:12,font:{size:12}}}},
+  scales:{x:{ticks:{color:C.sil,font:{size:11}},grid:{color:C.line}},
+          y:{ticks:{color:C.sil,font:{size:11}},grid:{color:C.line}}}};}
+
+document.querySelectorAll('#region button').forEach(b=>b.onclick=()=>{state.region=b.dataset.v;press('region',b);render();});
+document.querySelectorAll('#period button').forEach(b=>b.onclick=()=>{state.period=+b.dataset.v;press('period',b);render();});
+function press(id,btn){document.querySelectorAll('#'+id+' button').forEach(x=>x.setAttribute('aria-pressed',x===btn));}
+document.getElementById('yr').textContent=new Date().getFullYear();
+buildTabs(); render();
+</script>
+</body>
+</html>

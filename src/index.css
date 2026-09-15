@@ -1,0 +1,125 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    color-scheme: light dark;
+  }
+
+  html {
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  body {
+    @apply bg-white text-slate-800 antialiased dark:text-slate-200;
+  }
+
+  .dark body {
+    background-color: #071a2b;
+    background-image:
+      radial-gradient(900px 500px at 80% -10%, rgba(35, 134, 200, 0.16), transparent 60%),
+      radial-gradient(700px 500px at 0% 10%, rgba(18, 63, 102, 0.35), transparent 55%),
+      linear-gradient(180deg, #071a2b 0%, #0b2740 100%);
+    background-attachment: fixed;
+  }
+
+  /* Offset anchored sections so the sticky header doesn't cover headings */
+  section[id] {
+    scroll-margin-top: 5rem;
+  }
+
+  /* Visible, accessible focus rings */
+  :focus-visible {
+    @apply outline-none ring-2 ring-brand-500 ring-offset-2 ring-offset-white dark:ring-offset-slate-950;
+  }
+}
+
+@layer components {
+  .container-x {
+    @apply mx-auto w-full max-w-6xl px-6;
+  }
+
+  .section {
+    @apply py-20 sm:py-28;
+  }
+
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 text-sm font-semibold transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:focus-visible:ring-offset-slate-950;
+  }
+
+  .btn-primary {
+    @apply btn bg-brand-600 text-white shadow-lg shadow-brand-600/20 hover:-translate-y-0.5 hover:bg-brand-700;
+  }
+
+  .btn-secondary {
+    @apply btn border border-slate-300 bg-white/60 text-slate-700 backdrop-blur hover:-translate-y-0.5 hover:border-brand-400 hover:text-brand-600 dark:border-white/15 dark:bg-white/[0.04] dark:text-slate-200 dark:hover:border-brand-400 dark:hover:text-brand-300;
+  }
+
+  .card {
+    @apply rounded-2xl border border-slate-200 bg-white p-6 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-brand-300 hover:shadow-xl dark:border-white/10 dark:bg-white/[0.035] dark:shadow-none dark:backdrop-blur-sm dark:hover:border-brand-400/50 dark:hover:bg-white/[0.05];
+  }
+
+  .chip {
+    @apply inline-flex items-center rounded-full border border-slate-200 bg-slate-50 px-3 py-1 text-xs font-medium text-slate-600 dark:border-white/10 dark:bg-white/[0.04] dark:text-slate-300;
+  }
+
+  .eyebrow {
+    @apply text-sm font-semibold uppercase tracking-widest text-brand-600 dark:text-brand-400;
+  }
+
+  .section-title {
+    @apply mt-3 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl dark:text-white;
+  }
+}
+
+@layer components {
+  .article-body {
+    @apply text-[1.02rem] leading-8 text-slate-700 dark:text-slate-300;
+  }
+  .article-body > * + * {
+    @apply mt-5;
+  }
+  .article-body h2 {
+    @apply mt-10 text-2xl font-bold tracking-tight text-slate-900 dark:text-white;
+  }
+  .article-body h3 {
+    @apply mt-8 text-lg font-semibold text-slate-900 dark:text-white;
+  }
+  .article-body a {
+    @apply font-medium text-brand-600 underline decoration-brand-400/40 underline-offset-2 hover:decoration-brand-400 dark:text-brand-300;
+  }
+  .article-body strong {
+    @apply font-semibold text-slate-900 dark:text-white;
+  }
+  .article-body ul {
+    @apply list-disc space-y-2 pl-6 marker:text-brand-400;
+  }
+  .article-body ol {
+    @apply list-decimal space-y-2 pl-6 marker:text-brand-400;
+  }
+  .article-body code {
+    @apply rounded bg-slate-100 px-1.5 py-0.5 font-mono text-[0.9em] text-brand-700 dark:bg-white/10 dark:text-brand-200;
+  }
+  .article-body blockquote {
+    @apply border-l-2 border-brand-400 pl-5 italic text-slate-600 dark:text-slate-300;
+  }
+  .article-body em {
+    @apply italic;
+  }
+  .article-body hr {
+    @apply my-8 border-white/10;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
