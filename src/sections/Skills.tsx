@@ -1,6 +1,7 @@
 import { skillCategories } from "../data/portfolio";
 import { SectionHeading } from "../components/ui/SectionHeading";
 import { Reveal } from "../components/ui/Reveal";
+import { Stagger, StaggerItem } from "../components/ui/Stagger";
 
 export function Skills() {
   return (
@@ -19,13 +20,13 @@ export function Skills() {
                 <h3 className="text-base font-semibold text-slate-900 dark:text-white">
                   {cat.category}
                 </h3>
-                <ul className="mt-4 flex flex-wrap gap-2">
+                <Stagger className="mt-4 flex flex-wrap gap-2" gap={0.03}>
                   {cat.skills.map((skill) => (
-                    <li key={skill} className="chip">
+                    <StaggerItem key={skill} className="chip transition-transform hover:-translate-y-0.5 hover:border-brand-400 hover:text-brand-600 dark:hover:text-brand-300">
                       {skill}
-                    </li>
+                    </StaggerItem>
                   ))}
-                </ul>
+                </Stagger>
               </div>
             </Reveal>
           ))}

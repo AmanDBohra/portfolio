@@ -1,3 +1,4 @@
+import { motion } from "framer-motion";
 import { Reveal } from "./Reveal";
 
 interface Props {
@@ -21,6 +22,15 @@ export function SectionHeading({ eyebrow, title, description, index }: Props) {
         {eyebrow}
       </p>
       <h2 className="section-title">{title}</h2>
+      {/* Accent underline that draws itself in when the heading enters view */}
+      <motion.span
+        aria-hidden="true"
+        className="mx-auto mt-4 block h-0.5 w-16 origin-center rounded-full bg-gradient-to-r from-brand-500 to-teal-400"
+        initial={{ scaleX: 0, opacity: 0 }}
+        whileInView={{ scaleX: 1, opacity: 1 }}
+        viewport={{ once: true, margin: "-60px" }}
+        transition={{ duration: 0.6, ease: "easeOut", delay: 0.15 }}
+      />
       {description && (
         <p className="mt-4 text-base leading-relaxed text-slate-600 dark:text-slate-400">
           {description}

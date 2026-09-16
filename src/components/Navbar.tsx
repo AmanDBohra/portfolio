@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { motion } from "framer-motion";
 import { Menu, X, Moon, Sun } from "lucide-react";
 import { navLinks, site } from "../data/portfolio";
 import { useActiveSection } from "../hooks/useActiveSection";
@@ -63,12 +64,19 @@ export function Navbar({ theme, onToggleTheme }: Props) {
               <a
                 href={`#${link.id}`}
                 aria-current={active === link.id ? "true" : undefined}
-                className={`rounded-full px-4 py-2 text-sm font-medium transition-colors ${
+                className={`relative rounded-full px-4 py-2 text-sm font-medium transition-colors ${
                   active === link.id
-                    ? "bg-brand-50 text-brand-700 dark:bg-brand-500/10 dark:text-brand-300"
+                    ? "text-brand-700 dark:text-brand-300"
                     : "text-slate-600 hover:text-brand-600 dark:text-slate-300 dark:hover:text-brand-300"
                 }`}
               >
+                {active === link.id && (
+                  <motion.span
+                    layoutId="nav-active-pill"
+                    className="absolute inset-0 -z-10 rounded-full bg-brand-50 dark:bg-brand-500/10"
+                    transition={{ type: "spring", stiffness: 380, damping: 30 }}
+                  />
+                )}
                 {link.label}
               </a>
             </li>
