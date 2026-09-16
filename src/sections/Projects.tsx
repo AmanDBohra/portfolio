@@ -2,6 +2,7 @@ import { Github, ExternalLink, CheckCircle2, Lock } from "lucide-react";
 import { projects } from "../data/portfolio";
 import { SectionHeading } from "../components/ui/SectionHeading";
 import { Reveal } from "../components/ui/Reveal";
+import { Spotlight } from "../components/ui/Spotlight";
 import { Thumb } from "../components/ui/Thumb";
 
 export function Projects() {
@@ -18,6 +19,7 @@ export function Projects() {
         <div className="grid gap-8 md:grid-cols-2">
           {projects.map((project, i) => (
             <Reveal key={project.name} delay={(i % 2) * 0.08}>
+              <Spotlight className="h-full">
               <article className="card group flex h-full flex-col overflow-hidden p-0">
                 <div className="relative aspect-[16/9] overflow-hidden">
                   <Thumb
@@ -103,6 +105,7 @@ export function Projects() {
                   )}
                 </div>
               </article>
+              </Spotlight>
             </Reveal>
           ))}
         </div>
