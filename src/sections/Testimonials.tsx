@@ -1,7 +1,7 @@
 import { Quote } from "lucide-react";
 import { testimonials } from "../data/portfolio";
 import { SectionHeading } from "../components/ui/SectionHeading";
-import { Reveal } from "../components/ui/Reveal";
+import { Stagger, StaggerItem } from "../components/ui/Stagger";
 
 export function Testimonials() {
   return (
@@ -13,9 +13,9 @@ export function Testimonials() {
           description="Recommendations from colleagues, managers, mentors, and clients on LinkedIn."
         />
 
-        <div className="grid items-start gap-6 md:grid-cols-2 lg:grid-cols-3">
-          {testimonials.map((t, i) => (
-            <Reveal key={t.name} delay={(i % 3) * 0.05}>
+        <Stagger className="grid items-start gap-6 md:grid-cols-2 lg:grid-cols-3" gap={0.04} as="div">
+          {testimonials.map((t) => (
+            <StaggerItem key={t.name} as="div" className="h-full">
               <figure className="card flex h-full flex-col">
                 <Quote className="h-8 w-8 text-brand-400" />
                 <blockquote className="mt-4 flex-1 text-sm leading-relaxed text-slate-600 dark:text-slate-300">
@@ -42,9 +42,9 @@ export function Testimonials() {
                   )}
                 </figcaption>
               </figure>
-            </Reveal>
+            </StaggerItem>
           ))}
-        </div>
+        </Stagger>
       </div>
     </section>
   );

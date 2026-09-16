@@ -2,6 +2,7 @@ import { Award, ExternalLink, Star } from "lucide-react";
 import { certifications, achievements } from "../data/portfolio";
 import { SectionHeading } from "../components/ui/SectionHeading";
 import { Reveal } from "../components/ui/Reveal";
+import { Stagger, StaggerItem } from "../components/ui/Stagger";
 
 export function Certifications() {
   return (
@@ -13,8 +14,8 @@ export function Certifications() {
           description="Industry certifications across Qlik, Microsoft, and Databricks, plus recognition and community work."
         />
 
-        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-          {certifications.map((cert, i) => {
+        <Stagger className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4" gap={0.04} as="div">
+          {certifications.map((cert) => {
             const inner = (
               <>
                 <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-brand-50 text-brand-600 dark:bg-brand-500/10 dark:text-brand-400">
@@ -33,7 +34,7 @@ export function Certifications() {
               </>
             );
             return (
-              <Reveal key={cert.title} delay={i * 0.05}>
+              <StaggerItem key={cert.title} as="div" className="h-full">
                 {cert.credentialUrl ? (
                   <a
                     href={cert.credentialUrl}
@@ -46,10 +47,10 @@ export function Certifications() {
                 ) : (
                   <div className="card flex h-full flex-col">{inner}</div>
                 )}
-              </Reveal>
+              </StaggerItem>
             );
           })}
-        </div>
+        </Stagger>
 
         {achievements.length > 0 && (
           <Reveal delay={0.1}>
