@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" width="800" height="450" role="img" aria-label="Distributor KPIs">
+<defs>
+<linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+<stop offset="0" stop-color="#0a2135"/><stop offset="1" stop-color="#0b2740"/></linearGradient>
+<linearGradient id="ac" x1="0" y1="0" x2="1" y2="0">
+<stop offset="0" stop-color="#46c7e8"/><stop offset="1" stop-color="#18a6a6"/></linearGradient>
+<radialGradient id="glow" cx="0.8" cy="0.1" r="0.9">
+<stop offset="0" stop-color="#2386c8" stop-opacity="0.25"/><stop offset="1" stop-color="#2386c8" stop-opacity="0"/></radialGradient>
+</defs>
+<rect width="800" height="450" fill="url(#bg)"/>
+<rect width="800" height="450" fill="url(#glow)"/><rect x="40" y="36" rx="14" ry="14" width="188" height="30" fill="#ffffff" fill-opacity="0.06" stroke="#46c7e8" stroke-opacity="0.35"/><text x="54" y="56" font-family="Inter,Arial" font-size="16" fill="#46c7e8">Insurance · KPIs</text><line x1="60" y1="360" x2="760" y2="360" stroke="#ffffff" stroke-opacity="0.06"/><line x1="60" y1="308" x2="760" y2="308" stroke="#ffffff" stroke-opacity="0.06"/><line x1="60" y1="256" x2="760" y2="256" stroke="#ffffff" stroke-opacity="0.06"/><line x1="60" y1="204" x2="760" y2="204" stroke="#ffffff" stroke-opacity="0.06"/><rect x="70" y="266" width="54" height="94" rx="6" fill="url(#ac)" fill-opacity="0.92"/><rect x="150" y="230" width="54" height="130" rx="6" fill="url(#ac)" fill-opacity="0.92"/><rect x="230" y="245" width="54" height="115" rx="6" fill="url(#ac)" fill-opacity="0.92"/><rect x="310" y="197" width="54" height="163" rx="6" fill="url(#ac)" fill-opacity="0.92"/><rect x="390" y="218" width="54" height="142" rx="6" fill="url(#ac)" fill-opacity="0.92"/><rect x="470" y="171" width="54" height="189" rx="6" fill="url(#ac)" fill-opacity="0.92"/><text x="40" y="410" font-family="Inter,Arial" font-weight="700" font-size="26" fill="#e8eef5">Distributor Performance KPIs</text><text x="40" y="436" font-family="Inter,Arial" font-size="15" fill="#9fb2c4">Written & earned premium tracking</text></svg>

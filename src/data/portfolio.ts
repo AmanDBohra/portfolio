@@ -762,6 +762,29 @@ export const projects: Project[] = [
   },
 ];
 
+/* Attach on-brand thumbnail art (abstract dashboard motifs, no client data). */
+const THUMBS: Record<string, string> = {
+  "International Insurance Analytics": "international-insurance-analytics",
+  "Distributor Performance Management KPIs": "distributor-performance-kpis",
+  "Connector-less SAP-to-BI Integration": "connector-less-sap-bi",
+  "Retail Analytics Dashboards": "retail-analytics",
+  "Market Basket Analysis (Apriori)": "market-basket",
+  "From 36 Hours to 2": "from-36-to-2",
+  "Assistive IoT Smart Stick": "iot-smart-stick",
+  "Leading the International Analytics Module": "leading-module",
+  "Building & Mentoring a 10+ BI Team": "mentoring-team",
+  "Governance & Data-Quality Rollout": "governance",
+  "AI Mentor — CSR Rural Education": "ai-mentor",
+  "ETL → Star Schema Pipeline": "etl-star-schema",
+  "GenAI: RAG Analytics Assistant (POC)": "genai-rag",
+  "Anomaly Detection on Claims": "anomaly-detection",
+  "Interactive BI Dashboards (6 industries)": "interactive-bi",
+};
+for (const p of projects) {
+  const slug = THUMBS[p.name];
+  if (slug) p.image = `${import.meta.env.BASE_URL}thumbs/${slug}.svg`;
+}
+
 /* -------------------------------------------------------------------------- */
 /*  EXPERIENCE                                                                 */
 /* -------------------------------------------------------------------------- */
