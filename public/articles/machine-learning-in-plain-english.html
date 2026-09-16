@@ -1,0 +1,102 @@
+<!doctype html><html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Machine Learning in Plain English — Aman Bohra</title>
+<meta name="description" content="What machine learning actually is — how it learns, where it goes wrong, and the few terms (features, overfitting, precision vs recall) that matter — withou">
+<meta name="robots" content="index,follow,max-image-preview:large">
+<link rel="canonical" href="https://amandbohra.github.io/portfolio/articles/machine-learning-in-plain-english.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Machine Learning in Plain English — Aman Bohra">
+<meta property="og:description" content="What machine learning actually is — how it learns, where it goes wrong, and the few terms (features, overfitting, precision vs recall) that matter — withou">
+<meta property="og:url" content="https://amandbohra.github.io/portfolio/articles/machine-learning-in-plain-english.html">
+<meta property="og:image" content="https://amandbohra.github.io/portfolio/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" type="image/svg+xml" href="/portfolio/favicon.svg">
+<script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "Person", "@id": "https://amandbohra.github.io/portfolio/#aman", "name": "Aman Bohra", "url": "https://amandbohra.github.io/portfolio/", "jobTitle": "Senior Analytics & Business Intelligence Professional", "sameAs": ["https://github.com/AmanDBohra", "https://www.linkedin.com/in/aman-bohra"]}, {"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://amandbohra.github.io/portfolio/"}, {"@type": "ListItem", "position": 2, "name": "Articles", "item": "https://amandbohra.github.io/portfolio/articles/"}, {"@type": "ListItem", "position": 3, "name": "Machine Learning in Plain English"}]}, {"@type": "BlogPosting", "headline": "Machine Learning in Plain English", "description": "What machine learning actually is — how it learns, where it goes wrong, and the few terms (features, overfitting, precision vs recall) that matter — without the math.", "datePublished": "2026-09-12", "author": {"@id": "https://amandbohra.github.io/portfolio/#aman"}, "url": "https://amandbohra.github.io/portfolio/articles/machine-learning-in-plain-english.html", "keywords": "Explained Simply, Data Science, Machine Learning", "mainEntityOfPage": "https://amandbohra.github.io/portfolio/articles/machine-learning-in-plain-english.html"}]}</script>
+<style>
+:root{--navy:#071a2b;--deep:#0b2740;--ink:#cdd8e2;--white:#f5f8fa;--cy:#46c7e8;--an:#2386c8;--mut:#8ba0b2;--line:rgba(255,255,255,.10)}
+*{box-sizing:border-box}html{scroll-behavior:smooth}
+body{margin:0;font-family:Inter,'Helvetica Neue',Arial,sans-serif;color:var(--ink);background:var(--navy);
+background-image:radial-gradient(900px 500px at 85% -10%,rgba(35,134,200,.14),transparent 60%),linear-gradient(180deg,#071a2b,#0b2740);
+background-attachment:fixed;-webkit-font-smoothing:antialiased;line-height:1.6}
+a{color:var(--cy);text-decoration:none}a:hover{text-decoration:underline}
+.wrap{max-width:820px;margin:0 auto;padding:0 20px}
+header.site{border-bottom:1px solid var(--line);position:sticky;top:0;background:rgba(7,26,43,.85);backdrop-filter:blur(8px);z-index:10}
+header.site .wrap{display:flex;flex-wrap:wrap;gap:14px;align-items:center;justify-content:space-between;padding:12px 20px}
+header.site nav a{color:var(--ink);font-size:14px;margin-left:16px}
+header.site nav a:hover{color:var(--cy)}
+.brand{font-weight:800;color:#fff}
+main{padding:28px 0 56px}
+h1{color:#fff;font-size:2rem;line-height:1.15;margin:.2em 0 .1em}
+h2{color:#fff;font-size:1.25rem;margin:1.8em 0 .4em}
+h3{color:#fff;font-size:1.05rem;margin:1.4em 0 .3em}
+.eyebrow{color:var(--cy);font-size:.75rem;letter-spacing:.14em;text-transform:uppercase;font-weight:700;margin:0}
+.lead{font-size:1.05rem;color:#dbe6ef}
+nav.crumbs{font-size:.8rem;color:var(--mut);padding:14px 0 0}
+nav.crumbs a{color:var(--mut)}
+.summary{border:1px solid var(--line);background:rgba(255,255,255,.03);border-radius:12px;padding:16px 18px;margin:18px 0}
+.summary dt{color:var(--mut);font-size:.72rem;text-transform:uppercase;letter-spacing:.08em;margin-top:8px}
+.summary dd{margin:2px 0 0}
+.chips{list-style:none;padding:0;display:flex;flex-wrap:wrap;gap:8px;margin:10px 0}
+.chips li{border:1px solid var(--line);background:rgba(255,255,255,.04);border-radius:999px;padding:4px 11px;font-size:.8rem}
+ul.clean{padding-left:20px}ul.clean li{margin:.3em 0}
+.metric{color:var(--cy);font-weight:800}
+.related{border-top:1px solid var(--line);margin-top:36px;padding-top:20px}
+.related h2{font-size:1rem;margin-top:0}
+.cardlink{display:block;border:1px solid var(--line);background:rgba(255,255,255,.03);border-radius:12px;padding:14px 16px;margin:10px 0}
+.cardlink:hover{border-color:rgba(70,199,232,.4);text-decoration:none}
+.cardlink b{color:#fff;display:block}
+.cardlink span{color:var(--mut);font-size:.85rem}
+footer.site{border-top:1px solid var(--line);color:var(--mut);font-size:.85rem;padding:26px 0}
+footer.site a{color:var(--mut)}
+.grid{display:grid;gap:12px}@media(min-width:640px){.grid.two{grid-template-columns:1fr 1fr}}
+.backapp{display:inline-block;margin-top:8px;font-weight:600}
+</style></head><body>
+<header class="site"><div class="wrap">
+<a class="brand" href="/portfolio/">Aman Bohra</a>
+<nav aria-label="Primary">
+<a href="/portfolio/about.html">About</a>
+<a href="/portfolio/experience.html">Experience</a>
+<a href="/portfolio/projects/">Projects</a>
+<a href="/portfolio/technologies/">Technologies</a>
+<a href="/portfolio/articles/">Articles</a>
+<a href="/portfolio/contact.html">Contact</a>
+</div></header>
+<div class="wrap"><nav class="crumbs" aria-label="Breadcrumb"><a href="/portfolio/">Home</a> › <a href="/portfolio/articles/">Articles</a> › Machine Learning in Plain English</nav><main><p class="eyebrow">Article</p><h1>Machine Learning in Plain English</h1><p class="lead">What machine learning actually is — how it learns, where it goes wrong, and the few terms (features, overfitting, precision vs recall) that matter — without the math.</p><p style="color:var(--mut);font-size:.85rem">2026-09-12 · by Aman Bohra</p><ul class="chips"><li>Explained Simply</li><li>Data Science</li><li>Machine Learning</li></ul><p>Machine learning sounds mysterious. It isn't. Strip away the math and it's one simple idea: <strong>instead of writing rules by hand, you let the computer learn the rules from examples.</strong></p>
+<h2>The core idea</h2>
+<p>Suppose you want software to recognize a cat. The old way: write rules — "has pointy ears, whiskers, fur…". You'd fail instantly; there are too many exceptions.</p>
+<p>The machine-learning way: <strong>show it thousands of labelled photos</strong> ("cat" / "not cat") and let it figure out the pattern itself.
+<em>It's how a child learns "cat" — by seeing many cats, not by memorizing a definition.</em></p>
+<p>That's it. Everything else is refinement.</p>
+<h2>The ingredients</h2>
+<ul>
+<li><strong>Data</strong> — the examples it learns from. More (good) data usually beats a cleverer model.</li>
+<li><strong>Features</strong> — the meaningful signals you feed it. Turning raw data into good features is called <strong>feature engineering</strong>.
+  <em>Like prepping ingredients before cooking — the model only tastes what you prepare.</em></li>
+<li><strong>Model</strong> — the thing that learns the pattern.</li>
+<li><strong>Training</strong> — showing the model examples so it adjusts itself.</li>
+<li><strong>Inference</strong> — using the trained model on new, unseen data.</li>
+</ul>
+<h2>Where it goes wrong: overfitting</h2>
+<p>The classic failure is <strong>overfitting</strong> — the model <em>memorizes</em> the training examples instead of learning the general pattern. It looks brilliant on data it has seen and falls apart on data it hasn't.
+<em>Like a student who memorizes past exam papers but fails the real exam.</em> The fix is to test the model on data it never trained on.</p>
+<h2>Judging a model: precision vs. recall</h2>
+<p>Accuracy alone can lie (if 99% of claims are legitimate, a model that says "legit" every time is 99% accurate and useless). Two better measures:</p>
+<ul>
+<li><strong>Precision</strong> — of everything the model flagged, how much was actually right?</li>
+<li><strong>Recall</strong> — of all the real cases out there, how many did it catch?</li>
+</ul>
+<p><em>Picture a fishing net: precision is how little junk you haul in; recall is how few real fish you miss.</em> You usually trade one for the other, and the right balance depends on the cost of a miss vs. a false alarm.</p>
+<h2>Supervised vs. unsupervised (one line each)</h2>
+<ul>
+<li><strong>Supervised</strong> — you have labelled answers to learn from (e.g., "this claim was fraud"). Predicting churn is supervised.</li>
+<li><strong>Unsupervised</strong> — no labels; the model finds structure on its own. Anomaly detection and market-basket analysis are unsupervised.</li>
+</ul>
+<h2>The part that actually matters</h2>
+<p>A model in a notebook changes nothing. The value shows up only when its output becomes a <strong>decision</strong> — a ranked list an investigator works, a forecast a planner trusts, a score that routes a case. The modelling is maybe 20% of the job. Framing the problem and delivering the decision is the other 80%.</p>
+<p><em>— Aman Bohra</em></p><p><a class="backapp" href="/portfolio/articles/">← All articles</a></p></main></div>
+<footer class="site"><div class="wrap">
+<p>© Aman Bohra · Senior Analytics &amp; Business Intelligence Professional · India</p>
+<p><a href="/portfolio/">Interactive portfolio</a> · <a href="https://github.com/AmanDBohra">GitHub</a> ·
+<a href="https://www.linkedin.com/in/aman-bohra">LinkedIn</a> · <a href="https://www.credly.com/users/aman-bohra">Credly</a> ·
+<a href="mailto:bohraaman@gmail.com">bohraaman@gmail.com</a></p>
+</div></footer></body></html>

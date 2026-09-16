@@ -1,0 +1,99 @@
+<!doctype html><html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Generative AI, LLMs &amp; RAG — Without the Hype — Aman Bohra</title>
+<meta name="description" content="What a large language model really does, why it sometimes makes things up, and how RAG keeps it honest — explained in plain language.">
+<meta name="robots" content="index,follow,max-image-preview:large">
+<link rel="canonical" href="https://amandbohra.github.io/portfolio/articles/generative-ai-llm-rag-explained.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Generative AI, LLMs &amp; RAG — Without the Hype — Aman Bohra">
+<meta property="og:description" content="What a large language model really does, why it sometimes makes things up, and how RAG keeps it honest — explained in plain language.">
+<meta property="og:url" content="https://amandbohra.github.io/portfolio/articles/generative-ai-llm-rag-explained.html">
+<meta property="og:image" content="https://amandbohra.github.io/portfolio/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" type="image/svg+xml" href="/portfolio/favicon.svg">
+<script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "Person", "@id": "https://amandbohra.github.io/portfolio/#aman", "name": "Aman Bohra", "url": "https://amandbohra.github.io/portfolio/", "jobTitle": "Senior Analytics & Business Intelligence Professional", "sameAs": ["https://github.com/AmanDBohra", "https://www.linkedin.com/in/aman-bohra"]}, {"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://amandbohra.github.io/portfolio/"}, {"@type": "ListItem", "position": 2, "name": "Articles", "item": "https://amandbohra.github.io/portfolio/articles/"}, {"@type": "ListItem", "position": 3, "name": "Generative AI, LLMs & RAG — Without the Hype"}]}, {"@type": "BlogPosting", "headline": "Generative AI, LLMs & RAG — Without the Hype", "description": "What a large language model really does, why it sometimes makes things up, and how RAG keeps it honest — explained in plain language.", "datePublished": "2026-09-13", "author": {"@id": "https://amandbohra.github.io/portfolio/#aman"}, "url": "https://amandbohra.github.io/portfolio/articles/generative-ai-llm-rag-explained.html", "keywords": "Explained Simply, Generative AI, RAG", "mainEntityOfPage": "https://amandbohra.github.io/portfolio/articles/generative-ai-llm-rag-explained.html"}]}</script>
+<style>
+:root{--navy:#071a2b;--deep:#0b2740;--ink:#cdd8e2;--white:#f5f8fa;--cy:#46c7e8;--an:#2386c8;--mut:#8ba0b2;--line:rgba(255,255,255,.10)}
+*{box-sizing:border-box}html{scroll-behavior:smooth}
+body{margin:0;font-family:Inter,'Helvetica Neue',Arial,sans-serif;color:var(--ink);background:var(--navy);
+background-image:radial-gradient(900px 500px at 85% -10%,rgba(35,134,200,.14),transparent 60%),linear-gradient(180deg,#071a2b,#0b2740);
+background-attachment:fixed;-webkit-font-smoothing:antialiased;line-height:1.6}
+a{color:var(--cy);text-decoration:none}a:hover{text-decoration:underline}
+.wrap{max-width:820px;margin:0 auto;padding:0 20px}
+header.site{border-bottom:1px solid var(--line);position:sticky;top:0;background:rgba(7,26,43,.85);backdrop-filter:blur(8px);z-index:10}
+header.site .wrap{display:flex;flex-wrap:wrap;gap:14px;align-items:center;justify-content:space-between;padding:12px 20px}
+header.site nav a{color:var(--ink);font-size:14px;margin-left:16px}
+header.site nav a:hover{color:var(--cy)}
+.brand{font-weight:800;color:#fff}
+main{padding:28px 0 56px}
+h1{color:#fff;font-size:2rem;line-height:1.15;margin:.2em 0 .1em}
+h2{color:#fff;font-size:1.25rem;margin:1.8em 0 .4em}
+h3{color:#fff;font-size:1.05rem;margin:1.4em 0 .3em}
+.eyebrow{color:var(--cy);font-size:.75rem;letter-spacing:.14em;text-transform:uppercase;font-weight:700;margin:0}
+.lead{font-size:1.05rem;color:#dbe6ef}
+nav.crumbs{font-size:.8rem;color:var(--mut);padding:14px 0 0}
+nav.crumbs a{color:var(--mut)}
+.summary{border:1px solid var(--line);background:rgba(255,255,255,.03);border-radius:12px;padding:16px 18px;margin:18px 0}
+.summary dt{color:var(--mut);font-size:.72rem;text-transform:uppercase;letter-spacing:.08em;margin-top:8px}
+.summary dd{margin:2px 0 0}
+.chips{list-style:none;padding:0;display:flex;flex-wrap:wrap;gap:8px;margin:10px 0}
+.chips li{border:1px solid var(--line);background:rgba(255,255,255,.04);border-radius:999px;padding:4px 11px;font-size:.8rem}
+ul.clean{padding-left:20px}ul.clean li{margin:.3em 0}
+.metric{color:var(--cy);font-weight:800}
+.related{border-top:1px solid var(--line);margin-top:36px;padding-top:20px}
+.related h2{font-size:1rem;margin-top:0}
+.cardlink{display:block;border:1px solid var(--line);background:rgba(255,255,255,.03);border-radius:12px;padding:14px 16px;margin:10px 0}
+.cardlink:hover{border-color:rgba(70,199,232,.4);text-decoration:none}
+.cardlink b{color:#fff;display:block}
+.cardlink span{color:var(--mut);font-size:.85rem}
+footer.site{border-top:1px solid var(--line);color:var(--mut);font-size:.85rem;padding:26px 0}
+footer.site a{color:var(--mut)}
+.grid{display:grid;gap:12px}@media(min-width:640px){.grid.two{grid-template-columns:1fr 1fr}}
+.backapp{display:inline-block;margin-top:8px;font-weight:600}
+</style></head><body>
+<header class="site"><div class="wrap">
+<a class="brand" href="/portfolio/">Aman Bohra</a>
+<nav aria-label="Primary">
+<a href="/portfolio/about.html">About</a>
+<a href="/portfolio/experience.html">Experience</a>
+<a href="/portfolio/projects/">Projects</a>
+<a href="/portfolio/technologies/">Technologies</a>
+<a href="/portfolio/articles/">Articles</a>
+<a href="/portfolio/contact.html">Contact</a>
+</div></header>
+<div class="wrap"><nav class="crumbs" aria-label="Breadcrumb"><a href="/portfolio/">Home</a> › <a href="/portfolio/articles/">Articles</a> › Generative AI, LLMs &amp; RAG — Without the Hype</nav><main><p class="eyebrow">Article</p><h1>Generative AI, LLMs &amp; RAG — Without the Hype</h1><p class="lead">What a large language model really does, why it sometimes makes things up, and how RAG keeps it honest — explained in plain language.</p><p style="color:var(--mut);font-size:.85rem">2026-09-13 · by Aman Bohra</p><ul class="chips"><li>Explained Simply</li><li>Generative AI</li><li>RAG</li></ul><p>Generative AI is surrounded by hype and fear. Underneath, the idea is surprisingly simple — and once you get it, you can use these tools well and spot their limits.</p>
+<h2>What a large language model (LLM) actually does</h2>
+<p>An LLM (like the ones behind ChatGPT or Claude) has read an enormous amount of text. From all that reading, it learned one skill extremely well: <strong>predicting the next word.</strong></p>
+<p>That sounds trivial, but "predict the next word, over and over, really well" turns out to let it draft emails, summarize documents, write code, and explain ideas.
+<em>Think of an extremely well-read assistant who can continue any sentence sensibly.</em></p>
+<p>Crucially: it isn't looking anything up. It's generating what <em>sounds</em> most likely based on patterns. That's its power — and its weakness.</p>
+<h2>Why it "hallucinates"</h2>
+<p>Because it's predicting plausible text, an LLM can produce answers that sound confident but are <strong>wrong or invented</strong> — especially about specific facts, numbers, or recent events it never saw.
+<em>It's like a brilliant improviser: fluent, but it will happily make something up rather than say "I don't know."</em></p>
+<p>This is the single most important thing to understand before trusting AI with real work.</p>
+<h2>Prompt engineering: asking well</h2>
+<p>You get far better results by giving clear, structured instructions — context, the task, the format you want, and any constraints. That's <strong>prompt engineering</strong>.
+<em>It's just briefing a talented new hire well: vague brief, vague result; clear brief, great result.</em></p>
+<h2>RAG: how you keep it honest</h2>
+<p>For business use, the fix for hallucination is <strong>RAG — Retrieval-Augmented Generation.</strong> Instead of relying on the model's memory, you first <strong>retrieve the relevant passages from your own trusted documents</strong>, then ask the model to answer <em>using only that context.</em>
+<em>It turns a closed-book exam into an open-book one — the AI answers from your notes, not from guesswork.</em></p>
+<p>Two pieces make it work:</p>
+<ul>
+<li>A <strong>vector database</strong> — a store that finds text by <em>meaning</em>, not exact keywords, so it can pull the right passages. <em>A librarian who finds books by what they're about, not just their title.</em></li>
+<li>A <strong>guardrail</strong> — instructions like "answer only from the context; if it's not there, say you don't know."</li>
+</ul>
+<p>That combination gives you answers that are useful <strong>and</strong> grounded — and, just as important, an honest "I don't know" when the answer isn't in your data. In a regulated field like insurance, that honesty is the whole point.</p>
+<h2>The practical takeaway</h2>
+<ul>
+<li>Use LLMs for drafting, summarizing, and explaining — with a human check.</li>
+<li>Never trust an ungrounded LLM for specific facts or figures.</li>
+<li>For anything that must be accurate, put your trusted data behind it with RAG.</li>
+</ul>
+<p>Used this way, GenAI is a genuine force multiplier — not magic, and not a threat, just a very capable, very fast assistant that needs good instructions and a source of truth.</p>
+<p><em>— Aman Bohra</em></p><p><a class="backapp" href="/portfolio/articles/">← All articles</a></p></main></div>
+<footer class="site"><div class="wrap">
+<p>© Aman Bohra · Senior Analytics &amp; Business Intelligence Professional · India</p>
+<p><a href="/portfolio/">Interactive portfolio</a> · <a href="https://github.com/AmanDBohra">GitHub</a> ·
+<a href="https://www.linkedin.com/in/aman-bohra">LinkedIn</a> · <a href="https://www.credly.com/users/aman-bohra">Credly</a> ·
+<a href="mailto:bohraaman@gmail.com">bohraaman@gmail.com</a></p>
+</div></footer></body></html>
