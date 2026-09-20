@@ -1,0 +1,22 @@
+// Set analysis measures — QlikView 12 Business Analyst (QVBA)
+// Goal: Deliver YoY, prior-period, and filter-independent metrics.
+// Concepts: Set identifiers ($ vs 1), Modifiers, Dollar-sign expansion, Exclusions, YoY growth
+// Qlik load script starter. Adapt connections/paths to your environment.
+
+Policies:
+LOAD
+    PolicyID,
+    Region,
+    Product,
+    WrittenPremium,
+    IncurredLoss,
+    Date(PolicyDate) as PolicyDate
+FROM [lib://data/policies.qvd] (qvd);
+
+// Example master calendar / incremental / set-analysis patterns go here.
+
+// TODO: implement the full project:
+// 1. Fix year with {$<Year={$(=Max(Year))}>}; prior with Max(Year)-1.
+// 2. Compute (cur-prev)/prev for YoY.
+// 3. Ignore specific filters via cleared modifiers.
+// 4. Prefer set analysis over If() for speed.

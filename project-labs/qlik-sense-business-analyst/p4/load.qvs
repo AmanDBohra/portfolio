@@ -1,0 +1,22 @@
+// Advanced aggregation with Aggr() — Qlik Sense Business Analyst (QSBA)
+// Goal: Compute per-group metrics and rankings.
+// Concepts: Aggr(), Rank(), Nested aggregation, TOTAL qualifier, Top-N within groups
+// Qlik load script starter. Adapt connections/paths to your environment.
+
+Policies:
+LOAD
+    PolicyID,
+    Region,
+    Product,
+    WrittenPremium,
+    IncurredLoss,
+    Date(PolicyDate) as PolicyDate
+FROM [lib://data/policies.qvd] (qvd);
+
+// Example master calendar / incremental / set-analysis patterns go here.
+
+// TODO: implement the full project:
+// 1. Average per customer with Avg(Aggr(Sum(Sales),Customer)).
+// 2. Rank distributors within regions using Aggr + Rank.
+// 3. Use TOTAL for within-group shares.
+// 4. Limit charts to top-N.

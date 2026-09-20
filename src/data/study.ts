@@ -67,6 +67,8 @@ export interface CertProject {
   outcomes?: string[];
   /** Path to a per-project architecture diagram (SVG). */
   diagram?: string;
+  /** GitHub URL to the project's lab folder (README + starter notebook/code). */
+  repo?: string;
 }
 
 export interface CertMeta {
@@ -1893,6 +1895,7 @@ for (const m of studyModules) {
       ...p,
       ...(details && details[i] ? details[i] : {}),
       diagram: `${import.meta.env.BASE_URL}study/projects/${m.slug}-${i + 1}.svg`,
+      repo: `https://github.com/AmanDBohra/portfolio/tree/main/project-labs/${m.slug}/p${i + 1}`,
     }));
   }
 }

@@ -121,7 +121,9 @@ for (const m of modules) {
         `<p><strong>${stepsLabel}:</strong></p><ol>${stepsArr.map((s) => `<li>${esc(s)}</li>`).join("")}</ol>` +
         outcomes +
         `<p><strong>Stack:</strong> ${p.stack.map(esc).join(", ")}</p>` +
-        `<p class="exp"><em>${esc(p.relevance)}</em></p></div>`
+        `<p class="exp"><em>${esc(p.relevance)}</em></p>` +
+        (p.repo ? `<p><a href="${p.repo}">Open project lab (README + starter) →</a></p>` : "") +
+        `</div>`
       );
     })
     .join("");

@@ -1,0 +1,19 @@
+// Insurance star-schema model in Power BI — Microsoft Power BI Data Analyst Associate (PL-300)
+// Goal: Build a clean semantic model for premium/claims reporting.
+// Concepts: Star schema, Relationships & cardinality, Single-direction filtering, Date dimension (marked), Measures vs calculated columns
+// Add these measures to a Power BI star-schema model (see README).
+
+Written Premium = SUM ( Fact[written_premium] )
+
+Loss Ratio = DIVIDE ( SUM ( Fact[incurred_loss] ), [Written Premium] )
+
+Written Premium LY =
+CALCULATE ( [Written Premium], SAMEPERIODLASTYEAR ( 'Date'[Date] ) )
+
+YoY Growth % = DIVIDE ( [Written Premium] - [Written Premium LY], [Written Premium LY] )
+
+// TODO: implement the full project:
+// 1. Model the fact and dimensions in a star.
+// 2. Set one-to-many, single-direction relationships; mark the date table.
+// 3. Create measures (written premium, loss ratio) rather than calculated columns.
+// 4. Reduce cardinality (split datetime) for performance.

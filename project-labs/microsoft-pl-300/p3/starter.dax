@@ -1,0 +1,19 @@
+// DAX measures & time intelligence — Microsoft Power BI Data Analyst Associate (PL-300)
+// Goal: Deliver YoY, YTD, and share-of-total metrics.
+// Concepts: CALCULATE & filter context, Row vs filter context, Iterators (SUMX), Time intelligence (SAMEPERIODLASTYEAR, TOTALYTD), DIVIDE / VAR
+// Add these measures to a Power BI star-schema model (see README).
+
+Written Premium = SUM ( Fact[written_premium] )
+
+Loss Ratio = DIVIDE ( SUM ( Fact[incurred_loss] ), [Written Premium] )
+
+Written Premium LY =
+CALCULATE ( [Written Premium], SAMEPERIODLASTYEAR ( 'Date'[Date] ) )
+
+YoY Growth % = DIVIDE ( [Written Premium] - [Written Premium LY], [Written Premium LY] )
+
+// TODO: implement the full project:
+// 1. Write base measures, then CALCULATE variants for regions/segments.
+// 2. Add YoY with SAMEPERIODLASTYEAR + DIVIDE.
+// 3. Use SUMX for line-level revenue.
+// 4. Refactor with VAR for clarity/performance.

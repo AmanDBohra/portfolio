@@ -1,0 +1,22 @@
+// Transformations: joins, mapping & crosstables — Qlik Sense Data Architect (QSDA 2024)
+// Goal: Shape messy source data into an analytics-ready model.
+// Concepts: JOIN vs CONCATENATE vs KEEP, ApplyMap (mapping load), Preceding load, Crosstable/Generic load, Subfield/IntervalMatch
+// Qlik load script starter. Adapt connections/paths to your environment.
+
+Policies:
+LOAD
+    PolicyID,
+    Region,
+    Product,
+    WrittenPremium,
+    IncurredLoss,
+    Date(PolicyDate) as PolicyDate
+FROM [lib://data/policies.qvd] (qvd);
+
+// Example master calendar / incremental / set-analysis patterns go here.
+
+// TODO: implement the full project:
+// 1. Use ApplyMap for single-value lookups (no duplication).
+// 2. Concatenate multi-source facts with a source flag; JOIN only where safe.
+// 3. Pivot wide data with CROSSTABLE; split multi-values with Subfield.
+// 4. Bucket ranges (age bands) with IntervalMatch.

@@ -1,0 +1,22 @@
+// Clean data model & key handling — QlikView 12 Data Architect (QV12DA)
+// Goal: Eliminate synthetic keys and circular references.
+// Concepts: Synthetic keys, Circular references, JOIN vs KEEP vs CONCATENATE, Composite/AutoNumber keys, Table Viewer validation
+// Qlik load script starter. Adapt connections/paths to your environment.
+
+Policies:
+LOAD
+    PolicyID,
+    Region,
+    Product,
+    WrittenPremium,
+    IncurredLoss,
+    Date(PolicyDate) as PolicyDate
+FROM [lib://data/policies.qvd] (qvd);
+
+// Example master calendar / incremental / set-analysis patterns go here.
+
+// TODO: implement the full project:
+// 1. Inspect the model in the Table Viewer (Ctrl+T).
+// 2. Combine shared fields into one composite (AutoNumber) key.
+// 3. Break loops with a link table; use KEEP to reduce without merging.
+// 4. Confirm a clean model.

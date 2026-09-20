@@ -1,0 +1,22 @@
+// Master calendar & performance tuning — Qlik Sense Data Architect (QSDA 2024)
+// Goal: Add a gap-free calendar and optimize memory/reload.
+// Concepts: Master calendar generation, Cardinality reduction (split datetime), AutoNumber keys, Optimized QVD loads, Precomputed flags
+// Qlik load script starter. Adapt connections/paths to your environment.
+
+Policies:
+LOAD
+    PolicyID,
+    Region,
+    Product,
+    WrittenPremium,
+    IncurredLoss,
+    Date(PolicyDate) as PolicyDate
+FROM [lib://data/policies.qvd] (qvd);
+
+// Example master calendar / incremental / set-analysis patterns go here.
+
+// TODO: implement the full project:
+// 1. Generate a continuous date table with derived fields.
+// 2. Split timestamps into Date + Time.
+// 3. AutoNumber large composite keys.
+// 4. Precompute flags in the script.

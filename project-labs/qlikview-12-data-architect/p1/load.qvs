@@ -1,0 +1,22 @@
+// Layered QVD architecture (Extract–Transform–Present) — QlikView 12 Data Architect (QV12DA)
+// Goal: Separate extraction, modeling, and presentation into reusable QVD layers.
+// Concepts: QVD layering, Extract vs transform vs present, Optimized loads, Reusability, Reload reliability
+// Qlik load script starter. Adapt connections/paths to your environment.
+
+Policies:
+LOAD
+    PolicyID,
+    Region,
+    Product,
+    WrittenPremium,
+    IncurredLoss,
+    Date(PolicyDate) as PolicyDate
+FROM [lib://data/policies.qvd] (qvd);
+
+// Example master calendar / incremental / set-analysis patterns go here.
+
+// TODO: implement the full project:
+// 1. Extract raw sources to QVDs (minimal transformation).
+// 2. Transform/model into curated QVDs (keys, cleansing, calendar).
+// 3. Load the app from curated QVDs.
+// 4. Decouple so source outages don't break reloads.

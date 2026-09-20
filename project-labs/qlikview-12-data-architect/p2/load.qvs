@@ -1,0 +1,22 @@
+// Incremental load with inserts, updates & deletes — QlikView 12 Data Architect (QV12DA)
+// Goal: Refresh large facts efficiently and correctly.
+// Concepts: Incremental load, WHERE NOT EXISTS, Delete reconciliation, Optimized QVD (WHERE EXISTS exception), Peek/Max for cutoffs
+// Qlik load script starter. Adapt connections/paths to your environment.
+
+Policies:
+LOAD
+    PolicyID,
+    Region,
+    Product,
+    WrittenPremium,
+    IncurredLoss,
+    Date(PolicyDate) as PolicyDate
+FROM [lib://data/policies.qvd] (qvd);
+
+// Example master calendar / incremental / set-analysis patterns go here.
+
+// TODO: implement the full project:
+// 1. Capture last max modified date via resident Max()/Peek.
+// 2. Load changed rows; retain old rows WHERE NOT EXISTS(key).
+// 3. Reconcile deletes against current source keys.
+// 4. Validate row counts vs source totals.

@@ -1,0 +1,22 @@
+// QVD staging & incremental load — Qlik Sense Data Architect (QSDA 2024)
+// Goal: Speed reloads by staging to QVDs and loading only new/changed rows.
+// Concepts: QVD (optimized load), Incremental load, WHERE NOT EXISTS, STORE/LOAD, Handling updates/deletes
+// Qlik load script starter. Adapt connections/paths to your environment.
+
+Policies:
+LOAD
+    PolicyID,
+    Region,
+    Product,
+    WrittenPremium,
+    IncurredLoss,
+    Date(PolicyDate) as PolicyDate
+FROM [lib://data/policies.qvd] (qvd);
+
+// Example master calendar / incremental / set-analysis patterns go here.
+
+// TODO: implement the full project:
+// 1. Extract sources to QVDs; capture last max modified date in a variable.
+// 2. Load newer rows; concatenate retained rows WHERE NOT EXISTS(key).
+// 3. Reconcile deletes against current source keys.
+// 4. Keep optimized loads (single WHERE EXISTS exception).

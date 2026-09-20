@@ -1,0 +1,22 @@
+// Set analysis for comparisons — Qlik Sense Business Analyst (QSBA)
+// Goal: Build YoY, % of total, and 'ignore filter' measures.
+// Concepts: Set analysis ($ vs 1), Modifiers (set/clear/exclude), Dollar-sign expansion, % of total, Selection states
+// Qlik load script starter. Adapt connections/paths to your environment.
+
+Policies:
+LOAD
+    PolicyID,
+    Region,
+    Product,
+    WrittenPremium,
+    IncurredLoss,
+    Date(PolicyDate) as PolicyDate
+FROM [lib://data/policies.qvd] (qvd);
+
+// Example master calendar / incremental / set-analysis patterns go here.
+
+// TODO: implement the full project:
+// 1. Fix a year with <Year={2024}> or $(=Max(Year)).
+// 2. Compute % of total with {1}/cleared-field denominators.
+// 3. Exclude values with -= modifiers.
+// 4. Leverage selection-state feedback.

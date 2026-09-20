@@ -1,0 +1,22 @@
+// Connector-less / non-standard source integration — QlikView 12 Data Architect (QV12DA)
+// Goal: Load data where standard connectors are limited (e.g., SAP-style extracts).
+// Concepts: Custom extract loads, Mapping/ApplyMap, Data refactoring, Binary/partial reload, Scheduling
+// Qlik load script starter. Adapt connections/paths to your environment.
+
+Policies:
+LOAD
+    PolicyID,
+    Region,
+    Product,
+    WrittenPremium,
+    IncurredLoss,
+    Date(PolicyDate) as PolicyDate
+FROM [lib://data/policies.qvd] (qvd);
+
+// Example master calendar / incremental / set-analysis patterns go here.
+
+// TODO: implement the full project:
+// 1. Build extract logic into QVDs (with source teams).
+// 2. Refactor/normalize with mapping and preceding loads.
+// 3. Use partial reloads (Add/Replace/Delete) for targeted updates.
+// 4. Schedule reliable daily refreshes.

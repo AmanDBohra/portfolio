@@ -1,0 +1,19 @@
+// Deploy, secure & refresh in the Service — Microsoft Power BI Data Analyst Associate (PL-300)
+// Goal: Publish a governed, secured, auto-refreshing report.
+// Concepts: Workspaces & apps, Row-Level Security (RLS), Gateways & scheduled refresh, Incremental refresh, Deployment pipelines
+// Add these measures to a Power BI star-schema model (see README).
+
+Written Premium = SUM ( Fact[written_premium] )
+
+Loss Ratio = DIVIDE ( SUM ( Fact[incurred_loss] ), [Written Premium] )
+
+Written Premium LY =
+CALCULATE ( [Written Premium], SAMEPERIODLASTYEAR ( 'Date'[Date] ) )
+
+YoY Growth % = DIVIDE ( [Written Premium] - [Written Premium LY], [Written Premium LY] )
+
+// TODO: implement the full project:
+// 1. Publish to a workspace; define RLS roles.
+// 2. Configure gateway and scheduled/incremental refresh.
+// 3. Distribute via an app.
+// 4. Promote dev→test→prod with a deployment pipeline.

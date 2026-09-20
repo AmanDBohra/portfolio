@@ -16,9 +16,11 @@ import {
   Search,
   Printer,
   Wrench,
+  Brain,
 } from "lucide-react";
 import { studyModules, type StudyQuestion, type CertStudy } from "../data/study";
 import { site } from "../data/portfolio";
+import { StudyReview } from "./StudyReview";
 
 interface Props {
   slug: string | null;
@@ -293,6 +295,10 @@ export function StudyHub({ slug, theme, onToggleTheme }: Props) {
     window.scrollTo(0, 0);
   }, [slug]);
 
+  if (slug === "review") {
+    return <StudyReview theme={theme} onToggleTheme={onToggleTheme} />;
+  }
+
   return (
     <>
       <header className="sticky top-0 z-50 border-b border-slate-200/70 bg-white/80 backdrop-blur-md print:hidden dark:border-white/10 dark:bg-navy-900/70">
@@ -330,6 +336,9 @@ export function StudyHub({ slug, theme, onToggleTheme }: Props) {
                 questions with detailed explanations across {studyModules.length} certifications.
                 Search all questions, or pick a certification to begin.
               </p>
+              <a href="#/study/review" className="btn-primary mt-6">
+                <Brain className="h-4 w-4" /> Start spaced-repetition review
+              </a>
             </div>
 
             {/* Search / filter across all questions */}
@@ -679,6 +688,17 @@ export function StudyHub({ slug, theme, onToggleTheme }: Props) {
                       <p className="mt-4 border-l-2 border-brand-400 pl-3 text-sm italic leading-relaxed text-slate-500 dark:text-slate-400">
                         {p.relevance}
                       </p>
+
+                      {p.repo && (
+                        <a
+                          href={p.repo}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="mt-4 inline-flex items-center gap-1.5 text-sm font-semibold text-brand-600 hover:underline dark:text-brand-400"
+                        >
+                          <Wrench className="h-4 w-4" /> Open project lab (README + starter) →
+                        </a>
+                      )}
                     </div>
                   ))}
                 </div>

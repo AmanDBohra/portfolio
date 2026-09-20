@@ -1,0 +1,22 @@
+// Associative insurance data model — Qlik Sense Data Architect (QSDA 2024)
+// Goal: Build a clean, synthetic-key-free model for policy/claims/distributor data.
+// Concepts: Associative model, Synthetic keys, Circular references, Star schema / link table, Key naming
+// Qlik load script starter. Adapt connections/paths to your environment.
+
+Policies:
+LOAD
+    PolicyID,
+    Region,
+    Product,
+    WrittenPremium,
+    IncurredLoss,
+    Date(PolicyDate) as PolicyDate
+FROM [lib://data/policies.qvd] (qvd);
+
+// Example master calendar / incremental / set-analysis patterns go here.
+
+// TODO: implement the full project:
+// 1. Load sources; inspect for synthetic keys/loops.
+// 2. Rename/qualify coincidental fields; build composite keys where needed.
+// 3. Introduce a link table for shared dimensions.
+// 4. Validate associations in the data model viewer.
