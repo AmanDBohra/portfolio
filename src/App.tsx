@@ -20,6 +20,12 @@ import { Projects } from "./sections/Projects";
 import { Testimonials } from "./sections/Testimonials";
 import { Writing } from "./sections/Writing";
 import { Article } from "./sections/Article";
+import { lazy, Suspense } from "react";
+
+// Lazy-loaded so the (large, growing) study material only downloads on demand.
+const StudyHub = lazy(() =>
+  import("./sections/StudyHub").then((m) => ({ default: m.StudyHub }))
+);
 import { Honors } from "./sections/Honors";
 import { Certifications } from "./sections/Certifications";
 import { FAQ } from "./sections/FAQ";
@@ -37,13 +43,32 @@ function useHashRoute() {
     return () => window.removeEventListener("hashchange", on);
   }, []);
   const m = /^#\/read\/(.+)$/.exec(hash);
-  return { readSlug: m ? m[1] : null };
+  const study = /^#\/study(?:\/(.+))?$/.exec(hash);
+  return {
+    readSlug: m ? m[1] : null,
+    isStudy: !!study,
+    studySlug: study && study[1] ? study[1] : null,
+  };
 }
 
 export default function App() {
   const { theme, toggle } = useTheme();
-  const { readSlug } = useHashRoute();
+  const { readSlug, isStudy, studySlug } = useHashRoute();
   const post = readSlug ? getPost(readSlug) : undefined;
+
+  if (isStudy) {
+    return (
+      <Suspense
+        fallback={
+          <div className="flex min-h-screen items-center justify-center text-sm text-slate-500 dark:text-slate-400">
+            Loading study material…
+          </div>
+        }
+      >
+        <StudyHub slug={studySlug} theme={theme} onToggleTheme={toggle} />
+      </Suspense>
+    );
+  }
 
   if (post) {
     return <Article post={post} theme={theme} onToggleTheme={toggle} />;

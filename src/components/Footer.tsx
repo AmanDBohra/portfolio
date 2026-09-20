@@ -72,7 +72,16 @@ export function Footer() {
           <p>
             © {year} {site.name}. All rights reserved.
           </p>
-          <p>Built with React, TypeScript &amp; Tailwind CSS.</p>
+          <div className="flex items-center gap-4">
+            <a
+              href="#/study"
+              className="font-medium text-slate-600 transition-colors hover:text-brand-600 dark:text-slate-400 dark:hover:text-brand-300"
+            >
+              Certification Study Hub
+            </a>
+            <span aria-hidden="true">·</span>
+            <p>Built with React, TypeScript &amp; Tailwind CSS.</p>
+          </div>
         </div>
       </div>
     </footer>
