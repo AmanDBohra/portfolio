@@ -33,6 +33,7 @@ export interface CertStudy {
 
 import { extraQuestions } from "./studyExtra";
 import { extraQuestions2 } from "./studyExtra2";
+import { extraQuestions3 } from "./studyExtra3";
 
 export const studyModules: CertStudy[] = [
   /* ====================================================================== */
@@ -1807,7 +1808,7 @@ export const studyModules: CertStudy[] = [
 ];
 
 /* Merge additional question batches (expansion toward ~100 per cert). */
-const extraBanks = [extraQuestions, extraQuestions2];
+const extraBanks = [extraQuestions, extraQuestions2, extraQuestions3];
 for (const m of studyModules) {
   for (const bank of extraBanks) {
     const extra = bank[m.slug];
