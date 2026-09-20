@@ -15,6 +15,7 @@ import {
   Zap,
   Search,
   Printer,
+  Wrench,
 } from "lucide-react";
 import { studyModules, type StudyQuestion, type CertStudy } from "../data/study";
 import { site } from "../data/portfolio";
@@ -199,6 +200,23 @@ function CertPrintable({ m }: { m: CertStudy }) {
           <ul>{n.points.map((p, i) => <li key={i}>{p}</li>)}</ul>
         </div>
       ))}
+
+      {m.projects && m.projects.length > 0 && (
+        <>
+          <h2>Hands-on projects</h2>
+          {m.projects.map((p, i) => (
+            <div key={i}>
+              <h3>{i + 1}. {p.title}</h3>
+              <p><strong>Goal:</strong> {p.goal}</p>
+              <p><strong>Concepts:</strong> {p.concepts.join(", ")}</p>
+              <p><strong>Approach:</strong></p>
+              <ol>{p.approach.map((s, j) => <li key={j}>{s}</li>)}</ol>
+              <p><strong>Stack:</strong> {p.stack.join(", ")}</p>
+              <p><em>{p.relevance}</em></p>
+            </div>
+          ))}
+        </>
+      )}
 
       <h2>Practice questions ({m.questions.length})</h2>
       <ol className="print-q">
@@ -541,6 +559,73 @@ export function StudyHub({ slug, theme, onToggleTheme }: Props) {
                 ))}
               </div>
             </section>
+
+            {/* Hands-on projects */}
+            {active.projects && active.projects.length > 0 && (
+              <section className="mt-12">
+                <h2 className="flex items-center gap-2 text-xl font-bold text-slate-900 dark:text-white">
+                  <Wrench className="h-5 w-5 text-brand-500" /> Hands-on projects
+                  <span className="ml-1 text-sm font-normal text-slate-500 dark:text-slate-400">
+                    ({active.projects.length})
+                  </span>
+                </h2>
+                <p className="mt-2 text-sm text-slate-500 dark:text-slate-400">
+                  Portfolio-relevant projects that together cover the exam's concepts.
+                </p>
+                <div className="mt-6 space-y-5">
+                  {active.projects.map((p, i) => (
+                    <div key={i} className="card">
+                      <h3 className="text-base font-bold text-slate-900 dark:text-white">
+                        {i + 1}. {p.title}
+                      </h3>
+                      <p className="mt-2 text-sm leading-relaxed text-slate-600 dark:text-slate-300">
+                        <span className="font-semibold text-slate-700 dark:text-slate-200">Goal: </span>
+                        {p.goal}
+                      </p>
+
+                      <p className="mt-4 text-xs font-semibold uppercase tracking-wide text-brand-600 dark:text-brand-400">
+                        Concepts covered
+                      </p>
+                      <ul className="mt-2 flex flex-wrap gap-2">
+                        {p.concepts.map((c) => (
+                          <li key={c} className="chip">{c}</li>
+                        ))}
+                      </ul>
+
+                      <p className="mt-4 text-xs font-semibold uppercase tracking-wide text-brand-600 dark:text-brand-400">
+                        Approach
+                      </p>
+                      <ol className="mt-2 space-y-1.5">
+                        {p.approach.map((step, j) => (
+                          <li
+                            key={j}
+                            className="flex items-start gap-2 text-sm leading-relaxed text-slate-600 dark:text-slate-400"
+                          >
+                            <span className="mt-0.5 font-semibold text-slate-400">{j + 1}.</span>
+                            {step}
+                          </li>
+                        ))}
+                      </ol>
+
+                      <div className="mt-4 flex flex-wrap gap-2">
+                        {p.stack.map((s) => (
+                          <span
+                            key={s}
+                            className="rounded-full bg-brand-50 px-2.5 py-1 text-xs font-medium text-brand-700 dark:bg-brand-500/10 dark:text-brand-300"
+                          >
+                            {s}
+                          </span>
+                        ))}
+                      </div>
+
+                      <p className="mt-4 border-l-2 border-brand-400 pl-3 text-sm italic leading-relaxed text-slate-500 dark:text-slate-400">
+                        {p.relevance}
+                      </p>
+                    </div>
+                  ))}
+                </div>
+              </section>
+            )}
 
             {/* Quiz */}
             <section className="mt-12">

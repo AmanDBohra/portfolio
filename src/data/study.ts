@@ -41,6 +41,17 @@ export interface CertStudy {
   tips?: string[];
   /** Gallery of diagram image paths for this cert. */
   images?: string[];
+  /** Hands-on projects that cover the exam's concepts (from studyProjects). */
+  projects?: CertProject[];
+}
+
+export interface CertProject {
+  title: string;
+  goal: string;
+  concepts: string[];
+  approach: string[];
+  stack: string[];
+  relevance: string;
 }
 
 export interface CertMeta {
@@ -63,6 +74,7 @@ import { extraQuestions6 } from "./studyExtra6";
 import { extraQuestions7 } from "./studyExtra7";
 import { studyMeta } from "./studyMeta";
 import { studyMeta2 } from "./studyMeta2";
+import { studyProjects } from "./studyProjects";
 
 export const studyModules: CertStudy[] = [
   /* ====================================================================== */
@@ -1858,4 +1870,6 @@ for (const m of studyModules) {
     m.layman = meta2.layman;
     m.tips = meta2.tips;
   }
+  const projs = studyProjects[m.slug];
+  if (projs) m.projects = projs;
 }

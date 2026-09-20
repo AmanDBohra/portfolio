@@ -100,6 +100,18 @@ for (const m of modules) {
   const lis = (arr) => `<ul>${(arr || []).map((p) => `<li>${esc(p)}</li>`).join("")}</ul>`;
   const ols = (arr) => `<ol>${(arr || []).map((p) => `<li>${esc(p)}</li>`).join("")}</ol>`;
 
+  const projectsHtml = (m.projects || [])
+    .map(
+      (p, i) =>
+        `<div class="q"><p class="qt">${i + 1}. ${esc(p.title)}</p>` +
+        `<p><strong>Goal:</strong> ${esc(p.goal)}</p>` +
+        `<p><strong>Concepts:</strong> ${p.concepts.map(esc).join(", ")}</p>` +
+        `<p><strong>Approach:</strong></p><ol>${p.approach.map((s) => `<li>${esc(s)}</li>`).join("")}</ol>` +
+        `<p><strong>Stack:</strong> ${p.stack.map(esc).join(", ")}</p>` +
+        `<p class="exp"><em>${esc(p.relevance)}</em></p></div>`
+    )
+    .join("");
+
   const notesHtml = m.notes
     .map((n) => `<h3>${esc(n.h)}</h3><ul>${n.points.map((p) => `<li>${esc(p)}</li>`).join("")}</ul>`)
     .join("");
@@ -161,6 +173,7 @@ ${m.layman?.length ? sec("In plain English", (m.images?.[1] ? `<img class="diagr
 ${m.tips?.length ? sec("Exam shortcut tricks", `<ol class="tips">${m.tips.map((t) => `<li>${esc(t)}</li>`).join("")}</ol>`) : ""}
 ${sec("Study roadmap", ols(m.roadmap))}
 ${sec("Study notes", notesHtml)}
+${m.projects?.length ? sec("Hands-on projects", projectsHtml) : ""}
 ${sec(`Practice questions (${m.questions.length})`, qHtml)}
 <p class="backapp"><a href="/portfolio/#/study/${m.slug}">Open the interactive quiz &amp; Save-as-PDF →</a></p>`;
 
