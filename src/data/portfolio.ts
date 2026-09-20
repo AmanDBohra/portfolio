@@ -118,7 +118,7 @@ export const site = {
    */
   resumeUrl: `${import.meta.env.BASE_URL}resume.pdf`,
   /** Square portrait in /public. BASE_URL keeps it working on GitHub Pages. */
-  avatar: `${import.meta.env.BASE_URL}avatar.jpg`,
+  avatar: `${import.meta.env.BASE_URL}avatar.webp`,
   /** Self-contained interactive dashboard demo in /public (synthetic data). */
   dashboardDemoUrl: `${import.meta.env.BASE_URL}dashboard-demo.html`,
   /** Market-basket-analysis notebook, rendered on GitHub. */
@@ -445,7 +445,7 @@ export const about = {
   ],
   highlights: [
     { value: "9+", label: "Years Experience" },
-    { value: "11", label: "Certifications" },
+    { value: "12", label: "Certifications" },
     { value: "10+", label: "Enterprise Clients" },
     { value: "7+", label: "Industries Served" },
   ],
@@ -891,6 +891,7 @@ export const certifications: CertItem[] = [
   { title: "Databricks Certified Data Analyst Associate", issuer: "Databricks", date: "2026", credentialUrl: "https://credentials.databricks.com/33106153-5b7d-45fe-9f75-8083d6e7c67c" },
   { title: "Databricks Certified Generative AI Engineer Associate", issuer: "Databricks", date: "2026" },
   { title: "Databricks Certified Data Engineer Associate", issuer: "Databricks", date: "2026", credentialUrl: "https://credentials.databricks.com/c010ab23-248d-4633-bd99-7a09cf0a37c9" },
+  { title: "Databricks Certified Context Engineer Associate", issuer: "Databricks", date: "2026", credentialUrl: "https://credentials.databricks.com/1a084e58-8e9e-49bd-98ac-108c9bade007" },
   { title: "Power BI Data Analyst Associate (PL-300)", issuer: "Microsoft", date: "2026", credentialUrl: "https://learn.microsoft.com/api/credentials/share/en-us/AmanBohra-0775/A04E9E275E7357D3?sharingId=E28C25AADE85123D" },
   { title: "Qlik Sense Data Architect (QSDA 2024)", issuer: "Qlik", date: "2024", credentialUrl: "https://www.credly.com/badges/7fc2c6d4-fd70-4f77-be1a-6f8ed6c3fb51" },
   { title: "Qlik Sense Business Analyst (QSBA)", issuer: "Qlik", date: "2024", credentialUrl: "https://www.credly.com/badges/06024566-c502-48fa-831d-eafd491ac920" },
@@ -1051,8 +1052,8 @@ export const philosophy = {
   principles: [
     {
       title: "Learn deliberately, not for the badge",
-      text: "I treat learning as a roadmap, not a trophy shelf. My 11 certifications, 40+ courses, and M.Tech in Data Science weren't random — each one closed a specific gap and mapped a clear progression: BI tools → SQL & data modeling → cloud data engineering → Apache Spark → Generative AI.",
-      evidence: "11 certifications · 40+ courses · M.Tech (BITS Pilani)",
+      text: "I treat learning as a roadmap, not a trophy shelf. My 12 certifications, 40+ courses, and M.Tech in Data Science weren't random — each one closed a specific gap and mapped a clear progression: BI tools → SQL & data modeling → cloud data engineering → Apache Spark → Generative AI.",
+      evidence: "12 certifications · 40+ courses · M.Tech (BITS Pilani)",
     },
     {
       title: "Understand deeply before you build",
@@ -1320,7 +1321,7 @@ export const faqs: { q: string; a: string }[] = [
   },
   {
     q: "What certifications does Aman Bohra hold?",
-    a: "11 professional certifications: five Databricks (Data Engineer Professional, Associate Developer for Apache Spark, Data Analyst, Generative AI Engineer, Data Engineer Associate), Microsoft Power BI Data Analyst Associate (PL-300), four Qlik (Qlik Sense Business Analyst and Data Architect, QlikView 12 Business Analyst and Data Architect), and HackerRank SQL (Advanced).",
+    a: "12 professional certifications: six Databricks (Data Engineer Professional, Associate Developer for Apache Spark, Data Analyst, Generative AI Engineer, Data Engineer Associate, and Context Engineer Associate), Microsoft Power BI Data Analyst Associate (PL-300), four Qlik (Qlik Sense Business Analyst and Data Architect, QlikView 12 Business Analyst and Data Architect), and HackerRank SQL (Advanced).",
   },
   {
     q: "What measurable results has Aman Bohra delivered?",

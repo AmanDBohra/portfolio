@@ -1,5 +1,3 @@
-import { marked } from "marked";
-
 export interface Post {
   slug: string;
   title: string;
@@ -8,10 +6,20 @@ export interface Post {
   tags: string[];
   readingTime: string;
   excerpt: string;
-  html: string;
+  /** Raw Markdown body. Rendered to HTML lazily via renderPostHtml(). */
+  body: string;
 }
 
-marked.setOptions({ gfm: true, breaks: false });
+/**
+ * Renders a post's Markdown to HTML, loading the `marked` parser on demand.
+ * Keeping this dynamic import out of the eager module graph means `marked`
+ * ships in its own chunk that only downloads when a reader opens an article.
+ */
+export async function renderPostHtml(body: string): Promise<string> {
+  const { marked } = await import("marked");
+  marked.setOptions({ gfm: true, breaks: false });
+  return marked.parse(body) as string;
+}
 
 /** Very small YAML-frontmatter parser (title/date/tags/readingTime/excerpt). */
 function parseFrontmatter(raw: string): { data: Record<string, string>; body: string } {
@@ -34,10 +42,11 @@ function parseFrontmatter(raw: string): { data: Record<string, string>; body: st
   return { data, body: raw.slice(match[0].length) };
 }
 
-const files = import.meta.glob("../content/blog/*.md", { eager: true, as: "raw" }) as Record<
-  string,
-  string
->;
+const files = import.meta.glob("../content/blog/*.md", {
+  eager: true,
+  query: "?raw",
+  import: "default",
+}) as Record<string, string>;
 
 export const posts: Post[] = Object.entries(files)
   .map(([path, raw]) => {
@@ -55,7 +64,7 @@ export const posts: Post[] = Object.entries(files)
       tags: (data.tags ?? "").split(",").map((t) => t.trim()).filter(Boolean),
       readingTime: data.readingTime ?? "",
       excerpt: data.excerpt ?? "",
-      html: marked.parse(body) as string,
+      body,
     };
   })
   .sort((a, b) => (a.date < b.date ? 1 : -1));

@@ -3,7 +3,7 @@ title: "From a Smart Cane to International Insurance Analytics"
 date: 2026-09-13
 tags: Career, Analytics, Data Engineering
 readingTime: 6 min
-excerpt: "My story — from an assistive-IoT intern to leading the International module of a US P&C insurance analytics engagement, and the deliberate climb through 11 certifications along the way."
+excerpt: "My story — from an assistive-IoT intern to leading the International module of a US P&C insurance analytics engagement, and the deliberate climb through 12 certifications along the way."
 ---
 
 My career didn't begin with a dashboard. It began with a **smart cane**.

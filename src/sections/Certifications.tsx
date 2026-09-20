@@ -79,7 +79,7 @@ export function Certifications() {
               href={`${import.meta.env.BASE_URL}certifications.html`}
               className="font-semibold text-brand-500 hover:underline dark:text-brand-400"
             >
-              View all 11 certifications + 40&plus; courses, with verify links →
+              View all 12 certifications + 40&plus; courses, with verify links →
             </a>
           </p>
         </Reveal>

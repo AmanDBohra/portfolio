@@ -1,6 +1,6 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { ArrowLeft, Clock, Moon, Sun } from "lucide-react";
-import type { Post } from "../lib/posts";
+import { renderPostHtml, type Post } from "../lib/posts";
 import { site } from "../data/portfolio";
 
 interface Props {
@@ -10,6 +10,19 @@ interface Props {
 }
 
 export function Article({ post, theme, onToggleTheme }: Props) {
+  const [html, setHtml] = useState<string | null>(null);
+
+  useEffect(() => {
+    let active = true;
+    setHtml(null);
+    renderPostHtml(post.body).then((h) => {
+      if (active) setHtml(h);
+    });
+    return () => {
+      active = false;
+    };
+  }, [post]);
+
   useEffect(() => {
     window.scrollTo(0, 0);
     const prevTitle = document.title;
@@ -63,10 +76,18 @@ export function Article({ post, theme, onToggleTheme }: Props) {
             ))}
           </div>
 
-          <div
-            className="article-body mt-10"
-            dangerouslySetInnerHTML={{ __html: post.html }}
-          />
+          {html === null ? (
+            <div className="mt-10 space-y-3" aria-hidden="true">
+              <div className="h-4 w-3/4 animate-pulse rounded bg-slate-200/60 dark:bg-white/10" />
+              <div className="h-4 w-full animate-pulse rounded bg-slate-200/60 dark:bg-white/10" />
+              <div className="h-4 w-5/6 animate-pulse rounded bg-slate-200/60 dark:bg-white/10" />
+            </div>
+          ) : (
+            <div
+              className="article-body mt-10"
+              dangerouslySetInnerHTML={{ __html: html }}
+            />
+          )}
 
           <div className="mt-14 border-t border-white/10 pt-6">
             <a href="#/" className="inline-flex items-center gap-2 text-sm font-semibold text-brand-500 dark:text-brand-400">

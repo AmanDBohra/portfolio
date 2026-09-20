@@ -140,7 +140,7 @@ TECH_BLURB = {
  "qlikview":"Aman Bohra has deep QlikView experience from enterprise BI delivery — including a connector-less SAP-to-BI integration and re-engineering a 36-hour report to under two hours. He is QlikView 12 Business Analyst and Data Architect certified.",
  "qlik-nprinting":"Aman Bohra uses Qlik NPrinting for governed, scheduled report distribution across international insurance operations.",
  "power-bi":"Aman Bohra builds Power BI dashboards and KPI reporting across insurance and retail engagements, and is a Microsoft Power BI Data Analyst Associate (PL-300).",
- "databricks":"Aman Bohra uses Databricks for data engineering and advanced-analytics workloads. He holds five Databricks certifications: Data Engineer Professional, Associate Developer for Apache Spark, Data Analyst Associate, Generative AI Engineer Associate, and Data Engineer Associate.",
+ "databricks":"Aman Bohra uses Databricks for data engineering and advanced-analytics workloads. He holds six Databricks certifications: Data Engineer Professional, Associate Developer for Apache Spark, Data Analyst Associate, Generative AI Engineer Associate, Data Engineer Associate, and Context Engineer Associate.",
  "apache-spark":"Aman Bohra works with Apache Spark (PySpark) for large-scale data engineering and transformation on Databricks, and is a Databricks Certified Associate Developer for Apache Spark.",
  "sql":"SQL is core to Aman Bohra's work — data modeling, transformation, and the analytical queries that power his dashboards.",
  "python":"Aman Bohra uses Python for advanced analytics and data science — market-basket analysis, forecasting, anomaly detection, and a Retrieval-Augmented-Generation proof of concept.",
@@ -305,6 +305,7 @@ CERTS = [
  ("Databricks Certified Data Analyst Associate","Databricks","https://credentials.databricks.com/33106153-5b7d-45fe-9f75-8083d6e7c67c"),
  ("Databricks Certified Generative AI Engineer Associate","Databricks",""),
  ("Databricks Certified Data Engineer Associate","Databricks","https://credentials.databricks.com/c010ab23-248d-4633-bd99-7a09cf0a37c9"),
+ ("Databricks Certified Context Engineer Associate","Databricks","https://credentials.databricks.com/1a084e58-8e9e-49bd-98ac-108c9bade007"),
  ("Microsoft Power BI Data Analyst Associate (PL-300)","Microsoft","https://learn.microsoft.com/api/credentials/share/en-us/AmanBohra-0775/A04E9E275E7357D3?sharingId=E28C25AADE85123D"),
  ("Qlik Sense Data Architect (QSDA 2024)","Qlik","https://www.credly.com/badges/7fc2c6d4-fd70-4f77-be1a-6f8ed6c3fb51"),
  ("Qlik Sense Business Analyst (QSBA)","Qlik","https://www.credly.com/badges/06024566-c502-48fa-831d-eafd491ac920"),
@@ -401,7 +402,7 @@ URLS.append((f"{BASE}/technologies/","0.7"))
 about_body = f"""<p class="eyebrow">About</p><h1>About Aman Bohra</h1>
 <p class="lead">Aman Bohra is a Senior Analytics &amp; Business Intelligence professional with 9+ years of experience, currently International Module Lead on a major US P&amp;C insurance engagement at LTIMindtree.</p>
 <p>Aman Bohra delivers enterprise analytics across insurance, banking, retail, automotive and pharmaceutical industries — owning the full lifecycle from business requirements through data engineering coordination, BI development, data-science translation, governance, and production support.</p>
-<p>His focus is making analytics useful: turning scattered data and ambiguous requirements into decisions the business can act on. He holds an M.Tech in Data Science &amp; Engineering from BITS Pilani and 11 professional certifications across Databricks (five, including Data Engineer Professional and Apache Spark Developer), Microsoft, Qlik, and HackerRank.</p>
+<p>His focus is making analytics useful: turning scattered data and ambiguous requirements into decisions the business can act on. He holds an M.Tech in Data Science &amp; Engineering from BITS Pilani and 12 professional certifications across Databricks (six, including Data Engineer Professional and Apache Spark Developer), Microsoft, Qlik, and HackerRank.</p>
 <h2>Areas of expertise</h2>
 <ul class="chips"><li>Business Intelligence</li><li>Analytics Delivery Leadership</li><li>Data Visualization</li><li>Insurance Analytics</li><li>Data Engineering &amp; ETL/ELT</li><li>Data Science translation</li><li>Data Governance</li></ul>
 <h2>Explore</h2><p><a href="{BASE}/experience.html">Experience</a> · <a href="{BASE}/skills.html">Skills</a> · <a href="{BASE}/projects/">Projects</a> · <a href="{BASE}/technologies/">Technologies</a> · <a href="{BASE}/certifications.html">Certifications</a> · <a href="{BASE}/contact.html">Contact</a></p>
@@ -467,9 +468,9 @@ cert_ld = {"@type":"ItemList","name":"Certifications of Aman Bohra",
               "recognizedBy":{"@type":"Organization","name":iss}, **({"url":u} if u else {})}}
      for i,(n,iss,u) in enumerate(CERTS)]}
 page(f"{BASE}/certifications.html","Certifications — Aman Bohra",
- "Aman Bohra holds 11 professional certifications across Databricks (5, incl. Data Engineer Professional and Apache Spark Developer), Microsoft (PL-300), Qlik (4), and HackerRank SQL — each with a verifiable credential link.",
+ "Aman Bohra holds 12 professional certifications across Databricks (6, incl. Data Engineer Professional and Apache Spark Developer), Microsoft (PL-300), Qlik (4), and HackerRank SQL — each with a verifiable credential link.",
  [("Home",BASE+"/"),("Certifications","")],
- f'<p class="eyebrow">Credentials</p><h1>Certifications — Aman Bohra (11)</h1>'
+ f'<p class="eyebrow">Credentials</p><h1>Certifications — Aman Bohra (12)</h1>'
  f'<p class="lead">Verifiable professional certifications across Databricks, Microsoft, Qlik, and HackerRank.</p>{cert_html}'
  f'<h2>Additional professional development</h2>{dev_html}', cert_ld)
 URLS.append((f"{BASE}/certifications.html","0.6"))
