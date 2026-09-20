@@ -29,6 +29,18 @@ export interface CertStudy {
   roadmap: string[];
   notes: StudyNote[];
   questions: StudyQuestion[];
+  /** Detailed "what it is" paragraphs (from studyMeta). */
+  about?: string[];
+  /** "Where/how it's used" — roles, real-world value (from studyMeta). */
+  usage?: string[];
+  /** Path to an on-brand concept diagram (SVG) for this cert. */
+  image?: string;
+}
+
+export interface CertMeta {
+  about: string[];
+  usage: string[];
+  image?: string;
 }
 
 import { extraQuestions } from "./studyExtra";
@@ -38,6 +50,7 @@ import { extraQuestions4 } from "./studyExtra4";
 import { extraQuestions5 } from "./studyExtra5";
 import { extraQuestions6 } from "./studyExtra6";
 import { extraQuestions7 } from "./studyExtra7";
+import { studyMeta } from "./studyMeta";
 
 export const studyModules: CertStudy[] = [
   /* ====================================================================== */
@@ -1817,5 +1830,11 @@ for (const m of studyModules) {
   for (const bank of extraBanks) {
     const extra = bank[m.slug];
     if (extra && extra.length) m.questions.push(...extra);
+  }
+  const meta = studyMeta[m.slug];
+  if (meta) {
+    m.about = meta.about;
+    m.usage = meta.usage;
+    m.image = meta.image ?? `${import.meta.env.BASE_URL}study/${m.slug}.svg`;
   }
 }

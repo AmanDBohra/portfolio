@@ -9,6 +9,8 @@ import {
   XCircle,
   RotateCcw,
   GraduationCap,
+  Info,
+  Briefcase,
 } from "lucide-react";
 import { studyModules, type StudyQuestion } from "../data/study";
 import { site } from "../data/portfolio";
@@ -148,7 +150,19 @@ export function StudyHub({ slug, theme, onToggleTheme }: Props) {
 
             <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
               {studyModules.map((m) => (
-                <a key={m.slug} href={`#/study/${m.slug}`} className="card group flex h-full flex-col">
+                <a key={m.slug} href={`#/study/${m.slug}`} className="card group flex h-full flex-col overflow-hidden p-0">
+                  {m.image && (
+                    <div className="overflow-hidden border-b border-slate-200/60 dark:border-white/10">
+                      <img
+                        src={m.image}
+                        alt=""
+                        aria-hidden="true"
+                        loading="lazy"
+                        className="aspect-[1000/420] w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+                      />
+                    </div>
+                  )}
+                  <div className="flex flex-1 flex-col p-6">
                   <div className="flex items-center justify-between">
                     <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-brand-50 text-brand-600 dark:bg-brand-500/10 dark:text-brand-400">
                       <BookOpen className="h-5 w-5" />
@@ -164,6 +178,7 @@ export function StudyHub({ slug, theme, onToggleTheme }: Props) {
                   <p className="mt-4 text-xs font-semibold uppercase tracking-wide text-brand-600 dark:text-brand-400">
                     {m.questions.length} practice questions · {m.level}
                   </p>
+                  </div>
                 </a>
               ))}
             </div>
@@ -180,6 +195,52 @@ export function StudyHub({ slug, theme, onToggleTheme }: Props) {
             <p className="mt-3 text-sm font-medium text-brand-600 dark:text-brand-400">
               {active.examFormat}
             </p>
+
+            {/* Concept diagram */}
+            {active.image && (
+              <figure className="mt-8 overflow-hidden rounded-2xl border border-slate-200 bg-white/60 dark:border-white/10 dark:bg-white/[0.02]">
+                <img
+                  src={active.image}
+                  alt={`${active.name} — concept diagram`}
+                  className="w-full"
+                  loading="lazy"
+                />
+              </figure>
+            )}
+
+            {/* What it is */}
+            {active.about && active.about.length > 0 && (
+              <section className="mt-12">
+                <h2 className="flex items-center gap-2 text-xl font-bold text-slate-900 dark:text-white">
+                  <Info className="h-5 w-5 text-brand-500" /> What it is
+                </h2>
+                <div className="mt-4 space-y-4 text-[0.97rem] leading-relaxed text-slate-600 dark:text-slate-300">
+                  {active.about.map((p, i) => (
+                    <p key={i}>{p}</p>
+                  ))}
+                </div>
+              </section>
+            )}
+
+            {/* Where it's used */}
+            {active.usage && active.usage.length > 0 && (
+              <section className="mt-12">
+                <h2 className="flex items-center gap-2 text-xl font-bold text-slate-900 dark:text-white">
+                  <Briefcase className="h-5 w-5 text-brand-500" /> Where it's used
+                </h2>
+                <ul className="mt-4 space-y-2.5">
+                  {active.usage.map((u, i) => (
+                    <li
+                      key={i}
+                      className="flex items-start gap-2 text-[0.97rem] leading-relaxed text-slate-600 dark:text-slate-300"
+                    >
+                      <span className="mt-2 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-brand-400" />
+                      {u}
+                    </li>
+                  ))}
+                </ul>
+              </section>
+            )}
 
             {/* Roadmap */}
             <section className="mt-12">
