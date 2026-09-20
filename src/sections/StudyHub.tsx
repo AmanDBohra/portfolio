@@ -208,9 +208,21 @@ function CertPrintable({ m }: { m: CertStudy }) {
             <div key={i}>
               <h3>{i + 1}. {p.title}</h3>
               <p><strong>Goal:</strong> {p.goal}</p>
-              <p><strong>Concepts:</strong> {p.concepts.join(", ")}</p>
-              <p><strong>Approach:</strong></p>
-              <ol>{p.approach.map((s, j) => <li key={j}>{s}</li>)}</ol>
+              {p.architecture && <p><strong>Architecture &amp; data model:</strong> {p.architecture}</p>}
+              <p><strong>Concepts covered:</strong></p>
+              {p.conceptDetails && p.conceptDetails.length > 0 ? (
+                <ul>{p.conceptDetails.map((c, j) => <li key={j}><strong>{c.name}:</strong> {c.detail}</li>)}</ul>
+              ) : (
+                <p>{p.concepts.join(", ")}</p>
+              )}
+              <p><strong>{p.steps && p.steps.length > 0 ? "Implementation steps:" : "Approach:"}</strong></p>
+              <ol>{(p.steps && p.steps.length > 0 ? p.steps : p.approach).map((s, j) => <li key={j}>{s}</li>)}</ol>
+              {p.outcomes && p.outcomes.length > 0 && (
+                <>
+                  <p><strong>Outcomes:</strong></p>
+                  <ul>{p.outcomes.map((o, j) => <li key={j}>{o}</li>)}</ul>
+                </>
+              )}
               <p><strong>Stack:</strong> {p.stack.join(", ")}</p>
               <p><em>{p.relevance}</em></p>
             </div>
@@ -583,20 +595,37 @@ export function StudyHub({ slug, theme, onToggleTheme }: Props) {
                         {p.goal}
                       </p>
 
+                      {p.architecture && (
+                        <p className="mt-3 text-sm leading-relaxed text-slate-600 dark:text-slate-300">
+                          <span className="font-semibold text-slate-700 dark:text-slate-200">Architecture &amp; data model: </span>
+                          {p.architecture}
+                        </p>
+                      )}
+
                       <p className="mt-4 text-xs font-semibold uppercase tracking-wide text-brand-600 dark:text-brand-400">
                         Concepts covered
                       </p>
-                      <ul className="mt-2 flex flex-wrap gap-2">
-                        {p.concepts.map((c) => (
-                          <li key={c} className="chip">{c}</li>
-                        ))}
-                      </ul>
+                      {p.conceptDetails && p.conceptDetails.length > 0 ? (
+                        <ul className="mt-2 space-y-1.5">
+                          {p.conceptDetails.map((c) => (
+                            <li key={c.name} className="text-sm leading-relaxed text-slate-600 dark:text-slate-400">
+                              <span className="font-semibold text-slate-800 dark:text-slate-200">{c.name}:</span> {c.detail}
+                            </li>
+                          ))}
+                        </ul>
+                      ) : (
+                        <ul className="mt-2 flex flex-wrap gap-2">
+                          {p.concepts.map((c) => (
+                            <li key={c} className="chip">{c}</li>
+                          ))}
+                        </ul>
+                      )}
 
                       <p className="mt-4 text-xs font-semibold uppercase tracking-wide text-brand-600 dark:text-brand-400">
-                        Approach
+                        {p.steps && p.steps.length > 0 ? "Implementation steps" : "Approach"}
                       </p>
                       <ol className="mt-2 space-y-1.5">
-                        {p.approach.map((step, j) => (
+                        {(p.steps && p.steps.length > 0 ? p.steps : p.approach).map((step, j) => (
                           <li
                             key={j}
                             className="flex items-start gap-2 text-sm leading-relaxed text-slate-600 dark:text-slate-400"
@@ -606,6 +635,25 @@ export function StudyHub({ slug, theme, onToggleTheme }: Props) {
                           </li>
                         ))}
                       </ol>
+
+                      {p.outcomes && p.outcomes.length > 0 && (
+                        <>
+                          <p className="mt-4 text-xs font-semibold uppercase tracking-wide text-brand-600 dark:text-brand-400">
+                            Outcomes
+                          </p>
+                          <ul className="mt-2 space-y-1.5">
+                            {p.outcomes.map((o, j) => (
+                              <li
+                                key={j}
+                                className="flex items-start gap-2 text-sm leading-relaxed text-slate-600 dark:text-slate-400"
+                              >
+                                <span className="mt-2 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-emerald-400" />
+                                {o}
+                              </li>
+                            ))}
+                          </ul>
+                        </>
+                      )}
 
                       <div className="mt-4 flex flex-wrap gap-2">
                         {p.stack.map((s) => (

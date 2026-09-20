@@ -45,6 +45,11 @@ export interface CertStudy {
   projects?: CertProject[];
 }
 
+export interface ConceptDetail {
+  name: string;
+  detail: string;
+}
+
 export interface CertProject {
   title: string;
   goal: string;
@@ -52,6 +57,14 @@ export interface CertProject {
   approach: string[];
   stack: string[];
   relevance: string;
+  /** Detailed per-concept explanations (from studyProjectDetails). */
+  conceptDetails?: ConceptDetail[];
+  /** Architecture / data-model description. */
+  architecture?: string;
+  /** Detailed implementation steps / pseudo-code. */
+  steps?: string[];
+  /** Measurable outcomes / deliverables. */
+  outcomes?: string[];
 }
 
 export interface CertMeta {
@@ -75,6 +88,7 @@ import { extraQuestions7 } from "./studyExtra7";
 import { studyMeta } from "./studyMeta";
 import { studyMeta2 } from "./studyMeta2";
 import { studyProjects } from "./studyProjects";
+import { studyProjectDetails } from "./studyProjectDetails";
 
 export const studyModules: CertStudy[] = [
   /* ====================================================================== */
@@ -1871,5 +1885,8 @@ for (const m of studyModules) {
     m.tips = meta2.tips;
   }
   const projs = studyProjects[m.slug];
-  if (projs) m.projects = projs;
+  if (projs) {
+    const details = studyProjectDetails[m.slug];
+    m.projects = projs.map((p, i) => (details && details[i] ? { ...p, ...details[i] } : p));
+  }
 }

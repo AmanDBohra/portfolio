@@ -101,15 +101,28 @@ for (const m of modules) {
   const ols = (arr) => `<ol>${(arr || []).map((p) => `<li>${esc(p)}</li>`).join("")}</ol>`;
 
   const projectsHtml = (m.projects || [])
-    .map(
-      (p, i) =>
+    .map((p, i) => {
+      const concepts =
+        p.conceptDetails && p.conceptDetails.length
+          ? `<ul>${p.conceptDetails.map((c) => `<li><strong>${esc(c.name)}:</strong> ${esc(c.detail)}</li>`).join("")}</ul>`
+          : `<p>${p.concepts.map(esc).join(", ")}</p>`;
+      const stepsArr = p.steps && p.steps.length ? p.steps : p.approach;
+      const stepsLabel = p.steps && p.steps.length ? "Implementation steps" : "Approach";
+      const outcomes =
+        p.outcomes && p.outcomes.length
+          ? `<p><strong>Outcomes:</strong></p><ul>${p.outcomes.map((o) => `<li>${esc(o)}</li>`).join("")}</ul>`
+          : "";
+      return (
         `<div class="q"><p class="qt">${i + 1}. ${esc(p.title)}</p>` +
         `<p><strong>Goal:</strong> ${esc(p.goal)}</p>` +
-        `<p><strong>Concepts:</strong> ${p.concepts.map(esc).join(", ")}</p>` +
-        `<p><strong>Approach:</strong></p><ol>${p.approach.map((s) => `<li>${esc(s)}</li>`).join("")}</ol>` +
+        (p.architecture ? `<p><strong>Architecture &amp; data model:</strong> ${esc(p.architecture)}</p>` : "") +
+        `<p><strong>Concepts covered:</strong></p>${concepts}` +
+        `<p><strong>${stepsLabel}:</strong></p><ol>${stepsArr.map((s) => `<li>${esc(s)}</li>`).join("")}</ol>` +
+        outcomes +
         `<p><strong>Stack:</strong> ${p.stack.map(esc).join(", ")}</p>` +
         `<p class="exp"><em>${esc(p.relevance)}</em></p></div>`
-    )
+      );
+    })
     .join("");
 
   const notesHtml = m.notes

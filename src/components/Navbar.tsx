@@ -81,6 +81,14 @@ export function Navbar({ theme, onToggleTheme }: Props) {
               </a>
             </li>
           ))}
+          <li>
+            <a
+              href="#/study"
+              className="rounded-full px-4 py-2 text-sm font-medium text-slate-600 transition-colors hover:text-brand-600 dark:text-slate-300 dark:hover:text-brand-300"
+            >
+              Study Hub
+            </a>
+          </li>
         </ul>
 
         <div className="flex items-center gap-2">
@@ -132,6 +140,15 @@ export function Navbar({ theme, onToggleTheme }: Props) {
               </a>
             </li>
           ))}
+          <li>
+            <a
+              href="#/study"
+              onClick={() => setOpen(false)}
+              className="block rounded-lg px-4 py-3 text-base font-medium text-slate-700 dark:text-slate-200"
+            >
+              Study Hub
+            </a>
+          </li>
           <li>
             <a
               href="#contact"
