@@ -33,3 +33,4 @@ Thumbs.db
 .env.*
 !.env.example
 _dump.mjs
+_verify.mjs
