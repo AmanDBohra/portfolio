@@ -35,12 +35,23 @@ export interface CertStudy {
   usage?: string[];
   /** Path to an on-brand concept diagram (SVG) for this cert. */
   image?: string;
+  /** Plain-English "explain like I'm five" points (from studyMeta2). */
+  layman?: string[];
+  /** Exam shortcut tricks / mnemonics (from studyMeta2). */
+  tips?: string[];
+  /** Gallery of diagram image paths for this cert. */
+  images?: string[];
 }
 
 export interface CertMeta {
   about: string[];
   usage: string[];
   image?: string;
+}
+
+export interface CertMeta2 {
+  layman: string[];
+  tips: string[];
 }
 
 import { extraQuestions } from "./studyExtra";
@@ -51,6 +62,7 @@ import { extraQuestions5 } from "./studyExtra5";
 import { extraQuestions6 } from "./studyExtra6";
 import { extraQuestions7 } from "./studyExtra7";
 import { studyMeta } from "./studyMeta";
+import { studyMeta2 } from "./studyMeta2";
 
 export const studyModules: CertStudy[] = [
   /* ====================================================================== */
@@ -1836,5 +1848,14 @@ for (const m of studyModules) {
     m.about = meta.about;
     m.usage = meta.usage;
     m.image = meta.image ?? `${import.meta.env.BASE_URL}study/${m.slug}.svg`;
+    m.images = [
+      `${import.meta.env.BASE_URL}study/${m.slug}.svg`,
+      `${import.meta.env.BASE_URL}study/${m.slug}-plain.svg`,
+    ];
+  }
+  const meta2 = studyMeta2[m.slug];
+  if (meta2) {
+    m.layman = meta2.layman;
+    m.tips = meta2.tips;
   }
 }

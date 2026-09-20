@@ -11,6 +11,8 @@ import {
   GraduationCap,
   Info,
   Briefcase,
+  Lightbulb,
+  Zap,
 } from "lucide-react";
 import { studyModules, type StudyQuestion } from "../data/study";
 import { site } from "../data/portfolio";
@@ -236,6 +238,57 @@ export function StudyHub({ slug, theme, onToggleTheme }: Props) {
                     >
                       <span className="mt-2 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-brand-400" />
                       {u}
+                    </li>
+                  ))}
+                </ul>
+              </section>
+            )}
+
+            {/* In plain English */}
+            {active.layman && active.layman.length > 0 && (
+              <section className="mt-12">
+                <h2 className="flex items-center gap-2 text-xl font-bold text-slate-900 dark:text-white">
+                  <Lightbulb className="h-5 w-5 text-brand-500" /> In plain English
+                </h2>
+                {active.images && active.images[1] && (
+                  <figure className="mt-4 overflow-hidden rounded-2xl border border-slate-200 bg-white/60 dark:border-white/10 dark:bg-white/[0.02]">
+                    <img
+                      src={active.images[1]}
+                      alt={`${active.name} — everyday analogy`}
+                      className="w-full"
+                      loading="lazy"
+                    />
+                  </figure>
+                )}
+                <ul className="mt-5 space-y-3">
+                  {active.layman.map((p, i) => (
+                    <li
+                      key={i}
+                      className="rounded-xl border border-slate-200 bg-white/60 p-4 text-[0.97rem] leading-relaxed text-slate-700 dark:border-white/10 dark:bg-white/[0.03] dark:text-slate-300"
+                    >
+                      {p}
+                    </li>
+                  ))}
+                </ul>
+              </section>
+            )}
+
+            {/* Exam shortcut tricks */}
+            {active.tips && active.tips.length > 0 && (
+              <section className="mt-12">
+                <h2 className="flex items-center gap-2 text-xl font-bold text-slate-900 dark:text-white">
+                  <Zap className="h-5 w-5 text-brand-500" /> Exam shortcut tricks
+                </h2>
+                <ul className="mt-5 space-y-2.5">
+                  {active.tips.map((t, i) => (
+                    <li
+                      key={i}
+                      className="flex items-start gap-3 text-[0.97rem] leading-relaxed text-slate-700 dark:text-slate-300"
+                    >
+                      <span className="mt-0.5 flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full bg-amber-100 text-xs font-bold text-amber-700 dark:bg-amber-500/15 dark:text-amber-300">
+                        {i + 1}
+                      </span>
+                      {t}
                     </li>
                   ))}
                 </ul>
