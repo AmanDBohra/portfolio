@@ -65,6 +65,8 @@ export interface CertProject {
   steps?: string[];
   /** Measurable outcomes / deliverables. */
   outcomes?: string[];
+  /** Path to a per-project architecture diagram (SVG). */
+  diagram?: string;
 }
 
 export interface CertMeta {
@@ -1887,6 +1889,10 @@ for (const m of studyModules) {
   const projs = studyProjects[m.slug];
   if (projs) {
     const details = studyProjectDetails[m.slug];
-    m.projects = projs.map((p, i) => (details && details[i] ? { ...p, ...details[i] } : p));
+    m.projects = projs.map((p, i) => ({
+      ...p,
+      ...(details && details[i] ? details[i] : {}),
+      diagram: `${import.meta.env.BASE_URL}study/projects/${m.slug}-${i + 1}.svg`,
+    }));
   }
 }

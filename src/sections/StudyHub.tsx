@@ -590,7 +590,17 @@ export function StudyHub({ slug, theme, onToggleTheme }: Props) {
                       <h3 className="text-base font-bold text-slate-900 dark:text-white">
                         {i + 1}. {p.title}
                       </h3>
-                      <p className="mt-2 text-sm leading-relaxed text-slate-600 dark:text-slate-300">
+                      {p.diagram && (
+                        <figure className="mt-3 overflow-hidden rounded-xl border border-slate-200 bg-white/60 dark:border-white/10 dark:bg-white/[0.02]">
+                          <img
+                            src={p.diagram}
+                            alt={`${p.title} — architecture diagram`}
+                            className="w-full"
+                            loading="lazy"
+                          />
+                        </figure>
+                      )}
+                      <p className="mt-3 text-sm leading-relaxed text-slate-600 dark:text-slate-300">
                         <span className="font-semibold text-slate-700 dark:text-slate-200">Goal: </span>
                         {p.goal}
                       </p>

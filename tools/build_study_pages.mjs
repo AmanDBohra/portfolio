@@ -114,6 +114,7 @@ for (const m of modules) {
           : "";
       return (
         `<div class="q"><p class="qt">${i + 1}. ${esc(p.title)}</p>` +
+        (p.diagram ? `<img class="diagram" src="${p.diagram}" alt="${esc(p.title)} architecture diagram" loading="lazy">` : "") +
         `<p><strong>Goal:</strong> ${esc(p.goal)}</p>` +
         (p.architecture ? `<p><strong>Architecture &amp; data model:</strong> ${esc(p.architecture)}</p>` : "") +
         `<p><strong>Concepts covered:</strong></p>${concepts}` +
