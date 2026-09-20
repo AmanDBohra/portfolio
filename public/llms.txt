@@ -1,0 +1,33 @@
+# Aman Bohra — Senior Analytics & Business Intelligence Professional
+
+> Aman Bohra is a Senior Analytics & Business Intelligence professional with 9+ years of experience, currently International Module Lead on a major US Property & Casualty (P&C) insurance analytics engagement at LTIMindtree. He specializes in Business Intelligence, analytics delivery leadership, insurance analytics, data engineering, and translating data science and Generative AI into business decisions. Tools: Qlik Sense, QlikView, Qlik NPrinting, Power BI, Databricks, Apache Spark, SQL, Python, ETL/ELT, data warehousing, and RAG/GenAI. He holds 12 professional certifications (6 Databricks, Microsoft PL-300, 4 Qlik, HackerRank SQL) and an M.Tech in Data Science & Engineering from BITS Pilani.
+
+## Key pages
+- [Portfolio (home)](https://amandbohra.github.io/portfolio/): overview, experience, projects, skills, testimonials, contact.
+- [About](https://amandbohra.github.io/portfolio/about.html): background and summary.
+- [Experience](https://amandbohra.github.io/portfolio/experience.html): roles at LTIMindtree, Fractal Analytics, Icon Business Solutions.
+- [Projects](https://amandbohra.github.io/portfolio/projects/): enterprise analytics case studies (problem → approach → outcome).
+- [Skills](https://amandbohra.github.io/portfolio/skills.html) and [Technologies](https://amandbohra.github.io/portfolio/technologies/).
+- [Certifications](https://amandbohra.github.io/portfolio/certifications.html): 12 professional certifications with verification links.
+- [Articles](https://amandbohra.github.io/portfolio/articles/): writing on analytics delivery, BI, data engineering, and "Explained Simply" guides.
+- [Contact](https://amandbohra.github.io/portfolio/contact.html).
+
+## Certification study guides (free, detailed)
+Each guide includes a definition, real-world usage, plain-English explanations, exam shortcut tips, a study roadmap, notes, and 100 practice questions with answers and explanations.
+- [All study guides](https://amandbohra.github.io/portfolio/guides/)
+- [Databricks Certified Data Engineer Associate](https://amandbohra.github.io/portfolio/guides/databricks-data-engineer-associate.html)
+- [Databricks Certified Data Engineer Professional](https://amandbohra.github.io/portfolio/guides/databricks-data-engineer-professional.html)
+- [Databricks Certified Associate Developer for Apache Spark](https://amandbohra.github.io/portfolio/guides/databricks-apache-spark-developer.html)
+- [Databricks Certified Data Analyst Associate](https://amandbohra.github.io/portfolio/guides/databricks-data-analyst-associate.html)
+- [Databricks Certified Generative AI Engineer Associate](https://amandbohra.github.io/portfolio/guides/databricks-genai-engineer-associate.html)
+- [Databricks Certified Context Engineer Associate](https://amandbohra.github.io/portfolio/guides/databricks-context-engineer-associate.html)
+- [Microsoft Power BI Data Analyst Associate (PL-300)](https://amandbohra.github.io/portfolio/guides/microsoft-pl-300.html)
+- [Qlik Sense Data Architect (QSDA)](https://amandbohra.github.io/portfolio/guides/qlik-sense-data-architect.html)
+- [Qlik Sense Business Analyst (QSBA)](https://amandbohra.github.io/portfolio/guides/qlik-sense-business-analyst.html)
+- [QlikView 12 Data Architect (QV12DA)](https://amandbohra.github.io/portfolio/guides/qlikview-12-data-architect.html)
+- [QlikView 12 Business Analyst (QVBA)](https://amandbohra.github.io/portfolio/guides/qlikview-12-business-analyst.html)
+
+## Contact
+- GitHub: https://github.com/AmanDBohra
+- LinkedIn: https://www.linkedin.com/in/aman-bohra
+- Email: bohraaman@gmail.com
