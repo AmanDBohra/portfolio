@@ -160,6 +160,36 @@
   }
 }
 
+/* Print / Save-as-PDF styling for the Study Hub printable material */
+@media print {
+  html, body {
+    background: #ffffff !important;
+  }
+  .print-doc {
+    color: #111 !important;
+    font-size: 11pt;
+    line-height: 1.5;
+  }
+  .print-doc h1 { font-size: 20pt; margin: 0 0 4pt; }
+  .print-doc h2 {
+    font-size: 14pt;
+    margin: 16pt 0 6pt;
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 3pt;
+    break-after: avoid;
+  }
+  .print-doc h3 { font-size: 12pt; margin: 10pt 0 4pt; }
+  .print-doc p { margin: 0 0 6pt; }
+  .print-doc .muted { color: #555; }
+  .print-doc ul, .print-doc ol { margin: 0 0 8pt; padding-left: 20pt; }
+  .print-doc li { margin: 0 0 4pt; break-inside: avoid; }
+  .print-doc .print-q > li { margin-bottom: 12pt; break-inside: avoid; }
+  .print-doc .print-q .q { font-weight: 700; margin-bottom: 3pt; }
+  .print-doc .print-q .correct { font-weight: 700; color: #0a7d43; }
+  .print-doc .print-q .exp { color: #333; font-size: 10pt; }
+  @page { margin: 16mm; }
+}
+
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,

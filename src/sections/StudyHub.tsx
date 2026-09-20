@@ -13,8 +13,10 @@ import {
   Briefcase,
   Lightbulb,
   Zap,
+  Search,
+  Printer,
 } from "lucide-react";
-import { studyModules, type StudyQuestion } from "../data/study";
+import { studyModules, type StudyQuestion, type CertStudy } from "../data/study";
 import { site } from "../data/portfolio";
 
 interface Props {
@@ -102,11 +104,160 @@ function QuestionCard({ q, index }: { q: StudyQuestion; index: number }) {
   );
 }
 
+/* A search result — question with a reveal for the answer + explanation. */
+function SearchResult({
+  q,
+  certName,
+  certSlug,
+}: {
+  q: StudyQuestion;
+  certName: string;
+  certSlug: string;
+}) {
+  return (
+    <li className="card">
+      <div className="flex items-center justify-between gap-3">
+        <a
+          href={`#/study/${certSlug}`}
+          className="text-xs font-semibold uppercase tracking-wide text-brand-600 hover:underline dark:text-brand-400"
+        >
+          {certName}
+        </a>
+        <span className="chip">{q.t}</span>
+      </div>
+      <p className="mt-2 font-semibold text-slate-900 dark:text-white">{q.q}</p>
+      <details className="group mt-2">
+        <summary className="cursor-pointer text-sm font-medium text-brand-600 dark:text-brand-400">
+          Show answer &amp; explanation
+        </summary>
+        <ul className="mt-3 space-y-1.5">
+          {q.o.map((opt, i) => (
+            <li
+              key={i}
+              className={`flex items-start gap-2 rounded-lg border px-3 py-2 text-sm ${
+                i === q.a
+                  ? "border-emerald-400 bg-emerald-50 dark:border-emerald-500/50 dark:bg-emerald-500/10"
+                  : "border-slate-200 opacity-70 dark:border-white/10"
+              }`}
+            >
+              <span className="font-semibold text-slate-500 dark:text-slate-400">
+                {String.fromCharCode(65 + i)}.
+              </span>
+              <span className="flex-1 text-slate-700 dark:text-slate-200">{opt}</span>
+              {i === q.a && <CheckCircle2 className="h-4 w-4 flex-shrink-0 text-emerald-500" />}
+            </li>
+          ))}
+        </ul>
+        <p className="mt-3 rounded-lg border border-brand-200 bg-brand-50/60 p-3 text-sm leading-relaxed text-slate-700 dark:border-brand-500/20 dark:bg-brand-500/[0.06] dark:text-slate-300">
+          {q.e}
+        </p>
+      </details>
+    </li>
+  );
+}
+
+/* Print-only full material for a cert (shown only when printing / Save as PDF). */
+function CertPrintable({ m }: { m: CertStudy }) {
+  return (
+    <div className="hidden print:block print-doc">
+      <h1>{m.name}</h1>
+      <p className="muted">{m.issuer} · {m.level}</p>
+      <p>{m.blurb}</p>
+      <p className="muted">{m.examFormat}</p>
+
+      {m.about && m.about.length > 0 && (
+        <>
+          <h2>What it is</h2>
+          {m.about.map((p, i) => <p key={i}>{p}</p>)}
+        </>
+      )}
+      {m.usage && m.usage.length > 0 && (
+        <>
+          <h2>Where it's used</h2>
+          <ul>{m.usage.map((u, i) => <li key={i}>{u}</li>)}</ul>
+        </>
+      )}
+      {m.layman && m.layman.length > 0 && (
+        <>
+          <h2>In plain English</h2>
+          <ul>{m.layman.map((p, i) => <li key={i}>{p}</li>)}</ul>
+        </>
+      )}
+      {m.tips && m.tips.length > 0 && (
+        <>
+          <h2>Exam shortcut tricks</h2>
+          <ol>{m.tips.map((t, i) => <li key={i}>{t}</li>)}</ol>
+        </>
+      )}
+      <h2>Study roadmap</h2>
+      <ol>{m.roadmap.map((s, i) => <li key={i}>{s}</li>)}</ol>
+
+      <h2>Study notes</h2>
+      {m.notes.map((n) => (
+        <div key={n.h}>
+          <h3>{n.h}</h3>
+          <ul>{n.points.map((p, i) => <li key={i}>{p}</li>)}</ul>
+        </div>
+      ))}
+
+      <h2>Practice questions ({m.questions.length})</h2>
+      <ol className="print-q">
+        {m.questions.map((q, i) => (
+          <li key={i}>
+            <p className="q">{q.q}</p>
+            <ul>
+              {q.o.map((opt, j) => (
+                <li key={j} className={j === q.a ? "correct" : ""}>
+                  {String.fromCharCode(65 + j)}. {opt}{j === q.a ? "  ✓" : ""}
+                </li>
+              ))}
+            </ul>
+            <p className="exp"><strong>Explanation:</strong> {q.e}</p>
+          </li>
+        ))}
+      </ol>
+    </div>
+  );
+}
+
 export function StudyHub({ slug, theme, onToggleTheme }: Props) {
   const active = useMemo(
     () => (slug ? studyModules.find((m) => m.slug === slug) : undefined),
     [slug]
   );
+
+  const [query, setQuery] = useState("");
+  const [issuerFilter, setIssuerFilter] = useState("All");
+
+  const issuers = useMemo(
+    () => ["All", ...Array.from(new Set(studyModules.map((m) => m.issuer)))],
+    []
+  );
+
+  const flatQuestions = useMemo(
+    () =>
+      studyModules.flatMap((m) =>
+        m.questions.map((q) => ({ q, certName: m.name, certSlug: m.slug, issuer: m.issuer }))
+      ),
+    []
+  );
+
+  const results = useMemo(() => {
+    const term = query.trim().toLowerCase();
+    if (!term) return [];
+    return flatQuestions
+      .filter((r) => issuerFilter === "All" || r.issuer === issuerFilter)
+      .filter(
+        (r) =>
+          r.q.q.toLowerCase().includes(term) ||
+          r.q.e.toLowerCase().includes(term) ||
+          r.q.t.toLowerCase().includes(term) ||
+          r.q.o.some((o) => o.toLowerCase().includes(term))
+      )
+      .slice(0, 80);
+  }, [query, issuerFilter, flatQuestions]);
+
+  const totalQuestions = flatQuestions.length;
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -114,7 +265,7 @@ export function StudyHub({ slug, theme, onToggleTheme }: Props) {
 
   return (
     <>
-      <header className="sticky top-0 z-50 border-b border-slate-200/70 bg-white/80 backdrop-blur-md dark:border-white/10 dark:bg-navy-900/70">
+      <header className="sticky top-0 z-50 border-b border-slate-200/70 bg-white/80 backdrop-blur-md print:hidden dark:border-white/10 dark:bg-navy-900/70">
         <div className="container-x flex h-16 items-center justify-between">
           <a
             href={active ? "#/study" : "#/"}
@@ -145,13 +296,56 @@ export function StudyHub({ slug, theme, onToggleTheme }: Props) {
                 Certification study material
               </h1>
               <p className="mt-4 text-base leading-relaxed text-slate-600 dark:text-slate-400">
-                Roadmaps, study notes, and interactive practice questions with detailed
-                explanations for each certification. Pick a certification to begin.
+                Roadmaps, study notes, and {totalQuestions.toLocaleString()} interactive practice
+                questions with detailed explanations across {studyModules.length} certifications.
+                Search all questions, or pick a certification to begin.
               </p>
             </div>
 
+            {/* Search / filter across all questions */}
+            <div className="mx-auto mb-10 flex max-w-2xl flex-col gap-3 sm:flex-row">
+              <div className="relative flex-1">
+                <Search className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-slate-400" />
+                <input
+                  type="search"
+                  value={query}
+                  onChange={(e) => setQuery(e.target.value)}
+                  placeholder="Search all 1,100 questions (e.g. MERGE, RAG, CALCULATE, set analysis)…"
+                  className="w-full rounded-full border border-slate-300 bg-white/70 py-2.5 pl-10 pr-4 text-sm text-slate-800 outline-none focus:border-brand-400 focus:ring-2 focus:ring-brand-500/30 dark:border-white/15 dark:bg-white/[0.04] dark:text-slate-100"
+                />
+              </div>
+              <select
+                value={issuerFilter}
+                onChange={(e) => setIssuerFilter(e.target.value)}
+                aria-label="Filter by issuer"
+                className="rounded-full border border-slate-300 bg-white/70 px-4 py-2.5 text-sm text-slate-700 outline-none focus:border-brand-400 dark:border-white/15 dark:bg-white/[0.04] dark:text-slate-200"
+              >
+                {issuers.map((iss) => (
+                  <option key={iss} value={iss}>
+                    {iss === "All" ? "All issuers" : iss}
+                  </option>
+                ))}
+              </select>
+            </div>
+
+            {query.trim() ? (
+              <div>
+                <p className="mb-5 text-sm text-slate-500 dark:text-slate-400">
+                  {results.length === 0
+                    ? "No questions match your search."
+                    : `Showing ${results.length}${results.length === 80 ? "+" : ""} matching question${results.length === 1 ? "" : "s"}.`}
+                </p>
+                <ul className="space-y-4">
+                  {results.map((r, i) => (
+                    <SearchResult key={i} q={r.q} certName={r.certName} certSlug={r.certSlug} />
+                  ))}
+                </ul>
+              </div>
+            ) : (
             <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-              {studyModules.map((m) => (
+              {studyModules
+                .filter((m) => issuerFilter === "All" || m.issuer === issuerFilter)
+                .map((m) => (
                 <a key={m.slug} href={`#/study/${m.slug}`} className="card group flex h-full flex-col overflow-hidden p-0">
                   {m.image && (
                     <div className="overflow-hidden border-b border-slate-200/60 dark:border-white/10">
@@ -184,9 +378,12 @@ export function StudyHub({ slug, theme, onToggleTheme }: Props) {
                 </a>
               ))}
             </div>
+            )}
           </>
         ) : (
           <article className="mx-auto max-w-3xl">
+            <CertPrintable m={active} />
+            <div className="print:hidden">
             <p className="eyebrow">{active.issuer} · {active.level}</p>
             <h1 className="mt-2 text-3xl font-extrabold tracking-tight text-slate-900 sm:text-4xl dark:text-white">
               {active.name}
@@ -197,6 +394,14 @@ export function StudyHub({ slug, theme, onToggleTheme }: Props) {
             <p className="mt-3 text-sm font-medium text-brand-600 dark:text-brand-400">
               {active.examFormat}
             </p>
+
+            <button
+              type="button"
+              onClick={() => window.print()}
+              className="btn-secondary mt-6"
+            >
+              <Printer className="h-4 w-4" /> Save as PDF
+            </button>
 
             {/* Concept diagram */}
             {active.image && (
@@ -362,6 +567,7 @@ export function StudyHub({ slug, theme, onToggleTheme }: Props) {
               >
                 <ArrowLeft className="h-4 w-4" /> All certifications
               </a>
+            </div>
             </div>
           </article>
         )}
