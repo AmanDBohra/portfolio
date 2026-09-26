@@ -94,6 +94,20 @@ const FLOWS = {
     ["Drill / cyclic", "RangeSum running", "Dimensionality()", "Trellis", "Aggr()"],
     ["Traffic-light", "Formatting", "Sparklines", "Dynamic titles", "Show conditions"],
   ],
+  "databricks-machine-learning-associate": [
+    ["Delta data", "ML Pipeline", "CrossValidator", "RMSE eval", "MLflow model"],
+    ["Feature table", "Feature lookups", "Weighted classifier", "F1 / AUC", "MLflow + signature"],
+    ["Dataset", "AutoML", "Leaderboard", "Best-model notebook", "Refine + compare"],
+    ["Search space", "Objective (loss)", "fmin + SparkTrials", "Best params", "MLflow"],
+    ["Register → Production", "spark_udf", "Score Delta", "Gold predictions", "Scheduled Job"],
+  ],
+  "databricks-machine-learning-professional": [
+    ["Features (timestamp keys)", "Point-in-time set", "Online store", "Register model", "Real-time endpoint"],
+    ["UC register", "@champion alias", "Webhook tests", "Quality gate", "Asset Bundle deploy"],
+    ["Champion + challenger", "Shadow", "Canary %", "A/B + guardrails", "Alias switch"],
+    ["Inference tables", "Baseline", "Drift (PSI/KS)", "Alert", "Retrain pipeline"],
+    ["Grouped data", "applyInPandas", "Per-segment models", "Iterator UDF score", "Tune compute"],
+  ],
 };
 
 /* titles from studyProjects.ts */

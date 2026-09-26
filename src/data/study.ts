@@ -89,6 +89,7 @@ import { extraQuestions4 } from "./studyExtra4";
 import { extraQuestions5 } from "./studyExtra5";
 import { extraQuestions6 } from "./studyExtra6";
 import { extraQuestions7 } from "./studyExtra7";
+import { extraQuestionsML } from "./studyExtraML";
 import { studyMeta } from "./studyMeta";
 import { studyMeta2 } from "./studyMeta2";
 import { studyProjects } from "./studyProjects";
@@ -1864,10 +1865,443 @@ export const studyModules: CertStudy[] = [
       },
     ],
   },
+  /* ====================================================================== */
+  {
+    slug: "databricks-machine-learning-associate",
+    name: "Databricks Certified Machine Learning Associate",
+    issuer: "Databricks",
+    level: "Associate",
+    blurb:
+      "Core machine learning on Databricks: the ML workflow (prep, train/validate, evaluate), Databricks ML tools (AutoML, Feature Store, MLflow tracking & registry, Model Serving), Spark ML for scaling, and hyperparameter tuning with Hyperopt.",
+    examFormat:
+      "~45 multiple-choice questions · 90 minutes · passing ~70% · Databricks ML tooling + practical ML concepts.",
+    roadmap: [
+      "ML fundamentals — supervised vs unsupervised, train/validation/test split, cross-validation, bias-variance, over/underfitting.",
+      "Data prep & features — imputation, encoding (one-hot/string indexing), scaling, train-test leakage, Feature Store basics.",
+      "MLflow tracking — runs, params/metrics/artifacts, autolog, model signatures, comparing experiments.",
+      "AutoML — generating baseline models and the editable best-model notebook.",
+      "Model registry — registering models, stages (Staging/Production), and loading by stage.",
+      "Spark ML — MLlib estimators/transformers, Pipelines, pandas API on Spark, and pandas/Iterator UDFs for scaling inference.",
+      "Hyperparameter tuning — Hyperopt (fmin, search spaces, SparkTrials) and cross-validation.",
+      "Evaluation & deployment — metrics (accuracy/F1/AUC/RMSE), and batch/real-time serving basics.",
+    ],
+    notes: [
+      {
+        h: "MLflow",
+        points: [
+          "Tracking logs params, metrics, artifacts, and models per run; mlflow.autolog() captures these automatically for many libraries.",
+          "A model signature records input/output schema; log with an input_example for validation.",
+          "Model Registry manages versions and stages (None/Staging/Production/Archived); load with models:/name/Production.",
+        ],
+      },
+      {
+        h: "AutoML & Feature Store",
+        points: [
+          "AutoML trains many models and produces a leaderboard plus an editable notebook for the best model (glass-box).",
+          "Feature Store stores curated feature tables for reuse and consistent training/inference (avoids train-serve skew); use feature lookups.",
+        ],
+      },
+      {
+        h: "Spark ML & scaling",
+        points: [
+          "MLlib uses Transformers (transform) and Estimators (fit → Model); chain them in a Pipeline.",
+          "pandas API on Spark scales pandas code; pandas UDFs / applyInPandas run vectorized Python at scale.",
+          "Use VectorAssembler to combine feature columns into a single features vector for MLlib.",
+        ],
+      },
+      {
+        h: "Tuning & validation",
+        points: [
+          "Cross-validation reduces variance in the performance estimate; CrossValidator in Spark ML.",
+          "Hyperopt: define a search space, an objective returning loss, and run fmin (TPE); SparkTrials parallelizes single-node models across the cluster.",
+          "Avoid leakage: fit scalers/encoders on training data only (inside the Pipeline).",
+        ],
+      },
+    ],
+    questions: [
+      {
+        q: "What does mlflow.autolog() do?",
+        o: ["Deploys the model", "Automatically logs params, metrics, and models for supported libraries", "Registers the model to Production", "Creates a Feature Store table"],
+        a: 1,
+        e: "autolog() automatically captures parameters, metrics, artifacts, and the model for supported frameworks (scikit-learn, Spark ML, XGBoost, etc.), reducing manual logging.",
+        t: "MLflow",
+      },
+      {
+        q: "In the MLflow Model Registry, how do you load the current Production model?",
+        o: ["mlflow.load('latest')", "models:/model_name/Production", "runs:/Production", "dbfs:/Production"],
+        a: 1,
+        e: "The registry URI models:/<name>/<stage> (e.g., .../Production) loads whichever version is currently in that stage, decoupling consumers from specific version numbers.",
+        t: "Model registry",
+      },
+      {
+        q: "What is the main benefit of Databricks Feature Store?",
+        o: [
+          "Faster notebooks",
+          "Reusable, governed feature tables that keep training and inference consistent (avoid train-serve skew)",
+          "Automatic hyperparameter tuning",
+          "Model serving only",
+        ],
+        a: 1,
+        e: "Feature Store centralizes curated features so the same definitions are used at training and inference, preventing train-serve skew, and enables reuse and lineage.",
+        t: "Feature Store",
+      },
+      {
+        q: "Databricks AutoML produces which useful artifact besides a leaderboard?",
+        o: ["A locked black-box model", "An editable notebook for the best model (glass-box)", "A dashboard only", "A Feature Store table"],
+        a: 1,
+        e: "AutoML is 'glass-box': it generates editable notebooks (including for the best model) so you can inspect and refine the generated code rather than getting an opaque model.",
+        t: "AutoML",
+      },
+      {
+        q: "Why fit imputers/encoders on the training set only (e.g., inside a Pipeline)?",
+        o: ["To save memory", "To prevent data leakage from validation/test into training", "To speed up fitting", "It is not required"],
+        a: 1,
+        e: "Fitting preprocessing on all data leaks information from validation/test into the model, inflating performance estimates. Fit on train only (Pipelines apply this correctly per fold).",
+        t: "Data prep",
+      },
+      {
+        q: "In Spark ML, what is the difference between a Transformer and an Estimator?",
+        o: [
+          "They are the same",
+          "A Transformer has transform(); an Estimator has fit() that returns a Model (a Transformer)",
+          "Estimators only work on streaming",
+          "Transformers train models",
+        ],
+        a: 1,
+        e: "Transformers implement transform() (e.g., VectorAssembler). Estimators implement fit() which learns and returns a Model (itself a Transformer), e.g., LogisticRegression → LogisticRegressionModel.",
+        t: "Spark ML",
+      },
+      {
+        q: "Which Spark ML step combines multiple feature columns into one vector column for MLlib?",
+        o: ["StringIndexer", "VectorAssembler", "StandardScaler", "OneHotEncoder"],
+        a: 1,
+        e: "VectorAssembler merges specified columns into a single 'features' vector column, which MLlib estimators expect as input.",
+        t: "Spark ML",
+      },
+      {
+        q: "What is cross-validation used for?",
+        o: [
+          "Deploying models",
+          "Estimating model performance more robustly by training/validating across multiple folds",
+          "Feature storage",
+          "Logging metrics",
+        ],
+        a: 1,
+        e: "Cross-validation splits data into k folds, training on k-1 and validating on the held-out fold repeatedly, giving a lower-variance performance estimate and better hyperparameter selection.",
+        t: "Validation",
+      },
+      {
+        q: "In Hyperopt, what does fmin do?",
+        o: [
+          "Trains a single model",
+          "Searches the hyperparameter space to minimize an objective (loss) function",
+          "Registers a model",
+          "Serves predictions",
+        ],
+        a: 1,
+        e: "fmin runs the optimization (e.g., TPE) over a defined search space to minimize the objective's returned loss, returning the best hyperparameters.",
+        t: "Tuning",
+      },
+      {
+        q: "SparkTrials in Hyperopt is used to:",
+        o: [
+          "Parallelize tuning of single-node models across the Spark cluster",
+          "Distribute a single deep-learning model",
+          "Store features",
+          "Serve models",
+        ],
+        a: 0,
+        e: "SparkTrials distributes independent Hyperopt trials (single-machine models) across the cluster's workers to speed up the search. For already-distributed Spark ML models, use Trials, not SparkTrials.",
+        t: "Tuning",
+      },
+      {
+        q: "Which metric is appropriate for an imbalanced classification problem?",
+        o: ["Accuracy alone", "F1 score / AUC (precision-recall aware)", "RMSE", "R-squared"],
+        a: 1,
+        e: "With class imbalance, accuracy is misleading; F1 (balances precision/recall) and ROC/PR-AUC give a truer picture. RMSE/R² are regression metrics.",
+        t: "Evaluation",
+      },
+      {
+        q: "A model scores high on training data but poorly on new data. This is:",
+        o: ["Underfitting", "Overfitting", "Data leakage", "Good generalization"],
+        a: 1,
+        e: "High train / low test performance indicates overfitting — the model memorized noise. Remedies: regularization, more data, simpler model, cross-validation.",
+        t: "ML fundamentals",
+      },
+      {
+        q: "What does a pandas UDF (vectorized UDF) improve over a standard Python UDF in Spark?",
+        o: [
+          "Nothing",
+          "Performance — it processes data in batches via Arrow instead of row-by-row",
+          "It removes the need for a cluster",
+          "It stores features",
+        ],
+        a: 1,
+        e: "pandas UDFs use Apache Arrow to transfer and process data in vectorized batches, far faster than row-at-a-time Python UDFs — useful for scaling scoring/feature logic.",
+        t: "Scaling",
+      },
+      {
+        q: "The pandas API on Spark lets you:",
+        o: [
+          "Only use SQL",
+          "Run pandas-like code that executes distributed on Spark",
+          "Serve models",
+          "Register features",
+        ],
+        a: 1,
+        e: "The pandas API on Spark (pyspark.pandas) offers a pandas-compatible interface that runs on Spark, so familiar pandas code scales to large datasets.",
+        t: "Scaling",
+      },
+      {
+        q: "What does a model signature in MLflow capture?",
+        o: [
+          "The training duration",
+          "The expected input and output schema of the model",
+          "The cluster size",
+          "The registry stage",
+        ],
+        a: 1,
+        e: "A signature records the model's input/output schema (column names/types), enabling validation at inference and clearer serving contracts; log an input_example alongside it.",
+        t: "MLflow",
+      },
+    ],
+  },
+  /* ====================================================================== */
+  {
+    slug: "databricks-machine-learning-professional",
+    name: "Databricks Certified Machine Learning Professional",
+    issuer: "Databricks",
+    level: "Professional",
+    blurb:
+      "Advanced ML engineering on Databricks: experimentation and Feature Store at scale, the model lifecycle (registry, webhooks, CI/CD), deployment strategies (batch, streaming, real-time serving), and production monitoring (drift, Lakehouse Monitoring, inference tables).",
+    examFormat:
+      "~60 questions · 120 minutes · passing ~70% · production ML: lifecycle, deployment, monitoring, scaling.",
+    roadmap: [
+      "Master the Associate content — this exam assumes MLflow, Feature Store, and Spark ML fluency.",
+      "Experimentation — advanced MLflow (nested runs, autolog, custom metrics, artifacts), reproducibility, and feature engineering.",
+      "Feature Store (advanced) — feature tables, feature lookups, point-in-time joins, and online stores for real-time.",
+      "Model lifecycle — registry stages, transitions, webhooks, tags, and CI/CD for models.",
+      "Deployment strategies — batch scoring, Structured Streaming inference, and real-time Model Serving endpoints; custom pyfunc models.",
+      "Monitoring — data/label/prediction drift, Lakehouse Monitoring, inference tables, and retraining triggers.",
+      "Testing & production — A/B testing, canary/shadow deployment, and packaging/dependency management.",
+      "Scaling — distributed training, pandas UDFs/applyInPandas, and cost/performance trade-offs.",
+    ],
+    notes: [
+      {
+        h: "Advanced MLflow",
+        points: [
+          "Nested runs group related runs (e.g., CV folds or tuning trials) under a parent run.",
+          "Log custom metrics/artifacts and use mlflow.evaluate() for standardized evaluation.",
+          "Custom models: subclass mlflow.pyfunc.PythonModel to wrap arbitrary logic with a standard predict() interface.",
+        ],
+      },
+      {
+        h: "Feature Store (advanced)",
+        points: [
+          "Feature lookups join features to training data by key; point-in-time lookups avoid future leakage for time-series.",
+          "Publish features to an online store for low-latency real-time serving.",
+          "Feature Store logs lineage between features, models, and endpoints.",
+        ],
+      },
+      {
+        h: "Deployment strategies",
+        points: [
+          "Batch: score with a registered model in a scheduled job. Streaming: apply the model in a Structured Streaming pipeline. Real-time: Model Serving REST endpoints.",
+          "Inference tables log serving requests/responses for monitoring and debugging.",
+          "A/B, canary, and shadow deployments compare models safely in production.",
+        ],
+      },
+      {
+        h: "Monitoring & lifecycle",
+        points: [
+          "Monitor data drift (feature distribution change), label/concept drift, and prediction drift; trigger retraining on thresholds.",
+          "Lakehouse Monitoring tracks table/data and model quality over time.",
+          "Registry webhooks trigger CI/CD actions (tests, deploys) on stage transitions.",
+        ],
+      },
+    ],
+    questions: [
+      {
+        q: "What are MLflow nested runs used for?",
+        o: [
+          "Serving models",
+          "Grouping related child runs (e.g., CV folds or tuning trials) under a parent run",
+          "Storing features",
+          "Drift detection",
+        ],
+        a: 1,
+        e: "Nested runs organize related runs — such as cross-validation folds or hyperparameter trials — under one parent run for cleaner tracking and comparison.",
+        t: "Experimentation",
+      },
+      {
+        q: "To wrap custom pre/post-processing logic in a deployable MLflow model, you:",
+        o: [
+          "Use AutoML",
+          "Subclass mlflow.pyfunc.PythonModel and implement predict()",
+          "Register a Feature Store table",
+          "Enable autolog",
+        ],
+        a: 1,
+        e: "A custom pyfunc (mlflow.pyfunc.PythonModel with a predict method) packages arbitrary logic behind MLflow's standard interface, so it can be logged, registered, and served like any model.",
+        t: "Experimentation",
+      },
+      {
+        q: "A point-in-time feature lookup prevents:",
+        o: [
+          "Slow training",
+          "Data leakage from using feature values that wouldn't have been known at the event time",
+          "Model drift",
+          "Overfitting only",
+        ],
+        a: 1,
+        e: "Point-in-time joins fetch each feature's value as of the event timestamp, so training doesn't use future information — essential for correct time-series/real-time features.",
+        t: "Feature Store",
+      },
+      {
+        q: "Why publish features to an online store?",
+        o: [
+          "Cheaper batch training",
+          "Low-latency feature retrieval for real-time model serving",
+          "Better drift detection",
+          "Larger training data",
+        ],
+        a: 1,
+        e: "Online stores serve features with millisecond latency so real-time endpoints can look up the same features used in training, keeping consistency at inference time.",
+        t: "Feature Store",
+      },
+      {
+        q: "What can Model Registry webhooks trigger?",
+        o: [
+          "Nothing",
+          "Automated actions (tests, notifications, deployments) on events like stage transitions",
+          "Feature creation",
+          "AutoML runs only",
+        ],
+        a: 1,
+        e: "Registry webhooks fire on model events (e.g., a transition-to-Production request), enabling CI/CD automation such as running validation tests or deploying.",
+        t: "Lifecycle",
+      },
+      {
+        q: "Which deployment fits sub-second, per-request predictions for an app?",
+        o: ["Batch scoring job", "Structured Streaming inference", "Real-time Model Serving endpoint", "AutoML"],
+        a: 2,
+        e: "Real-time Model Serving exposes a low-latency REST endpoint for per-request predictions. Batch suits large periodic scoring; streaming suits continuous event pipelines.",
+        t: "Deployment",
+      },
+      {
+        q: "What is data drift?",
+        o: [
+          "Model code changing",
+          "A change in the distribution of input features over time vs training data",
+          "A registry stage change",
+          "A slow endpoint",
+        ],
+        a: 1,
+        e: "Data (feature) drift is when production input distributions diverge from training data, which can degrade model performance and often triggers investigation/retraining.",
+        t: "Monitoring",
+      },
+      {
+        q: "Concept (label) drift refers to:",
+        o: [
+          "Features changing",
+          "The relationship between features and the target changing over time",
+          "Endpoint latency",
+          "Schema changes only",
+        ],
+        a: 1,
+        e: "Concept drift is when the underlying relationship X→y shifts (e.g., customer behavior changes), so a once-accurate model becomes wrong even if feature distributions look similar.",
+        t: "Monitoring",
+      },
+      {
+        q: "What do inference tables capture?",
+        o: [
+          "Training data",
+          "Logged serving requests and predictions for monitoring/debugging",
+          "Feature definitions",
+          "Cluster metrics",
+        ],
+        a: 1,
+        e: "Inference tables automatically log Model Serving requests and responses to Delta, enabling drift monitoring, auditing, and building retraining datasets.",
+        t: "Monitoring",
+      },
+      {
+        q: "A shadow deployment does what?",
+        o: [
+          "Replaces the model instantly",
+          "Runs the new model alongside production on real traffic without serving its results, to compare",
+          "Deletes the old model",
+          "Only works in batch",
+        ],
+        a: 1,
+        e: "Shadow (mirror) deployment sends live traffic to the candidate model without returning its predictions to users, letting you compare behavior safely before promoting.",
+        t: "Testing",
+      },
+      {
+        q: "Lakehouse Monitoring is used to:",
+        o: [
+          "Train models",
+          "Track data and model quality/drift over time on Delta tables",
+          "Serve endpoints",
+          "Register features",
+        ],
+        a: 1,
+        e: "Lakehouse Monitoring computes quality/statistical metrics (including drift) on tables over time, with dashboards and alerts — a managed way to watch data and model health.",
+        t: "Monitoring",
+      },
+      {
+        q: "applyInPandas on a grouped Spark DataFrame is useful to:",
+        o: [
+          "Serve models",
+          "Run pandas logic (e.g., train a model per group) in parallel across groups",
+          "Register a model",
+          "Detect drift",
+        ],
+        a: 1,
+        e: "groupBy(...).applyInPandas(fn, schema) runs a pandas function per group in parallel — ideal for per-entity models or vectorized group computations at scale.",
+        t: "Scaling",
+      },
+      {
+        q: "What most directly signals it's time to retrain a model?",
+        o: [
+          "A new cluster",
+          "Monitored drift or a drop in production performance beyond a threshold",
+          "A new notebook",
+          "More features in the store",
+        ],
+        a: 1,
+        e: "Retraining is typically triggered when monitoring detects significant drift or a performance decline past a set threshold — automatable via alerts/webhooks.",
+        t: "Lifecycle",
+      },
+      {
+        q: "Why pin library versions / log the environment with an MLflow model?",
+        o: [
+          "To increase accuracy",
+          "For reproducibility and to avoid dependency mismatches at inference",
+          "To reduce drift",
+          "To speed training",
+        ],
+        a: 1,
+        e: "MLflow logs the conda/pip environment so the model can be reproduced and served with compatible dependencies, preventing 'works in training, breaks in serving' issues.",
+        t: "Production",
+      },
+      {
+        q: "A/B testing two models in production means:",
+        o: [
+          "Training twice",
+          "Routing portions of live traffic to each model and comparing business/quality metrics",
+          "Shadowing only",
+          "Registering two versions",
+        ],
+        a: 1,
+        e: "A/B testing splits real traffic between models and compares outcomes (conversion, error, latency), giving evidence-based promotion decisions.",
+        t: "Testing",
+      },
+    ],
+  },
 ];
 
 /* Merge additional question batches (expansion toward ~100 per cert). */
-const extraBanks = [extraQuestions, extraQuestions2, extraQuestions3, extraQuestions4, extraQuestions5, extraQuestions6, extraQuestions7];
+const extraBanks = [extraQuestions, extraQuestions2, extraQuestions3, extraQuestions4, extraQuestions5, extraQuestions6, extraQuestions7, extraQuestionsML];
 for (const m of studyModules) {
   for (const bank of extraBanks) {
     const extra = bank[m.slug];

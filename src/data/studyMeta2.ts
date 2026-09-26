@@ -192,4 +192,40 @@ export const studyMeta2: Record<string, CertMeta2> = {
       "Dual(text, number) shows text but sorts by the number (e.g., month names in calendar order).",
     ],
   },
+  "databricks-machine-learning-associate": {
+    layman: [
+      "MLflow is a lab notebook that automatically records every experiment — what settings you used and how well it did — so you can compare and reproduce them later.",
+      "The Model Registry is a library with 'editions': you check a model into Staging, then Production, and apps just ask for 'the Production copy' without caring about version numbers.",
+      "Feature Store is a shared pantry of prepared ingredients (features). Everyone cooks with the same ingredients at training and serving time, so the dish tastes the same — no 'train-serve skew'.",
+      "Overfitting is memorizing the textbook instead of learning the subject: perfect on practice questions, lost on the real exam. Regularization and more data are the cure.",
+      "Hyperopt is an assistant that tries many settings for you and homes in on the best, instead of you guessing by hand.",
+    ],
+    tips: [
+      "Fit preprocessing (scalers/encoders/imputers) on TRAIN only — put them in a Pipeline so cross-validation does this per fold. 'Fit on all data' = leakage = a trap answer.",
+      "Load the Production model by stage: models:/name/Production — not by a version number.",
+      "For imbalanced classes, accuracy lies — use F1 or PR/ROC-AUC. RMSE/MAE/R² are regression only.",
+      "Hyperopt: objective returns {'loss': ...}. Higher-is-better metric? Return its NEGATIVE. SparkTrials = many single-node models in parallel; plain Trials = already-distributed Spark ML models.",
+      "StringIndexer → OneHotEncoder → (scale) → VectorAssembler → model. Assemble LAST; VectorAssembler errors on nulls, so impute first.",
+      "Trees are scale-invariant; distance/gradient models (logistic/linear, kNN, SVM) need scaling.",
+      "AutoML is 'glass-box' — it gives editable notebooks and logs every trial to MLflow, so it's reproducible.",
+    ],
+  },
+  "databricks-machine-learning-professional": {
+    layman: [
+      "This exam is about keeping a model healthy AFTER launch — like running a restaurant, not just cooking one dish. You deploy, watch quality, and improve continuously (MLOps).",
+      "Drift is the world changing under your model. Data drift = the ingredients changed; concept drift = the recipe that worked no longer does (you need taste-tests/labels to confirm it).",
+      "A champion/challenger setup is a title fight: the reigning model (champion) defends against a new one (challenger); you only crown the challenger if it truly wins.",
+      "Shadow vs canary: shadow lets the new model 'watch and practice' on real traffic without serving answers; canary lets it serve a small slice and ramp up if it behaves.",
+      "Inference tables are CCTV for your endpoint — every request and prediction is recorded, so you can spot drift and build retraining data.",
+    ],
+    tips: [
+      "Match deployment to need: batch = scheduled bulk scoring; streaming = per-micro-batch; real-time endpoint = sub-second per request. Infrequent bulk → batch (cheapest).",
+      "Data drift needs only features; concept/label drift needs GROUND TRUTH labels to detect. Know the difference.",
+      "Drift metrics: PSI / KS for continuous, chi-square for categorical. Thresholds (e.g., PSI>0.2) trigger alerts/retraining.",
+      "UC models use catalog.schema.model with ALIASES (@champion); roll back by re-pointing the alias — instant, no consumer redeploy.",
+      "Point-in-time feature lookups prevent leakage in time-series; online store = low-latency features for real-time serving.",
+      "Custom logic → subclass mlflow.pyfunc.PythonModel. Always log the environment (pinned deps) for reproducible serving.",
+      "Safe promotion: offline eval → shadow/canary → A/B (with guardrail metrics + significance) → flip the alias.",
+    ],
+  },
 };

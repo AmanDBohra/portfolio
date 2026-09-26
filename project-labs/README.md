@@ -79,3 +79,17 @@ Each folder has a detailed README (goal, architecture, concepts, steps, outcomes
   - [3. Set analysis measures](qlikview-12-business-analyst/p3/) — `load.qvs`
   - [4. Advanced charts: groups, running totals & trellis](qlikview-12-business-analyst/p4/) — `load.qvs`
   - [5. Guided storytelling & KPI polish](qlikview-12-business-analyst/p5/) — `load.qvs`
+
+### Databricks Certified Machine Learning Associate
+  - [1. Claim-cost regression with a Spark ML pipeline](databricks-machine-learning-associate/p1/) — `notebook.ipynb`
+  - [2. Policy-retention classifier with Feature Store + MLflow](databricks-machine-learning-associate/p2/) — `notebook.ipynb`
+  - [3. AutoML baseline then refine](databricks-machine-learning-associate/p3/) — `notebook.ipynb`
+  - [4. Hyperparameter tuning with Hyperopt](databricks-machine-learning-associate/p4/) — `notebook.ipynb`
+  - [5. Batch scoring with a registered model](databricks-machine-learning-associate/p5/) — `notebook.ipynb`
+
+### Databricks Certified Machine Learning Professional
+  - [1. Real-time fraud scoring with Feature Store online serving](databricks-machine-learning-professional/p1/) — `notebook.ipynb`
+  - [2. Model lifecycle with registry aliases, webhooks & CI/CD](databricks-machine-learning-professional/p2/) — `notebook.ipynb`
+  - [3. Safe rollout: shadow → canary → A/B](databricks-machine-learning-professional/p3/) — `notebook.ipynb`
+  - [4. Drift monitoring & automated retraining](databricks-machine-learning-professional/p4/) — `notebook.ipynb`
+  - [5. Distributed training & many-models at scale](databricks-machine-learning-professional/p5/) — `notebook.ipynb`

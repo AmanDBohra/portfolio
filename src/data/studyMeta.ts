@@ -139,4 +139,28 @@ export const studyMeta: Record<string, CertMeta> = {
       "For this portfolio: reflects hands-on QlikView dashboard and KPI development across multiple industries.",
     ],
   },
+  "databricks-machine-learning-associate": {
+    about: [
+      "The Databricks Certified Machine Learning Associate validates the ability to build machine learning solutions on Databricks. It covers the ML workflow (data prep, train/validate, evaluate), the Databricks ML toolset (AutoML, Feature Store, MLflow tracking and registry, Model Serving), scaling with Spark ML, and hyperparameter tuning with Hyperopt.",
+      "It is the entry-level ML credential in the Databricks track, proving you can go from a dataset to a tracked, registered, and servable model using the platform's managed tools — bridging data engineering and applied machine learning.",
+    ],
+    usage: [
+      "Roles: Machine Learning Engineer, Data Scientist, Analytics Engineer moving into ML, or a data engineer supporting ML pipelines.",
+      "On the job: preparing features, training and tuning models, tracking experiments in MLflow, registering models, and scaling training/inference with Spark.",
+      "Career value: a strong signal of applied ML capability on the modern Lakehouse; a natural next step after the data-engineering certifications.",
+      "For this portfolio: extends the data-science and advanced-analytics work — turning models into governed, business-facing solutions.",
+    ],
+  },
+  "databricks-machine-learning-professional": {
+    about: [
+      "The Databricks Certified Machine Learning Professional is the advanced ML-engineering credential. It focuses on production machine learning: advanced experimentation and Feature Store, the full model lifecycle (registry, aliases, webhooks, CI/CD), deployment strategies (batch, streaming, and real-time serving), and production monitoring (data/concept drift, Lakehouse Monitoring, inference tables, retraining).",
+      "Where the Associate proves you can build a model, the Professional proves you can operate it reliably in production — deploying, monitoring, and continuously improving models with governance, testing, and automation (MLOps).",
+    ],
+    usage: [
+      "Roles: Senior/Lead ML Engineer, MLOps Engineer, ML Platform Engineer, or Data Scientist owning production models.",
+      "On the job: designing feature pipelines and serving, automating the retrain-evaluate-deploy loop, running A/B and canary rollouts, and monitoring drift and model quality.",
+      "Career value: a differentiator for senior ML/MLOps roles, demonstrating end-to-end production ML ownership.",
+      "For this portfolio: reflects the delivery-lead discipline applied to ML — reliable, governed, monitored models in production.",
+    ],
+  },
 };

@@ -1163,4 +1163,180 @@ export const studyProjectDetails: Record<string, ProjectDetail[]> = {
       outcomes: ["At-a-glance status.", "Readable KPIs.", "Guided, uncluttered dashboards."],
     },
   ],
+
+  "databricks-machine-learning-associate": [
+    {
+      conceptDetails: [
+        { name: "Spark ML Pipeline", detail: "Chains preprocessing transformers and the final estimator so fit/transform apply consistently and without leakage." },
+        { name: "Imputer / StringIndexer / OneHotEncoder / VectorAssembler", detail: "Impute nulls, index+encode categoricals, and assemble all features into the single vector MLlib expects." },
+        { name: "Train/test split", detail: "randomSplit with a fixed seed creates reproducible train and held-out test sets." },
+        { name: "CrossValidator", detail: "Averages performance across k folds over a ParamGrid to select robust hyperparameters." },
+        { name: "RegressionEvaluator (RMSE)", detail: "Scores regression error in the target's units on the test set." },
+      ],
+      architecture: "Delta training data → Spark ML Pipeline (impute → index/encode → assemble → GBT/RF regressor) → CrossValidator tuning → test evaluation → MLflow-logged model.",
+      steps: [
+        "Assemble the Pipeline stages ending in the regressor.",
+        "randomSplit(seed) then CrossValidator + ParamGridBuilder to tune.",
+        "Evaluate RMSE/MAE/R² on the test set.",
+        "Log the run and best model to MLflow.",
+      ],
+      outcomes: ["A reproducible, leakage-free claim-cost model.", "Tuned hyperparameters via CV.", "Tracked, comparable runs."],
+    },
+    {
+      conceptDetails: [
+        { name: "Feature Store feature tables", detail: "Delta tables of curated, keyed features reused across models and consistent at serving." },
+        { name: "Feature lookups / training set", detail: "Join features by key into a training set that packages feature lineage with the model." },
+        { name: "MLflow tracking & signatures", detail: "Log params/metrics and the model with an input/output schema for validation." },
+        { name: "Classification metrics (F1/AUC)", detail: "Evaluate imbalanced classification with F1 and PR/ROC-AUC rather than accuracy." },
+        { name: "Class imbalance handling", detail: "Use class weights or resampling so the minority (lapse) class is learned." },
+      ],
+      architecture: "Feature pipeline → Feature Store table (keyed by policy) → training set via lookups → weighted classifier → MLflow model with signature.",
+      steps: [
+        "Compute and write retention features to a Feature Store table.",
+        "Build a training set with feature lookups.",
+        "Train a weighted classifier; log to MLflow with a signature.",
+        "Evaluate F1 / PR-AUC.",
+      ],
+      outcomes: ["Consistent train-serve features (no skew).", "Governed, reusable feature table.", "Imbalance-aware evaluation."],
+    },
+    {
+      conceptDetails: [
+        { name: "AutoML (glass-box)", detail: "Trains many models and generates editable notebooks, so results are inspectable and refinable." },
+        { name: "Primary metric", detail: "The objective AutoML optimizes and ranks the leaderboard by." },
+        { name: "Editable best-model notebook", detail: "The generated code for the top model, ready to refine." },
+        { name: "MLflow leaderboard", detail: "All trials logged to MLflow for comparison." },
+        { name: "Feature exclusion", detail: "Drop leaky/irrelevant columns and set the target before running." },
+      ],
+      architecture: "Dataset → AutoML (target + primary metric) → leaderboard + best-model notebook → manual refinement → MLflow comparison.",
+      steps: [
+        "Run AutoML with the target and primary metric.",
+        "Review the leaderboard; open the best-model notebook.",
+        "Refine features/hyperparameters.",
+        "Compare refined runs in MLflow.",
+      ],
+      outcomes: ["A strong, explainable baseline fast.", "A clear path to refinement.", "Fully logged, reproducible trials."],
+    },
+    {
+      conceptDetails: [
+        { name: "Hyperopt (fmin, search space)", detail: "Optimizes hyperparameters by minimizing an objective over a defined space." },
+        { name: "hp.loguniform / hp.choice", detail: "Log-scale sampling for rates/regularization; categorical choices for discrete options." },
+        { name: "SparkTrials vs Trials", detail: "SparkTrials parallelizes single-node trials; Trials for already-distributed Spark ML." },
+        { name: "Objective (STATUS_OK, loss)", detail: "Return {'loss', 'status'}; negate higher-is-better metrics." },
+        { name: "Cross-validation", detail: "Evaluate each trial with CV for a stable estimate." },
+      ],
+      architecture: "Search space → objective (train+CV, return loss) → fmin (TPE) with SparkTrials → best params → MLflow.",
+      steps: [
+        "Define the search space (loguniform for LR/reg).",
+        "Write the objective returning loss/status.",
+        "Run fmin with max_evals and SparkTrials.",
+        "Log the best params/metrics.",
+      ],
+      outcomes: ["Systematically optimized hyperparameters.", "Parallelized, efficient search.", "Reproducible tuning record."],
+    },
+    {
+      conceptDetails: [
+        { name: "Model Registry stages", detail: "Promote a version to Production so consumers load by stage, not version." },
+        { name: "mlflow.pyfunc.spark_udf", detail: "Wraps the model as a Spark UDF for parallel batch scoring." },
+        { name: "Batch inference at scale", detail: "Add a prediction column to a large DataFrame across the cluster." },
+        { name: "Scheduled Jobs", detail: "Automate daily scoring with retries and monitoring." },
+        { name: "Delta output", detail: "Write predictions to a governed Gold table for consumers." },
+      ],
+      architecture: "Registered Production model → spark_udf → score Delta source in parallel → Gold predictions table → scheduled Job.",
+      steps: [
+        "Register and promote the model to Production.",
+        "Load as spark_udf; add a prediction column.",
+        "Write predictions to a Gold Delta table.",
+        "Schedule as a Databricks Job.",
+      ],
+      outcomes: ["Automated daily predictions.", "Scalable, parallel scoring.", "Governed prediction tables."],
+    },
+  ],
+
+  "databricks-machine-learning-professional": [
+    {
+      conceptDetails: [
+        { name: "Feature tables (primary + timestamp keys)", detail: "Delta feature tables keyed for lookups, with event-time keys for correctness." },
+        { name: "Point-in-time lookups", detail: "Fetch each feature as of the event time to prevent future-information leakage." },
+        { name: "Online store publishing", detail: "Push features to a low-latency store for real-time retrieval." },
+        { name: "Real-time Model Serving", detail: "A REST endpoint returning sub-second predictions." },
+        { name: "Serving-time feature retrieval", detail: "The endpoint auto-looks-up features by key, so clients send only keys/raw inputs." },
+      ],
+      architecture: "Feature pipeline (timestamp keys) → offline Delta + online store → model packaged with Feature Store metadata → real-time Serving endpoint with auto feature lookup.",
+      steps: [
+        "Engineer features with timestamp keys; build a point-in-time training set.",
+        "Publish features to the online store.",
+        "Register the model with Feature Store metadata.",
+        "Deploy a real-time endpoint that fetches features by key.",
+      ],
+      outcomes: ["Leakage-free, real-time predictions.", "Low-latency online features.", "Consistent train-serve features."],
+    },
+    {
+      conceptDetails: [
+        { name: "Unity Catalog models", detail: "catalog.schema.model registration governed like data assets." },
+        { name: "Aliases (@champion)", detail: "Mutable named pointers to versions; roll back by re-pointing." },
+        { name: "Registry webhooks", detail: "Trigger tests/deploys automatically on registry events." },
+        { name: "Quality gates", detail: "Automated checks (metrics/latency/fairness) required to promote." },
+        { name: "Databricks Asset Bundles (CI/CD)", detail: "Declarative, per-environment deployment of ML jobs/pipelines." },
+      ],
+      architecture: "Git + CI → tests + quality gates → UC model registration with aliases → webhooks trigger deploy via Asset Bundles across dev→prod.",
+      steps: [
+        "Register models in UC with @champion/@challenger aliases.",
+        "Configure webhooks to run validation on transition requests.",
+        "Gate promotion on thresholds.",
+        "Deploy pipelines with Asset Bundles per environment.",
+      ],
+      outcomes: ["Automated, governed promotion.", "Instant alias-based rollback.", "Reproducible cross-env deploys."],
+    },
+    {
+      conceptDetails: [
+        { name: "Shadow deployment", detail: "Runs the challenger on live traffic without serving its results, to compare safely." },
+        { name: "Canary rollout", detail: "Serves a small traffic slice to the challenger and ramps up if healthy." },
+        { name: "A/B traffic split", detail: "Routes portions of traffic to each model to compare business metrics." },
+        { name: "Guardrail metrics", detail: "Latency/error/fairness that must not regress even if the primary improves." },
+        { name: "Statistical significance", detail: "Ensures observed differences aren't due to chance before deciding." },
+      ],
+      architecture: "Endpoint hosting champion + challenger → shadow → canary % → A/B split → significance-tested decision → alias switch.",
+      steps: [
+        "Shadow the challenger; compare offline.",
+        "Canary a small % of live traffic.",
+        "Run an A/B split judged on the business metric with guardrails.",
+        "Promote by switching @champion (rollback ready).",
+      ],
+      outcomes: ["Risk-managed model rollout.", "Evidence-based promotion.", "Instant rollback capability."],
+    },
+    {
+      conceptDetails: [
+        { name: "Lakehouse Monitoring (inference profile)", detail: "Tracks model inputs/predictions (and labels) for drift/quality over time." },
+        { name: "Inference tables", detail: "Auto-log served requests/responses to Delta for monitoring and retraining data." },
+        { name: "Data vs concept drift (PSI/KS/chi-square)", detail: "Feature-distribution shift (PSI/KS/chi-square) vs the X→y relationship changing (needs labels)." },
+        { name: "Alert thresholds", detail: "Turn metrics into notifications/actions when breached." },
+        { name: "Retraining triggers", detail: "Launch an automated retraining pipeline on drift/decay." },
+      ],
+      architecture: "Serving endpoint → inference tables + baseline → Lakehouse Monitoring (drift/quality) → alerts → automated retraining pipeline.",
+      steps: [
+        "Enable inference tables; set a baseline table.",
+        "Configure monitoring metrics/thresholds (PSI/KS/chi-square).",
+        "Alert on breaches; backfill performance when labels arrive.",
+        "Trigger a tested retraining pipeline via webhook.",
+      ],
+      outcomes: ["Early drift/decay detection.", "Auditable production logs.", "Automated, safe retraining."],
+    },
+    {
+      conceptDetails: [
+        { name: "applyInPandas (many models)", detail: "Trains a pandas model per group in parallel across the cluster." },
+        { name: "TorchDistributor / Horovod", detail: "Coordinates distributed deep-learning training across workers/GPUs." },
+        { name: "pandas/Iterator UDFs for scoring", detail: "Vectorized scoring that can load the model once per partition." },
+        { name: "Broadcast / load-once patterns", detail: "Avoid re-shipping/reloading the model per task." },
+        { name: "Cost/performance trade-offs", detail: "Right-size cluster/serving compute for the workload." },
+      ],
+      architecture: "Grouped data → applyInPandas per-segment training (or TorchDistributor for DL) → registered models → iterator-UDF batch scoring.",
+      steps: [
+        "Train per-segment models with groupBy(...).applyInPandas.",
+        "For DL, use TorchDistributor across GPUs.",
+        "Score at scale with an iterator pandas UDF (load once per partition).",
+        "Tune compute for cost vs latency.",
+      ],
+      outcomes: ["Efficient many-models / distributed training.", "Scalable inference.", "Controlled cost/performance."],
+    },
+  ],
 };
