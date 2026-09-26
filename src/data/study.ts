@@ -90,6 +90,7 @@ import { extraQuestions5 } from "./studyExtra5";
 import { extraQuestions6 } from "./studyExtra6";
 import { extraQuestions7 } from "./studyExtra7";
 import { extraQuestionsML } from "./studyExtraML";
+import { extraQuestionsML2 } from "./studyExtraML2";
 import { studyMeta } from "./studyMeta";
 import { studyMeta2 } from "./studyMeta2";
 import { studyProjects } from "./studyProjects";
@@ -2301,7 +2302,7 @@ export const studyModules: CertStudy[] = [
 ];
 
 /* Merge additional question batches (expansion toward ~100 per cert). */
-const extraBanks = [extraQuestions, extraQuestions2, extraQuestions3, extraQuestions4, extraQuestions5, extraQuestions6, extraQuestions7, extraQuestionsML];
+const extraBanks = [extraQuestions, extraQuestions2, extraQuestions3, extraQuestions4, extraQuestions5, extraQuestions6, extraQuestions7, extraQuestionsML, extraQuestionsML2];
 for (const m of studyModules) {
   for (const bank of extraBanks) {
     const extra = bank[m.slug];
