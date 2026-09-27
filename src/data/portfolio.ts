@@ -888,6 +888,8 @@ export const education: EducationItem[] = [
 /* -------------------------------------------------------------------------- */
 
 export const certifications: CertItem[] = [
+  { title: "Databricks Certified Machine Learning Professional", issuer: "Databricks", date: "2026", credentialUrl: "https://credentials.databricks.com/9bd0a8e5-659b-48e8-bb45-22e153dfcba7" },
+  { title: "Databricks Certified Machine Learning Engineer Associate", issuer: "Databricks", date: "2026", credentialUrl: "https://credentials.databricks.com/abc9145a-9b33-40ff-9468-8ed2e9001e01" },
   { title: "Databricks Certified Data Engineer Professional", issuer: "Databricks", date: "2026", credentialUrl: "https://credentials.databricks.com/ac4a5f55-e6a4-485b-824f-88ec50583dce" },
   { title: "Databricks Certified Associate Developer for Apache Spark", issuer: "Databricks", date: "2026", credentialUrl: "https://credentials.databricks.com/494a4a7c-7bc0-4fb0-bed8-d89efdc95c01" },
   { title: "Databricks Certified Data Analyst Associate", issuer: "Databricks", date: "2026", credentialUrl: "https://credentials.databricks.com/33106153-5b7d-45fe-9f75-8083d6e7c67c" },
@@ -921,7 +923,7 @@ export const services: Service[] = [
   { title: "KPI & Analytics Consulting", description: "KPI discovery, requirement analysis, and analytics strategy aligned to business and insurance goals.", icon: "Lightbulb", rate: "$60–80/hr" },
   { title: "Data Science & Advanced Analytics", description: "Predictive analytics, forecasting, and ML/AI initiatives translated into business-facing decisions.", icon: "Brain", rate: "$70–100/hr" },
   { title: "AI & GenAI Solutions", description: "LLM-powered assistants, RAG pipelines, and generative-AI proofs of concept using Claude, OpenAI, and LangChain.", icon: "Sparkles", rate: "$80–110/hr or scoped POC" },
-  { title: "Certification Coaching & Mentoring", description: "1:1 exam prep and mentoring for Databricks, Power BI (PL-300), and Qlik certifications, drawing on my own 11 certifications.", icon: "GraduationCap", rate: "$30–50/hr" },
+  { title: "Certification Coaching & Mentoring", description: "1:1 exam prep and mentoring for Databricks, Power BI (PL-300), and Qlik certifications, drawing on my own 13 certifications.", icon: "GraduationCap", rate: "$30–50/hr" },
 ];
 
 /* -------------------------------------------------------------------------- */
@@ -1324,7 +1326,7 @@ export const faqs: { q: string; a: string }[] = [
   },
   {
     q: "What certifications does Aman Bohra hold?",
-    a: "12 professional certifications: six Databricks (Data Engineer Professional, Associate Developer for Apache Spark, Data Analyst, Generative AI Engineer, Data Engineer Associate, and Context Engineer Associate), Microsoft Power BI Data Analyst Associate (PL-300), four Qlik (Qlik Sense Business Analyst and Data Architect, QlikView 12 Business Analyst and Data Architect), and HackerRank SQL (Advanced).",
+    a: "14 professional certifications: eight Databricks (Machine Learning Professional, Machine Learning Engineer Associate, Data Engineer Professional, Associate Developer for Apache Spark, Data Analyst, Generative AI Engineer, Data Engineer Associate, and Context Engineer Associate), Microsoft Power BI Data Analyst Associate (PL-300), four Qlik (Qlik Sense Business Analyst and Data Architect, QlikView 12 Business Analyst and Data Architect), and HackerRank SQL (Advanced).",
   },
   {
     q: "What measurable results has Aman Bohra delivered?",
