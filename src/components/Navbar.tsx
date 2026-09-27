@@ -58,13 +58,13 @@ export function Navbar({ theme, onToggleTheme }: Props) {
         </a>
 
         {/* Desktop links */}
-        <ul className="hidden items-center gap-1 md:flex">
+        <ul className="hidden items-center gap-0.5 lg:flex">
           {navLinks.map((link) => (
             <li key={link.id}>
               <a
                 href={`#${link.id}`}
                 aria-current={active === link.id ? "true" : undefined}
-                className={`relative rounded-full px-4 py-2 text-sm font-medium transition-colors ${
+                className={`relative whitespace-nowrap rounded-full px-3 py-2 text-sm font-medium transition-colors ${
                   active === link.id
                     ? "text-brand-700 dark:text-brand-300"
                     : "text-slate-600 hover:text-brand-600 dark:text-slate-300 dark:hover:text-brand-300"
@@ -84,7 +84,7 @@ export function Navbar({ theme, onToggleTheme }: Props) {
           <li>
             <a
               href="#/study"
-              className="rounded-full px-4 py-2 text-sm font-medium text-slate-600 transition-colors hover:text-brand-600 dark:text-slate-300 dark:hover:text-brand-300"
+              className="whitespace-nowrap rounded-full px-3 py-2 text-sm font-medium text-slate-600 transition-colors hover:text-brand-600 dark:text-slate-300 dark:hover:text-brand-300"
             >
               Study Hub
             </a>
@@ -101,7 +101,7 @@ export function Navbar({ theme, onToggleTheme }: Props) {
             {theme === "dark" ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
           </button>
 
-          <a href="#contact" className="btn-primary hidden md:inline-flex">
+          <a href="#contact" className="btn-primary hidden lg:inline-flex">
             Let&apos;s talk
           </a>
 
@@ -111,7 +111,7 @@ export function Navbar({ theme, onToggleTheme }: Props) {
             aria-label={open ? "Close menu" : "Open menu"}
             aria-expanded={open}
             aria-controls="mobile-menu"
-            className="flex h-10 w-10 items-center justify-center rounded-full border border-slate-200 text-slate-700 md:hidden dark:border-slate-700 dark:text-slate-200"
+            className="flex h-10 w-10 items-center justify-center rounded-full border border-slate-200 text-slate-700 lg:hidden dark:border-slate-700 dark:text-slate-200"
           >
             {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
           </button>
@@ -121,7 +121,7 @@ export function Navbar({ theme, onToggleTheme }: Props) {
       {/* Mobile menu */}
       <div
         id="mobile-menu"
-        className={`md:hidden ${open ? "block" : "hidden"} border-t border-slate-200 bg-white dark:border-slate-800 dark:bg-slate-950`}
+        className={`lg:hidden ${open ? "block" : "hidden"} border-t border-slate-200 bg-white dark:border-slate-800 dark:bg-slate-950`}
       >
         <ul className="container-x flex flex-col gap-1 py-4">
           {navLinks.map((link) => (
