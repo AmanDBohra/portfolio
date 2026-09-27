@@ -10,18 +10,18 @@ export default {
     },
     extend: {
       colors: {
-        // Analytics blue accent scale
+        // Warm coral accent scale (was analytics blue)
         brand: {
-          50: "#eaf4fb",
-          100: "#d2e8f6",
-          200: "#a9d2ee",
-          300: "#73b6e3",
-          400: "#46c7e8", // cyan accent
-          500: "#2386c8", // analytics blue
-          600: "#1769aa", // royal
-          700: "#123f66", // enterprise
-          800: "#0b2740", // deep navy
-          900: "#071a2b", // midnight navy
+          50: "#fdf2ee",
+          100: "#fbe1d6",
+          200: "#f5c2ac",
+          300: "#ee9d7c",
+          400: "#e97c54", // coral accent
+          500: "#de5c30", // primary coral
+          600: "#bc431e", // hover / deep coral
+          700: "#8f3216", // enterprise
+          800: "#5f210f", // deep rust
+          900: "#3d150a", // midnight rust
         },
         navy: {
           900: "#071a2b",

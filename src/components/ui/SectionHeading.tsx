@@ -12,20 +12,22 @@ interface Props {
 export function SectionHeading({ eyebrow, title, description, index }: Props) {
   return (
     <Reveal className="mx-auto mb-14 max-w-2xl text-center">
-      <p className="flex items-center justify-center gap-2 eyebrow">
+      <span className="inline-flex items-center gap-2 rounded-full border border-brand-200 bg-brand-50 px-4 py-1.5 dark:border-brand-500/25 dark:bg-brand-500/[0.07]">
         {index && (
           <span className="font-mono text-[0.7rem] tracking-normal text-slate-500 dark:text-slate-500">
             {index}
           </span>
         )}
         {index && <span className="h-px w-6 bg-brand-500/40" aria-hidden="true" />}
-        {eyebrow}
-      </p>
+        <span className="text-sm font-semibold uppercase tracking-widest text-brand-600 dark:text-brand-400">
+          {eyebrow}
+        </span>
+      </span>
       <h2 className="section-title">{title}</h2>
       {/* Accent underline that draws itself in when the heading enters view */}
       <motion.span
         aria-hidden="true"
-        className="mx-auto mt-4 block h-0.5 w-16 origin-center rounded-full bg-gradient-to-r from-brand-500 to-teal-400"
+        className="mx-auto mt-4 block h-0.5 w-16 origin-center rounded-full bg-gradient-to-r from-brand-500 to-brand-300"
         initial={{ scaleX: 0, opacity: 0 }}
         whileInView={{ scaleX: 1, opacity: 1 }}
         viewport={{ once: true, margin: "-60px" }}
