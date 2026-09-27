@@ -341,6 +341,70 @@ export function StudyHub({ slug, theme, onToggleTheme }: Props) {
               </a>
             </div>
 
+            {/* Pricing / tiers */}
+            <div className="mx-auto mb-14 grid max-w-3xl gap-6 sm:grid-cols-2">
+              <div className="card h-full">
+                <span className="chip">Free</span>
+                <h3 className="mt-3 text-lg font-bold text-slate-900 dark:text-white">
+                  Study for free
+                </h3>
+                <p className="mt-2 text-sm leading-relaxed text-slate-600 dark:text-slate-400">
+                  Full roadmaps, concept + analogy diagrams, plain-English explanations, exam
+                  tricks, and a solid slice of practice questions for every certification —
+                  always free, no signup.
+                </p>
+                <ul className="mt-4 space-y-2 text-sm text-slate-600 dark:text-slate-400">
+                  <li className="flex items-start gap-2">
+                    <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-brand-500" />
+                    Roadmaps, notes &amp; diagrams for all {studyModules.length} certifications
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-brand-500" />
+                    ~20 practice questions per certification
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-brand-500" />
+                    Global search across the free question set
+                  </li>
+                </ul>
+              </div>
+              <div className="card h-full border-brand-300 dark:border-brand-500/40">
+                <span className="chip !bg-brand-50 !text-brand-700 dark:!bg-brand-500/10 dark:!text-brand-300">
+                  <Zap className="mr-1 inline h-3 w-3" /> Pro (coming soon)
+                </span>
+                <h3 className="mt-3 text-lg font-bold text-slate-900 dark:text-white">
+                  Everything, per cert or bundled
+                </h3>
+                <p className="mt-2 text-sm leading-relaxed text-slate-600 dark:text-slate-400">
+                  The complete question bank, hands-on projects, and spaced-repetition tools for
+                  serious exam prep.
+                </p>
+                <ul className="mt-4 space-y-2 text-sm text-slate-600 dark:text-slate-400">
+                  <li className="flex items-start gap-2">
+                    <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-brand-500" />
+                    Full question bank per cert (100–140 questions, incl. scenario-based)
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-brand-500" />
+                    All 5 detailed projects + lab repos per cert
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-brand-500" />
+                    Spaced-repetition review &amp; PDF export
+                  </li>
+                </ul>
+                <p className="mt-4 text-sm font-semibold text-slate-900 dark:text-white">
+                  From $9 per cert · $49 all-access bundle
+                </p>
+                <a
+                  href={`mailto:${site.email}?subject=${encodeURIComponent("Study Hub Pro — waitlist")}`}
+                  className="btn-secondary mt-4"
+                >
+                  Join the waitlist
+                </a>
+              </div>
+            </div>
+
             {/* Search / filter across all questions */}
             <div className="mx-auto mb-10 flex max-w-2xl flex-col gap-3 sm:flex-row">
               <div className="relative flex-1">

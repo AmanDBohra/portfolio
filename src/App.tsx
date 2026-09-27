@@ -16,6 +16,7 @@ import { DataScience } from "./sections/DataScience";
 import { Philosophy } from "./sections/Philosophy";
 import { ExplainedSimply } from "./sections/ExplainedSimply";
 import { IndustryKPIs } from "./sections/IndustryKPIs";
+import { Services } from "./sections/Services";
 import { Projects } from "./sections/Projects";
 import { Testimonials } from "./sections/Testimonials";
 import { Writing } from "./sections/Writing";
@@ -101,6 +102,7 @@ export default function App() {
         <DataScience />
         <ExplainedSimply />
         <IndustryKPIs />
+        <Services />
         <Projects />
         <Testimonials />
         <Writing />

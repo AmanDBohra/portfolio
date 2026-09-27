@@ -73,6 +73,8 @@ export interface Service {
   title: string;
   description: string;
   icon: string; // lucide-react icon name
+  /** Indicative pricing shown on the "How I can help" section (not a binding quote). */
+  rate?: string;
 }
 
 export interface Testimonial {
@@ -913,12 +915,13 @@ export const achievements: string[] = [
 /* -------------------------------------------------------------------------- */
 
 export const services: Service[] = [
-  { title: "BI Dashboard Development", description: "Executive-ready dashboards in Qlik Sense, QlikView, NPrinting, and Power BI that turn data into decisions.", icon: "BarChart3" },
-  { title: "Analytics & BI Delivery Management", description: "End-to-end analytics/BI project and module leadership — requirements, delivery governance, and stakeholder management.", icon: "ClipboardCheck" },
-  { title: "ETL & Data Pipelines", description: "Reusable, high-accuracy ETL pipelines and process automation across diverse data sources and enterprise systems.", icon: "Workflow" },
-  { title: "KPI & Analytics Consulting", description: "KPI discovery, requirement analysis, and analytics strategy aligned to business and insurance goals.", icon: "Lightbulb" },
-  { title: "Data Science & Advanced Analytics", description: "Predictive analytics, forecasting, and ML/AI initiatives translated into business-facing decisions.", icon: "Brain" },
-  { title: "AI & GenAI Solutions", description: "LLM-powered assistants, RAG pipelines, and generative-AI proofs of concept using Claude, OpenAI, and LangChain.", icon: "Sparkles" },
+  { title: "BI Dashboard Development", description: "Executive-ready dashboards in Qlik Sense, QlikView, NPrinting, and Power BI that turn data into decisions.", icon: "BarChart3", rate: "From $500 / dashboard (fixed scope)" },
+  { title: "Analytics & BI Delivery Management", description: "End-to-end analytics/BI project and module leadership — requirements, delivery governance, and stakeholder management.", icon: "ClipboardCheck", rate: "$70–90/hr or project-based" },
+  { title: "ETL & Data Pipelines", description: "Reusable, high-accuracy ETL pipelines and process automation across diverse data sources and enterprise systems.", icon: "Workflow", rate: "$60–90/hr or from $2,000/project" },
+  { title: "KPI & Analytics Consulting", description: "KPI discovery, requirement analysis, and analytics strategy aligned to business and insurance goals.", icon: "Lightbulb", rate: "$60–80/hr" },
+  { title: "Data Science & Advanced Analytics", description: "Predictive analytics, forecasting, and ML/AI initiatives translated into business-facing decisions.", icon: "Brain", rate: "$70–100/hr" },
+  { title: "AI & GenAI Solutions", description: "LLM-powered assistants, RAG pipelines, and generative-AI proofs of concept using Claude, OpenAI, and LangChain.", icon: "Sparkles", rate: "$80–110/hr or scoped POC" },
+  { title: "Certification Coaching & Mentoring", description: "1:1 exam prep and mentoring for Databricks, Power BI (PL-300), and Qlik certifications, drawing on my own 11 certifications.", icon: "GraduationCap", rate: "$30–50/hr" },
 ];
 
 /* -------------------------------------------------------------------------- */
@@ -1345,6 +1348,7 @@ export const navLinks = [
   { id: "about", label: "About" },
   { id: "experience", label: "Experience" },
   { id: "industries", label: "Industries" },
+  { id: "services", label: "Services" },
   { id: "projects", label: "Work" },
   { id: "learn", label: "Explained" },
   { id: "writing", label: "Writing" },

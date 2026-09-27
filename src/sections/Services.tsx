@@ -51,11 +51,20 @@ export function Services() {
                   <p className="mt-2 text-sm leading-relaxed text-slate-600 dark:text-slate-400">
                     {service.description}
                   </p>
+                  {service.rate && (
+                    <p className="mt-4 text-xs font-semibold uppercase tracking-wide text-brand-600 dark:text-brand-400">
+                      {service.rate}
+                    </p>
+                  )}
                 </div>
               </Reveal>
             );
           })}
         </div>
+
+        <p className="mt-8 text-center text-sm text-slate-500 dark:text-slate-400">
+          Rates are indicative and depend on scope — <a href="#contact" className="font-medium text-brand-600 hover:underline dark:text-brand-400">get in touch</a> for a project-specific quote.
+        </p>
       </div>
     </section>
   );
