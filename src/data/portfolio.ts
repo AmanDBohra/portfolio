@@ -633,6 +633,9 @@ export const projects: Project[] = [
     problem:
       "A BMI's translation layer has to convert noisy, individual-specific electrophysiological signals into commands an external system can act on reliably — which means training a model that can generalize a user's neural intent into consistent, actionable output.",
     tech: ["EEG Signal Processing", "Deep Learning (CNN)", "Neural Interface Concepts", "Python"],
+    // Original demo re-implementation on synthetic data — not the real
+    // (confidential) Fractal Analytics code. See the repo README.
+    github: "https://github.com/AmanDBohra/portfolio/tree/main/projects/bmi-eeg-demo",
     features: [
       "Explored EEG signal acquisition and preprocessing as the input layer for a machine-learning decoding pipeline",
       "Prototyped a deep-learning (CNN-based) model to classify EEG patterns into candidate control signals",
@@ -651,6 +654,7 @@ export const projects: Project[] = [
     problem:
       "Roughly 90% of blind individuals cannot travel independently, and only a small fraction use aids like a cane (~7%) or a guide dog (~3%) — leaving a clear gap for a device that proactively detects obstacles and keeps family informed of the user's location.",
     tech: ["Raspberry Pi 3", "Ultrasonic & Proximity Sensors", "GPRS/GPS", "Python", "Embedded C"],
+    github: "https://github.com/AmanDBohra/portfolio/tree/main/projects/smart-stick",
     features: [
       "Ultrasonic and proximity sensors for real-time obstacle and irregular-surface detection, with feedback via earphone audio or vibration",
       "GPRS-based GPS module to regularly share the user's live location with family for added safety",
@@ -816,6 +820,7 @@ export const projects: Project[] = [
     problem:
       "FMCG retailers often can't see the patterns hiding in their own transaction data — which products are actually bought together, which customers are most valuable, and how pricing or shelf placement should respond — because that requires purpose-built analysis, not just standard sales reporting.",
     tech: ["Python", "Apriori (Association Rule Mining)", "RFM Segmentation", "Streamlit", "Qlik"],
+    github: "https://github.com/AmanDBohra/portfolio/tree/main/projects/fmcg-retail",
     features: [
       "Built an Apriori-based market basket analysis pipeline — first validated on a limited sample, then scaled to the full retail transaction dataset",
       "Implemented RFM (Recency, Frequency, Monetary) customer segmentation to rank customers from 'Top' to 'Lost' and target retention efforts accordingly",
