@@ -613,6 +613,22 @@ export const projects: Project[] = [
     featured: true,
   },
   {
+    name: "Brain-Machine Interface (BMI)",
+    context: "Savitribai Phule Pune University · Academic Project (2014)",
+    description:
+      "Explored harnessing EEG (electroencephalographic) activity — captured from the scalp or directly within the cortex — to dynamically drive cursor movement, letter/icon selection, and neuroprosthetic devices such as robotic arms.",
+    problem:
+      "A BMI's translation algorithm has to convert a user's raw electrophysiological signals into commands an external device can reliably act on — requiring effective interaction between two adaptive controllers: the user encoding commands through neural activity, and the BMI decoding and translating them.",
+    tech: ["EEG Signal Processing", "Neural Interface Technology", "Electrophysiological Data Interpretation"],
+    features: [
+      "Studied translation algorithms converting EEG input into device-control output",
+      "Focused on the BMI's role as an adaptive controller interpreting user intent",
+      "Team project with contributors Swapnil and Bhushan",
+    ],
+    image: "",
+    featured: false,
+  },
+  {
     name: "Assistive IoT Smart Stick",
     context: "Autonetics Centre · Internship",
     description:
@@ -772,6 +788,7 @@ const THUMBS: Record<string, string> = {
   "Retail Analytics Dashboards": "retail-analytics",
   "Market Basket Analysis (Apriori)": "market-basket",
   "From 36 Hours to 2": "from-36-to-2",
+  "Brain-Machine Interface (BMI)": "bmi",
   "Assistive IoT Smart Stick": "iot-smart-stick",
   "Leading the International Analytics Module": "leading-module",
   "Building & Mentoring a 10+ BI Team": "mentoring-team",
