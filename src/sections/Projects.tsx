@@ -1,4 +1,4 @@
-import { Github, ExternalLink, CheckCircle2, Lock } from "lucide-react";
+import { Github, ExternalLink, CheckCircle2 } from "lucide-react";
 import { projects } from "../data/portfolio";
 import { SectionHeading } from "../components/ui/SectionHeading";
 import { Reveal } from "../components/ui/Reveal";
@@ -13,7 +13,7 @@ export function Projects() {
           index="04"
           eyebrow="Selected Work"
           title="Work that mattered"
-          description="Enterprise analytics engagements framed as problem → approach → outcome. Most are client-confidential, so they're described at a business level."
+          description="Enterprise analytics engagements framed as problem → approach → outcome — client identities are anonymized per standard practice, but the approach, scope, and outcomes are described in full."
         />
 
         <div className="grid gap-8 md:grid-cols-2">
@@ -56,7 +56,7 @@ export function Projects() {
                   </p>
 
                   <ul className="mt-4 space-y-1.5">
-                    {project.features.slice(0, 4).map((feature) => (
+                    {project.features.map((feature) => (
                       <li
                         key={feature}
                         className="flex items-start gap-2 text-sm text-slate-600 dark:text-slate-400"
@@ -99,8 +99,8 @@ export function Projects() {
                       )}
                     </div>
                   ) : (
-                    <p className="mt-6 flex items-center gap-2 pt-2 text-xs font-medium text-slate-400 dark:text-slate-500">
-                      <Lock className="h-3.5 w-3.5" /> Confidential client project
+                    <p className="mt-6 pt-2 text-xs font-medium text-slate-400 dark:text-slate-500">
+                      Enterprise engagement — client identity anonymized, approach & outcomes above are real.
                     </p>
                   )}
                 </div>
