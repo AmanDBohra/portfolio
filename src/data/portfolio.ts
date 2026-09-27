@@ -808,6 +808,24 @@ export const projects: Project[] = [
     image: "",
     featured: false,
   },
+  {
+    name: "FMCG Retail Sales Analysis",
+    context: "MTech, Data Science & Engineering · Dissertation",
+    description:
+      "Graduate dissertation analyzing Fast-Moving Consumer Goods (FMCG) retail transaction data using association-rule mining and customer segmentation, with BI dashboards to turn the findings into retailer-actionable insight.",
+    problem:
+      "FMCG retailers often can't see the patterns hiding in their own transaction data — which products are actually bought together, which customers are most valuable, and how pricing or shelf placement should respond — because that requires purpose-built analysis, not just standard sales reporting.",
+    tech: ["Python", "Apriori (Association Rule Mining)", "RFM Segmentation", "Streamlit", "Qlik"],
+    features: [
+      "Built an Apriori-based market basket analysis pipeline — first validated on a limited sample, then scaled to the full retail transaction dataset",
+      "Implemented RFM (Recency, Frequency, Monetary) customer segmentation to rank customers from 'Top' to 'Lost' and target retention efforts accordingly",
+      "Ran affinity analysis in Qlik to cross-check association-rule findings with an independent BI tool",
+      "Compared association-rule algorithms (Apriori, FP-Growth, Eclat, and others) and dashboarding libraries (Streamlit, Plotly, Dash, Superset) on trade-offs before choosing an approach",
+      "Delivered an interactive Streamlit dashboard surfacing sales trends by country, month, and top-selling products for exploratory analysis",
+    ],
+    image: "",
+    featured: false,
+  },
 ];
 
 /* Attach on-brand thumbnail art (abstract dashboard motifs, no client data). */
@@ -828,6 +846,7 @@ const THUMBS: Record<string, string> = {
   "GenAI: RAG Analytics Assistant (POC)": "genai-rag",
   "Anomaly Detection on Claims": "anomaly-detection",
   "Interactive BI Dashboards (6 industries)": "interactive-bi",
+  "FMCG Retail Sales Analysis": "fmcg-retail",
 };
 for (const p of projects) {
   const slug = THUMBS[p.name];
