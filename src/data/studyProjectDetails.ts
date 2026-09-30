@@ -11,6 +11,103 @@ interface ProjectDetail {
 }
 
 export const studyProjectDetails: Record<string, ProjectDetail[]> = {
+  "hackerrank-sql-advanced": [
+    {
+      /* P1 — Retail sales reporting queries */
+      conceptDetails: [
+        { name: "INNER/LEFT JOIN", detail: "INNER JOIN keeps only matching rows across tables; LEFT JOIN keeps every row from the left table even without a match, filling missing right-side columns with NULL — essential when a product or country might have zero transactions." },
+        { name: "GROUP BY / HAVING", detail: "GROUP BY collapses rows into per-group summaries (e.g. per product); HAVING then filters those summarized groups, e.g. only products with over 5 orders." },
+        { name: "Aggregate functions", detail: "SUM/COUNT/AVG/MIN/MAX compute one value per group, the building blocks of every revenue/order-count report." },
+        { name: "Date functions", detail: "Truncating InvoiceDate to a month/quarter is what turns row-level transactions into a monthly trend line." },
+      ],
+      architecture: "transactions table (invoice_id, product_id, country_id, quantity, unit_price, invoice_date) joined to products and countries dimension tables → GROUP BY queries produce top-N and monthly-trend result sets a BI tool would chart directly.",
+      steps: [
+        "Define the schema: transactions, products (product_id, description), countries (country_id, name).",
+        "Write a top-10-products-by-revenue query: JOIN + GROUP BY product + SUM(quantity*unit_price) DESC LIMIT 10.",
+        "Write a monthly-revenue-trend query: GROUP BY date_trunc('month', invoice_date).",
+        "Add a HAVING clause to exclude low-volume products from the ranking.",
+      ],
+      outcomes: [
+        "A reusable reporting query set mirroring the FMCG dissertation's top-product and monthly-trend views.",
+        "Clear separation between row-level filtering (WHERE) and group-level filtering (HAVING).",
+      ],
+    },
+    {
+      /* P2 — Organizational hierarchy analysis via self-join */
+      conceptDetails: [
+        { name: "Self-join", detail: "Aliasing one table as two roles (e.g. e = employee, m = manager) lets a query compare rows within the same table, the standard pattern for any parent/child or manager/report relationship." },
+        { name: "Correlated subqueries", detail: "A subquery referencing the outer row (e.g. average salary within the same department) is an alternative to a self-join for some hierarchy questions, at the cost of re-evaluating per row." },
+        { name: "NULL handling", detail: "The top of a hierarchy (e.g. the CEO) has no manager, so manager_id is NULL — an INNER self-join would silently drop that row, while a LEFT JOIN keeps it." },
+      ],
+      architecture: "employees table (employee_id, name, salary, manager_id REFERENCES employees.employee_id) — a single self-referencing table modeling the full reporting hierarchy.",
+      steps: [
+        "LEFT JOIN employees e ON e.manager_id = employees.employee_id AS m to pair every employee with their manager.",
+        "Filter WHERE e.salary > m.salary to find employees who out-earn their manager.",
+        "Use a recursive CTE (WITH RECURSIVE) to compute reporting-chain depth for org-chart style output.",
+      ],
+      outcomes: [
+        "A working self-join pattern reusable for any hierarchical/rollup dataset, not just employees.",
+        "Explicit handling of the top-of-hierarchy NULL case instead of silently dropping it.",
+      ],
+    },
+    {
+      /* P3 — Sales ranking & running totals with window functions */
+      conceptDetails: [
+        { name: "ROW_NUMBER / RANK / DENSE_RANK", detail: "Three ways to number rows within a partition — ROW_NUMBER always gives unique sequential numbers, RANK leaves gaps after ties, DENSE_RANK does not." },
+        { name: "PARTITION BY", detail: "Scopes a window function to reset per group (e.g. per region) without collapsing rows the way GROUP BY would — every original row is still returned." },
+        { name: "Running aggregates (frame clauses)", detail: "SUM(...) OVER (ORDER BY month) with the default frame (rows up to current row) computes a cumulative running total in a single pass." },
+      ],
+      architecture: "sales(region, product, month, revenue) → ROW_NUMBER() OVER (PARTITION BY region ORDER BY revenue DESC) for leaderboards, and SUM(revenue) OVER (ORDER BY month) for a cumulative trend — both computed directly in SQL, ready for a chart.",
+      steps: [
+        "Write the per-region top-3 query with ROW_NUMBER() and filter row_number <= 3.",
+        "Write the running-total query with SUM() OVER (ORDER BY month).",
+        "Demonstrate the RANK() vs DENSE_RANK() gap behavior on a small tied-value example.",
+      ],
+      outcomes: [
+        "A leaderboard query and a cumulative-trend query, both single-pass and index-friendly.",
+        "Clear, testable understanding of the tie-breaking difference between RANK and DENSE_RANK.",
+      ],
+    },
+    {
+      /* P4 — RFM customer segmentation in pure SQL */
+      conceptDetails: [
+        { name: "CTEs", detail: "WITH clauses break the RFM calculation into named, readable stages — raw aggregation, then scoring, then tiering — instead of one deeply nested query." },
+        { name: "Aggregation", detail: "Recency, Frequency, and Monetary are each just an aggregate (MAX(date), COUNT(DISTINCT invoice), SUM(revenue)) per customer." },
+        { name: "CASE expressions", detail: "CASE WHEN rfm_score > 4.5 THEN 'Top Customer' ... turns a numeric score into the same tier labels used in the Python RFM implementation." },
+        { name: "NTILE / percentile-style bucketing", detail: "NTILE(5) splits ranked customers into 5 equal-sized buckets, the SQL equivalent of pandas' qcut used in the dissertation's RFM scoring." },
+      ],
+      architecture: "transactions(customer_id, invoice_id, invoice_date, revenue) → CTE rfm_base (Recency/Frequency/Monetary per customer) → CTE rfm_scored (NTILE-bucketed R/F/M scores) → final SELECT with a weighted score and CASE-based tier.",
+      steps: [
+        "CTE rfm_base: SELECT customer_id, MAX(invoice_date), COUNT(DISTINCT invoice_id), SUM(revenue) GROUP BY customer_id.",
+        "CTE rfm_scored: NTILE(5) OVER (ORDER BY recency DESC) etc. for R/F/M scores.",
+        "Final SELECT: weighted score (0.15*R + 0.28*F + 0.57*M) and a CASE mapping to tier labels.",
+        "Cross-check a sample of results against the Python RFM output from the FMCG project for consistency.",
+      ],
+      outcomes: [
+        "A SQL-only RFM pipeline producing the same customer tiers as the Python version, without leaving the database.",
+        "Demonstrates that the same analytical logic can live in either layer depending on where it's needed.",
+      ],
+    },
+    {
+      /* P5 — Query performance tuning case study */
+      conceptDetails: [
+        { name: "Indexes", detail: "An index lets the engine seek directly to matching rows instead of scanning every row — the single highest-leverage fix for a slow filter or join on a large table." },
+        { name: "EXPLAIN / query plans", detail: "EXPLAIN (or EXPLAIN ANALYZE) shows whether the engine is doing a full table scan or an index seek, and is the first diagnostic step for any slow query." },
+        { name: "Full table scan vs index seek", detail: "A full scan reads every row regardless of how few match; an index seek jumps directly to matching rows — the difference compounds as table size grows." },
+        { name: "Rewriting correlated subqueries as joins", detail: "Many correlated subqueries have an equivalent JOIN or window-function form that the optimizer can plan more efficiently." },
+      ],
+      architecture: "A synthetic large transactions table with a foreign key to customers, first unindexed, then with an index added on the join column — before/after EXPLAIN output demonstrates the plan change.",
+      steps: [
+        "Run EXPLAIN on a query filtering transactions by customer_id with no index — observe the full scan.",
+        "CREATE INDEX on the customer_id column and re-run EXPLAIN to see the switch to an index seek.",
+        "Rewrite a correlated subquery (e.g. 'customers with above-average spend') as an equivalent JOIN + GROUP BY/HAVING and compare plans.",
+      ],
+      outcomes: [
+        "A concrete before/after demonstration of indexing's impact on query plans.",
+        "A reusable checklist (EXPLAIN first, index the filter/join columns, prefer JOINs over correlated subqueries where equivalent) for diagnosing slow SQL.",
+      ],
+    },
+  ],
   "databricks-data-engineer-associate": [
     {
       /* P1 — Insurance policy & claims medallion pipeline */

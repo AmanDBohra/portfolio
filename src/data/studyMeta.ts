@@ -7,6 +7,18 @@
 import type { CertMeta } from "./study";
 
 export const studyMeta: Record<string, CertMeta> = {
+  "hackerrank-sql-advanced": {
+    about: [
+      "HackerRank's SQL (Advanced) certification validates practical, timed problem-solving with relational SQL: complex joins, subqueries, window functions, and aggregation, graded automatically against hidden test cases rather than multiple-choice recall.",
+      "It sits above the Basic/Intermediate HackerRank SQL tracks and focuses on the query patterns that come up constantly in real analytics work — ranking and running totals with window functions, self-joins for hierarchical data, and writing queries that scale on large tables.",
+    ],
+    usage: [
+      "Roles: BI/Data Analyst, Analytics Engineer, Data Engineer, or any role where SQL is the daily interface to data.",
+      "On the job: ad-hoc reporting queries, building the SQL layer underneath BI dashboards, and diagnosing slow queries.",
+      "Career value: SQL is the most universally required data skill; an advanced, verified credential differentiates from self-reported SQL experience.",
+      "For this portfolio: the SQL layer underneath every BI/Lakehouse engagement listed — Qlik, Power BI, and Databricks SQL all sit on the same relational fundamentals this certification tests.",
+    ],
+  },
   "databricks-data-engineer-associate": {
     about: [
       "The Databricks Certified Data Engineer Associate validates that you can build and maintain data pipelines on the Databricks Lakehouse Platform. It focuses on the day-to-day engineering skills: ingesting data incrementally, transforming it with Spark SQL and Python, storing it reliably in Delta Lake, and productionizing it with Delta Live Tables, Jobs, and Unity Catalog governance.",

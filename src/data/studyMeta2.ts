@@ -5,6 +5,18 @@
 import type { CertMeta2 } from "./study";
 
 export const studyMeta2: Record<string, CertMeta2> = {
+  "hackerrank-sql-advanced": {
+    layman: [
+      "Think of a database as a giant set of spreadsheets that all link together. SQL is the language you use to ask questions of those spreadsheets — 'which customers bought X', 'who's the top seller this month' — without opening a single row by hand.",
+      "A JOIN is like using a lookup column to pull matching rows from two spreadsheets together. A window function is like adding a 'rank within your group' column without collapsing the other rows the way a normal total would.",
+    ],
+    tips: [
+      "When a query needs 'top N per group', reach for ROW_NUMBER() OVER (PARTITION BY ... ORDER BY ...) before reaching for a subquery with MAX/LIMIT.",
+      "Remember the logical order: FROM → WHERE → GROUP BY → HAVING → SELECT → ORDER BY. HAVING can reference an aggregate; WHERE cannot.",
+      "If a comparison silently returns no rows, check for NULLs — NULL = NULL is never TRUE, so use IS NULL / IS NOT NULL.",
+      "A self-join is just an alias trick: join a table to itself under two different names to compare rows within the same table.",
+    ],
+  },
   "databricks-data-engineer-associate": {
     layman: [
       "Think of a restaurant kitchen. Raw ingredients arrive (Bronze), you wash and chop them (Silver), then plate finished dishes (Gold). That's the medallion architecture — data gets cleaner and more useful at each stage.",

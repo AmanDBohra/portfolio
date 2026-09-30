@@ -6,6 +6,68 @@
 import type { CertProject } from "./study";
 
 export const studyProjects: Record<string, CertProject[]> = {
+  "hackerrank-sql-advanced": [
+    {
+      title: "Retail sales reporting queries",
+      goal: "Write the join/aggregation SQL layer a BI dashboard would sit on top of, for a retail transactions table (Invoice, Product, Quantity, UnitPrice, Country, InvoiceDate).",
+      concepts: ["INNER/LEFT JOIN", "GROUP BY / HAVING", "Aggregate functions", "Date functions"],
+      approach: [
+        "Model a normalized schema: transactions, products, and countries as separate tables joined on keys.",
+        "Write top-N-by-revenue and monthly-trend queries using GROUP BY with SUM/COUNT.",
+        "Use HAVING to filter aggregated results (e.g. products with fewer than 5 orders).",
+      ],
+      stack: ["SQL (SQLite/PostgreSQL syntax)", "CTEs"],
+      relevance: "The exact reporting layer behind the FMCG Retail Sales Analysis dissertation and the general BI dashboards on this site.",
+    },
+    {
+      title: "Organizational hierarchy analysis via self-join",
+      goal: "Answer 'who earns more than their manager' and 'reporting chain depth' style questions on an Employees table with a manager_id foreign key to itself.",
+      concepts: ["Self-join", "Correlated subqueries", "NULL handling"],
+      approach: [
+        "Self-join Employees to itself (e vs m) on e.manager_id = m.employee_id.",
+        "Compare each employee's salary to their manager's in the same query.",
+        "Handle top-of-hierarchy rows (manager_id IS NULL) explicitly with a LEFT JOIN.",
+      ],
+      stack: ["SQL"],
+      relevance: "The same self-join pattern used for any manager/rollup or parent-child reporting structure in enterprise data.",
+    },
+    {
+      title: "Sales ranking & running totals with window functions",
+      goal: "Produce a 'top 3 products per region' leaderboard and a running monthly revenue total, without collapsing the underlying rows.",
+      concepts: ["ROW_NUMBER / RANK / DENSE_RANK", "PARTITION BY", "Running aggregates (frame clauses)"],
+      approach: [
+        "Use ROW_NUMBER() OVER (PARTITION BY region ORDER BY revenue DESC) and filter to <= 3.",
+        "Build a running total with SUM(revenue) OVER (ORDER BY month) for a cumulative trend line.",
+        "Compare RANK() vs DENSE_RANK() behavior on tied values.",
+      ],
+      stack: ["SQL", "Window functions"],
+      relevance: "The ranking/trend logic that feeds directly into BI dashboard visuals (leaderboards, cumulative charts).",
+    },
+    {
+      title: "RFM customer segmentation in pure SQL",
+      goal: "Re-implement the dissertation's RFM (Recency, Frequency, Monetary) customer scoring as a single SQL query instead of a pandas pipeline.",
+      concepts: ["CTEs", "Aggregation", "CASE expressions", "NTILE / percentile-style bucketing"],
+      approach: [
+        "CTE 1: compute Recency (days since last order), Frequency (order count), Monetary (total spend) per customer.",
+        "CTE 2: bucket each dimension into a 1-5 score (e.g. via NTILE(5) or CASE thresholds).",
+        "Combine into a weighted RFM score and a CASE-based tier (Top/High/Medium/Low/Lost), matching the Python version in the FMCG project.",
+      ],
+      stack: ["SQL", "CTEs", "Window functions"],
+      relevance: "A direct SQL-only counterpart to customer_segmentation.py in the FMCG Retail Sales Analysis project — same logic, different tool.",
+    },
+    {
+      title: "Query performance tuning case study",
+      goal: "Take a slow, unindexed query against a large transactions table and demonstrate the indexing/rewrite that fixes it.",
+      concepts: ["Indexes", "EXPLAIN / query plans", "Full table scan vs index seek", "Rewriting correlated subqueries as joins"],
+      approach: [
+        "Run EXPLAIN on a filter/join query against an unindexed foreign key column and note the full scan.",
+        "Add an index on the join/filter column and re-run EXPLAIN to show the plan change.",
+        "Rewrite a correlated subquery as an equivalent JOIN or window function and compare.",
+      ],
+      stack: ["SQL", "EXPLAIN"],
+      relevance: "The optimization judgment that separates a correct query from a production-ready one — same discipline applied across every BI/SQL engagement on this site.",
+    },
+  ],
   "databricks-data-engineer-associate": [
     {
       title: "Insurance policy & claims medallion pipeline",

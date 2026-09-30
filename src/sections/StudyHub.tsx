@@ -341,35 +341,6 @@ export function StudyHub({ slug, theme, onToggleTheme }: Props) {
               </a>
             </div>
 
-            {/* What's included */}
-            <div className="mx-auto mb-14 max-w-xl">
-              <div className="card h-full">
-                <span className="chip">Free</span>
-                <h3 className="mt-3 text-lg font-bold text-slate-900 dark:text-white">
-                  Study for free
-                </h3>
-                <p className="mt-2 text-sm leading-relaxed text-slate-600 dark:text-slate-400">
-                  Full roadmaps, concept + analogy diagrams, plain-English explanations, exam
-                  tricks, and a solid slice of practice questions for every certification —
-                  always free, no signup.
-                </p>
-                <ul className="mt-4 space-y-2 text-sm text-slate-600 dark:text-slate-400">
-                  <li className="flex items-start gap-2">
-                    <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-brand-500" />
-                    Roadmaps, notes &amp; diagrams for all {studyModules.length} certifications
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-brand-500" />
-                    ~20 practice questions per certification
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-brand-500" />
-                    Global search across the free question set
-                  </li>
-                </ul>
-              </div>
-            </div>
-
             {/* Search / filter across all questions */}
             <div className="mx-auto mb-10 flex max-w-2xl flex-col gap-3 sm:flex-row">
               <div className="relative flex-1">

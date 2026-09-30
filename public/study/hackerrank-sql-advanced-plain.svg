@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" width="800" height="450" role="img" aria-label="SQL (Advanced) concept diagram (plain)">
+<rect width="800" height="450" fill="#ffffff"/>
+<rect x="60" y="120" width="180" height="120" rx="8" fill="#fdf2ee" stroke="#de5c30" stroke-opacity="0.6"/>
+<text x="80" y="145" font-family="Inter,Arial" font-size="14" fill="#de5c30">orders</text>
+<line x1="90" y1="155" x2="220" y2="155" stroke="#de5c30" stroke-opacity="0.4"/>
+<text x="80" y="175" font-family="Inter,Arial" font-size="12" fill="#3d150a">order_id</text>
+<text x="80" y="195" font-family="Inter,Arial" font-size="12" fill="#3d150a">customer_id</text>
+<text x="80" y="215" font-family="Inter,Arial" font-size="12" fill="#3d150a">amount</text>
+<rect x="340" y="120" width="180" height="120" rx="8" fill="#eafafa" stroke="#18a6a6" stroke-opacity="0.6"/>
+<text x="360" y="145" font-family="Inter,Arial" font-size="14" fill="#0f7a7a">customers</text>
+<line x1="350" y1="155" x2="500" y2="155" stroke="#18a6a6" stroke-opacity="0.4"/>
+<text x="360" y="175" font-family="Inter,Arial" font-size="12" fill="#134" >customer_id</text>
+<text x="360" y="195" font-family="Inter,Arial" font-size="12" fill="#134">name</text>
+<text x="360" y="215" font-family="Inter,Arial" font-size="12" fill="#134">country</text>
+<path d="M240 180 L340 180" stroke="#de5c30" stroke-width="2" fill="none"/>
+<text x="255" y="172" font-family="Inter,Arial" font-size="11" fill="#de5c30">JOIN on customer_id</text>
+<rect x="60" y="280" width="460" height="110" rx="8" fill="#f8fafc" stroke="#cbd5e1"/>
+<text x="80" y="305" font-family="monospace" font-size="12" fill="#de5c30">SELECT c.name, SUM(o.amount)</text>
+<text x="80" y="325" font-family="monospace" font-size="12" fill="#0f172a">FROM orders o JOIN customers c</text>
+<text x="80" y="345" font-family="monospace" font-size="12" fill="#0f172a">  ON o.customer_id = c.customer_id</text>
+<text x="80" y="365" font-family="monospace" font-size="12" fill="#0f7a7a">GROUP BY c.name HAVING SUM(o.amount) &gt; 1000</text>
+<text x="40" y="410" font-family="Inter,Arial" font-weight="700" font-size="26" fill="#0f172a">SQL (Advanced)</text>
+<text x="40" y="436" font-family="Inter,Arial" font-size="15" fill="#475569">Joins · Window Functions · Subqueries · Optimization</text>
+</svg>
