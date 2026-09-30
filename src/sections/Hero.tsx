@@ -83,11 +83,11 @@ export function Hero() {
             transition={{ duration: 0.5, delay: 0.2 }}
             className="mt-8 flex flex-wrap items-center gap-4"
           >
-            <a href="#experience" className="btn-primary">
-              Explore My Experience <ArrowRight className="h-4 w-4" />
+            <a href="#contact" className="btn-primary">
+              Let&apos;s Talk About Your Project <ArrowRight className="h-4 w-4" />
             </a>
-            <a href="#journey" className="btn-secondary">
-              View Analytics Journey
+            <a href="#experience" className="btn-secondary">
+              Explore My Experience
             </a>
             <a href={site.resumeUrl} download className="btn-secondary">
               <Download className="h-4 w-4" /> Resume
