@@ -8,6 +8,7 @@ import {
   Brain,
   Sparkles,
   ClipboardCheck,
+  Users,
   type LucideIcon,
 } from "lucide-react";
 import { services } from "../data/portfolio";
@@ -24,6 +25,7 @@ const ICONS: Record<string, LucideIcon> = {
   Brain,
   Sparkles,
   ClipboardCheck,
+  Users,
 };
 
 export function Services() {

@@ -74,7 +74,7 @@ export function Contact() {
           index="05"
           eyebrow="Contact"
           title="Let's turn data into decisions"
-          description="Open to conversations about analytics leadership, BI delivery, applied AI, consulting, teaching/mentoring, and data & analytics roles — in insurance and beyond."
+          description="Open to conversations about analytics leadership, BI delivery, applied AI, consulting, and mentoring/teaching learners of any age or tech background — plus data & analytics roles, in insurance and beyond."
         />
 
         <div className="mx-auto grid max-w-5xl gap-10 lg:grid-cols-[1fr_1.2fr]">

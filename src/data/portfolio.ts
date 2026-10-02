@@ -109,7 +109,7 @@ export const site = {
   heroSupport2:
     "I've cut reporting times by 94%, improved data accuracy by 35%, and reduced audit findings by 15%.",
   intro:
-    "Analytics and BI professional with 9+ years delivering data-driven solutions across the full analytics lifecycle — from business requirements through data, visualization, and decision support. Analytics is the core craft; insurance is simply where I've proven it deepest, currently leading the International module of an engagement with a major US Property & Casualty (P&C) insurer at LTIMindtree. Open to applying the same approach in new domains, and to collaborations beyond full-time roles — consulting, mentoring, and teaching among them.",
+    "Analytics and BI professional with 9+ years delivering data-driven solutions across the full analytics lifecycle — from business requirements through data, visualization, and decision support. Analytics is the core craft; insurance is simply where I've proven it deepest, currently leading the International module of an engagement with a major US Property & Casualty (P&C) insurer at LTIMindtree. Open to applying the same approach in new domains, and to collaborations beyond full-time roles — consulting, and mentoring/teaching for learners of any age and any starting point with technology, from complete beginners to fellow practitioners.",
   location: "India",
   email: "bohraaman@gmail.com",
   phone: "+91 8369370199",
@@ -179,7 +179,7 @@ export const site = {
   /** Optional booking link (Calendly/Cal.com). Leave "" to hide the button. */
   calendlyUrl: "",
   /** Short "open to" line shown on the availability banner. */
-  openTo: "Open to Analytics Lead · BI Manager · Analytics Delivery Lead · Data & Analytics roles — and to consulting, mentoring/teaching, and collaboration beyond full-time employment.",
+  openTo: "Open to Analytics Lead · BI Manager · Analytics Delivery Lead · Data & Analytics roles — and to consulting and mentoring/teaching for all ages and all comfort levels with technology, from first-timers to experienced practitioners.",
 };
 
 /** Executive snapshot shown directly under the hero. */
@@ -995,6 +995,7 @@ export const services: Service[] = [
   { title: "Data Science & Advanced Analytics", description: "Predictive analytics, forecasting, and ML/AI initiatives translated into business-facing decisions.", icon: "Brain", rate: "$70–100/hr" },
   { title: "AI & GenAI Solutions", description: "LLM-powered assistants, RAG pipelines, and generative-AI proofs of concept using Claude, OpenAI, and LangChain.", icon: "Sparkles", rate: "$80–110/hr or scoped POC" },
   { title: "Certification Coaching & Mentoring", description: "1:1 exam prep and mentoring for Databricks, Power BI (PL-300), and Qlik certifications, drawing on my own 13 certifications.", icon: "GraduationCap", rate: "$30–50/hr" },
+  { title: "General Tech & Data Mentoring", description: "Mentoring for learners of any age and any technology background — from complete beginners taking their first steps with data/computers to working professionals leveling up. Tailored, patient, and jargon-free where needed.", icon: "Users", rate: "$25–40/hr" },
 ];
 
 /* -------------------------------------------------------------------------- */
