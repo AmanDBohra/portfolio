@@ -188,7 +188,7 @@ export const snapshot: { top: string; label: string }[] = [
   { top: "10+", label: "Enterprise Clients" },
   { top: "BI", label: "Enterprise Delivery" },
   { top: "36h → 2h", label: "Report Optimization" },
-  { top: "Insurance", label: "Domain Experience" },
+  { top: "6", label: "Industries Served" },
   { top: "International", label: "Module Leadership" },
 ];
 
