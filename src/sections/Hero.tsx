@@ -54,6 +54,7 @@ export function Hero() {
                 "Data Engineering",
                 "Data Science & AI",
                 "Insurance Analytics",
+                "Teaching & Mentoring",
               ]}
               className="text-brand-400"
             />

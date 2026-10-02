@@ -105,11 +105,11 @@ export const site = {
   eyebrow: "ANALYTICS • BUSINESS INTELLIGENCE • DATA & AI",
   headline: "I Make Enterprise Analytics Useful",
   heroSupport:
-    "9+ years leading analytics delivery across insurance, banking, retail, and more. Currently International Module Lead for a major US P&C insurer.",
+    "9+ years turning data into decisions across insurance, banking, retail, and beyond. Currently International Module Lead for a major US P&C insurer — one proving ground for a skill set built to travel across industries.",
   heroSupport2:
     "I've cut reporting times by 94%, improved data accuracy by 35%, and reduced audit findings by 15%.",
   intro:
-    "Analytics and BI professional with 9+ years delivering data-driven solutions across the full analytics lifecycle — from business requirements through data, visualization, and decision support. I currently lead the International module of an engagement with a major US Property & Casualty (P&C) insurer at LTIMindtree, turning complex insurance requirements into decision-ready insights.",
+    "Analytics and BI professional with 9+ years delivering data-driven solutions across the full analytics lifecycle — from business requirements through data, visualization, and decision support. Analytics is the core craft; insurance is simply where I've proven it deepest, currently leading the International module of an engagement with a major US Property & Casualty (P&C) insurer at LTIMindtree. Open to applying the same approach in new domains, and to collaborations beyond full-time roles — consulting, mentoring, and teaching among them.",
   location: "India",
   email: "bohraaman@gmail.com",
   phone: "+91 8369370199",
@@ -179,7 +179,7 @@ export const site = {
   /** Optional booking link (Calendly/Cal.com). Leave "" to hide the button. */
   calendlyUrl: "",
   /** Short "open to" line shown on the availability banner. */
-  openTo: "Open to Analytics Lead · BI Manager · Analytics Delivery Lead · Data & Analytics roles",
+  openTo: "Open to Analytics Lead · BI Manager · Analytics Delivery Lead · Data & Analytics roles — and to consulting, mentoring/teaching, and collaboration beyond full-time employment.",
 };
 
 /** Executive snapshot shown directly under the hero. */
