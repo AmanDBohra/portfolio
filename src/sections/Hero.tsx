@@ -53,7 +53,7 @@ export function Hero() {
                 "Analytics Delivery",
                 "Data Engineering",
                 "Data Science & AI",
-                "Insurance Analytics",
+                "Cross-Industry Analytics",
                 "Teaching & Mentoring",
               ]}
               className="text-brand-400"
