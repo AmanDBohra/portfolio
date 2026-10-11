@@ -404,7 +404,7 @@ about_body = f"""<p class="eyebrow">About</p><h1>About Aman Bohra</h1>
 <p>Aman Bohra delivers enterprise analytics across insurance, banking, retail, automotive and pharmaceutical industries — owning the full lifecycle from business requirements through data engineering coordination, BI development, data-science translation, governance, and production support.</p>
 <p>His focus is making analytics useful: turning scattered data and ambiguous requirements into decisions the business can act on. He holds an M.Tech in Data Science &amp; Engineering from BITS Pilani and 12 professional certifications across Databricks (six, including Data Engineer Professional and Apache Spark Developer), Microsoft, Qlik, and HackerRank.</p>
 <h2>Areas of expertise</h2>
-<ul class="chips"><li>Business Intelligence</li><li>Analytics Delivery Leadership</li><li>Data Visualization</li><li>Insurance Analytics</li><li>Data Engineering &amp; ETL/ELT</li><li>Data Science translation</li><li>Data Governance</li></ul>
+<ul class="chips"><li>Business Intelligence</li><li>Analytics Delivery Leadership</li><li>Data Visualization</li><li>Cross-Industry Analytics</li><li>Insurance Analytics</li><li>Mentoring &amp; Teaching</li><li>Data Engineering &amp; ETL/ELT</li><li>Data Science translation</li><li>Data Governance</li></ul>
 <h2>Explore</h2><p><a href="{BASE}/experience.html">Experience</a> · <a href="{BASE}/skills.html">Skills</a> · <a href="{BASE}/projects/">Projects</a> · <a href="{BASE}/technologies/">Technologies</a> · <a href="{BASE}/certifications.html">Certifications</a> · <a href="{BASE}/contact.html">Contact</a></p>
 <p><a class="backapp" href="{BASE}/">← Interactive portfolio</a></p>"""
 page(f"{BASE}/about.html","About Aman Bohra — Senior Analytics & BI Professional",
@@ -480,7 +480,7 @@ page(f"{BASE}/contact.html","Contact Aman Bohra",
  "Contact Aman Bohra — Senior Analytics & BI professional. Email bohraaman@gmail.com, or connect on LinkedIn and GitHub.",
  [("Home",BASE+"/"),("Contact","")],
  f"""<p class="eyebrow">Contact</p><h1>Contact Aman Bohra</h1>
-<p class="lead">Open to Analytics Lead, BI Manager, Analytics Delivery Lead, Data &amp; Analytics Manager, and Insurance Analytics roles.</p>
+<p class="lead">Open to Analytics Lead, BI Manager, Analytics Delivery Lead and Data &amp; Analytics Manager roles across industries, plus consulting and mentoring or teaching engagements for learners of any age and any starting point with technology.</p>
 <ul class="clean">
 <li>Email: <a href="mailto:bohraaman@gmail.com">bohraaman@gmail.com</a></li>
 <li>LinkedIn: <a href="https://www.linkedin.com/in/aman-bohra">linkedin.com/in/aman-bohra</a></li>

@@ -1,6 +1,6 @@
-# Aman Bohra — Senior Analytics & Business Intelligence Professional
+# Aman Bohra — Analytics & Business Intelligence Leader
 
-> Aman Bohra is a Senior Analytics & Business Intelligence professional with 9+ years of experience, currently International Module Lead on a major US Property & Casualty (P&C) insurance analytics engagement at LTIMindtree. He specializes in Business Intelligence, analytics delivery leadership, insurance analytics, data engineering, and translating data science and Generative AI into business decisions. Tools: Qlik Sense, QlikView, Qlik NPrinting, Power BI, Databricks, Apache Spark, SQL, Python, ETL/ELT, data warehousing, and RAG/GenAI. He holds 12 professional certifications (6 Databricks, Microsoft PL-300, 4 Qlik, HackerRank SQL) and an M.Tech in Data Science & Engineering from BITS Pilani.
+> Aman Bohra is an Analytics & Business Intelligence leader with 9+ years of experience across insurance, banking, retail, automotive, pharma and manufacturing, currently International Module Lead on a major US Property & Casualty (P&C) insurance analytics engagement at LTIMindtree. Analytics is his core craft and insurance is where he has proven it deepest. He specializes in Business Intelligence, analytics delivery leadership, cross-industry analytics, data engineering, and translating data science and Generative AI into business decisions. Tools: Qlik Sense, QlikView, Qlik NPrinting, Power BI, Databricks, Apache Spark, SQL, Python, ETL/ELT, data warehousing, and RAG/GenAI. He holds 12 professional certifications (6 Databricks, Microsoft PL-300, 4 Qlik, HackerRank SQL) and an M.Tech in Data Science & Engineering from BITS Pilani.
 
 ## Key pages
 - [Portfolio (home)](https://amandbohra.github.io/portfolio/): overview, experience, projects, skills, testimonials, contact.
@@ -26,6 +26,17 @@ Each guide includes a definition, real-world usage, plain-English explanations, 
 - [Qlik Sense Business Analyst (QSBA)](https://amandbohra.github.io/portfolio/guides/qlik-sense-business-analyst.html)
 - [QlikView 12 Data Architect (QV12DA)](https://amandbohra.github.io/portfolio/guides/qlikview-12-data-architect.html)
 - [QlikView 12 Business Analyst (QVBA)](https://amandbohra.github.io/portfolio/guides/qlikview-12-business-analyst.html)
+
+## Open to
+- Analytics Lead, BI Manager, Analytics Delivery Lead and Data & Analytics Manager roles across industries.
+- Analytics and BI consulting.
+- Mentoring and teaching for learners of any age and any level of comfort with technology, from complete beginners to practitioners, including 1:1 certification coaching (Databricks, Power BI PL-300, Qlik).
+
+## Mentoring and teaching track record (verified)
+- AI Mentor, BRAIN (Build Rural AI Network), eVidyaloka x Microsoft: 37 live sessions for rural government-school students, 2025.
+- Mentor, BRAINIAC 2025 National AI Competition: guided a student team to national runner-up.
+- Guest speaker and AI curriculum advisor, Terna College of Engineering, 2024.
+- Built and mentored a 10+ person BI team at Icon Business Solutions.
 
 ## Contact
 - GitHub: https://github.com/AmanDBohra
