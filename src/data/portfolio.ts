@@ -505,6 +505,10 @@ export const skillCategories: SkillCategory[] = [
     skills: ["Databricks", "Apache Spark", "PySpark", "ETL Development", "Data Pipelines", "Data Warehousing", "Data Quality Controls"],
   },
   {
+    category: "Modern Data Platform (working exposure)",
+    skills: ["AWS (S3, Glue, Lambda, Athena, Redshift)", "Snowflake", "dbt", "Talend", "Kafka / Kinesis / Firehose", "Jenkins", "Terraform", "GitHub", "Data Catalog & Governance", "ServiceNow"],
+  },
+  {
     category: "Domain & Leadership",
     skills: ["Insurance Analytics", "International Reporting", "Stakeholder Management", "Team Leadership", "Mentoring", "Cross-Functional Collaboration"],
   },
@@ -642,6 +646,25 @@ export const projects: Project[] = [
       "Evaluated model performance using standard classification metrics (ROC-based analysis) on held-out test data",
       "Surveyed applied use cases — assistive prosthetics, neurological-condition monitoring, and human-computer interaction — as the motivating context for the work",
       "Note: this was an internal applied-ML exploration at Fractal Analytics; proprietary dataset, architecture, and result specifics are not shared here out of respect for the employer's confidentiality — this summary describes the approach and scope only",
+    ],
+    image: "",
+    featured: false,
+  },
+  {
+    name: "Insurance Data Lakehouse — Reference Architecture",
+    context: "Illustrative reference project (synthetic data, not client work)",
+    description:
+      "A reference architecture for an insurance data lakehouse on an AWS, Databricks and Snowflake stack: ingestion from policy, claims, customer and payment systems, bronze/silver/gold layers in S3, PySpark cleansing in Databricks, SQL modelling for Snowflake, and CI/CD with Jenkins, GitHub and Terraform.",
+    problem:
+      "Insurers hold policy, claims, customer and payment data in separate systems. Trusted analytics needs that data integrated, quality-checked, protected and published with agreed business definitions, without silently losing bad records.",
+    tech: ["Databricks", "PySpark", "Python", "SQL", "AWS", "Snowflake", "dbt"],
+    github: "https://github.com/AmanDBohra/portfolio/tree/main/projects/insurance-lakehouse-reference",
+    features: [
+      "Bronze to silver PySpark pattern: type standardisation, keep-latest-version per claim, and quarantine of invalid rows instead of dropping them",
+      "Generic claims star schema (fact and dimension tables) with an example outstanding-reserve metric query",
+      "Architecture diagram showing where each tool fits, noting the tools do not all sit on one linear path",
+      "Hands-on: Databricks, PySpark and Python. Working exposure as part of the wider platform team: AWS, Snowflake, dbt, Talend, streaming, CI/CD and governance tooling",
+      "Illustrative only: built on synthetic data, with no client code, data or results, and no performance figures claimed"
     ],
     image: "",
     featured: false,
@@ -842,6 +865,7 @@ const THUMBS: Record<string, string> = {
   "Market Basket Analysis (Apriori)": "market-basket",
   "From 36 Hours to 2": "from-36-to-2",
   "Brain-Machine Interface (BMI)": "bmi",
+  "Insurance Data Lakehouse — Reference Architecture": "etl-star-schema",
   "Assistive IoT Smart Stick": "iot-smart-stick",
   "Leading the International Analytics Module": "leading-module",
   "Building & Mentoring a 10+ BI Team": "mentoring-team",
