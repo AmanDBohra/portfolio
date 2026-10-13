@@ -670,6 +670,81 @@ export const projects: Project[] = [
     featured: false,
   },
   {
+    name: "Insurance Fraud Review Prioritisation — Reference Project",
+    context: "Illustrative reference project (synthetic data, not client work)",
+    description:
+      "An explainable, rule-based review-priority engine for insurance claims. It keeps entity-match confidence separate from fraud risk, attaches reason codes and a rule version to every flag, and pseudonymises identifiers with a keyed HMAC. A dbt incremental model and tests show how the investigator mart would be published in Snowflake.",
+    problem:
+      "Claims teams want earlier, explainable signals about which claims deserve human review, but external information can be old, misdated or about the wrong person. The system must prioritise review with reasons and never declare fraud.",
+    tech: ["Python", "pandas", "dbt", "SQL", "Snowflake", "Databricks"],
+    github: "https://github.com/AmanDBohra/portfolio/tree/main/projects/insurance-fraud-detection-reference",
+    features: [
+      "Rule-based scoring with example weights (not validated fraud weights) and review bands from standard processing to priority human review",
+      "A low-confidence entity match adds no fraud points and only requests verification, tested explicitly",
+      "Reason codes and rule version recorded on every flag for an audit trail",
+      "Keyed HMAC pseudonymisation instead of plain hashing of identifiers",
+      "Illustrative only: synthetic data, no client code or results, and no performance figures claimed"
+    ],
+    image: "",
+    featured: false,
+  },
+  {
+    name: "Replay-Safe Claim Event Consumer — Reference Project",
+    context: "Illustrative reference project (synthetic data, not client work)",
+    description:
+      "A small simulation of a Kafka or Kinesis style consumer for claim status events: idempotent processing, out-of-order handling by version, dead-letter quarantine and checkpointed replay, with tests proving a replay converges to the same state.",
+    problem:
+      "Claim events arrive with duplicates, late older versions, bad payloads and occasional replays. The consumer must end in the same correct state however the stream is delivered.",
+    tech: ["Python", "Kafka", "Kinesis", "DynamoDB (pattern)", "Event-driven design"],
+    github: "https://github.com/AmanDBohra/portfolio/tree/main/projects/insurance-claims-streaming-reference",
+    features: [
+      "Event-id idempotency so duplicate deliveries are ignored",
+      "Version check so a late, older event never overwrites newer state",
+      "Dead-letter quarantine that keeps invalid events with a reason instead of dropping them",
+      "Checkpointing and replay tests: full replay and a restart with lost state both converge to the same result",
+      "Illustrative only: a pure-Python simulation on synthetic events, not client code"
+    ],
+    image: "",
+    featured: false,
+  },
+  {
+    name: "Data Quality and Reconciliation Checks — Reference Project",
+    context: "Illustrative reference project (synthetic data, not client work)",
+    description:
+      "A compact set of data-quality checks and a pipeline-health monitor: completeness, duplicate keys, invalid amounts, referential integrity, source-to-target reconciliation, and an alert when a rate shifts sharply, such as a match rate jumping from 5% to 80%.",
+    problem:
+      "A pipeline that finishes successfully can still publish wrong data. Production support needs checks on the data itself, and a way to pause publication when something shifts.",
+    tech: ["Python", "pandas", "Data Quality", "Reconciliation", "Monitoring"],
+    github: "https://github.com/AmanDBohra/portfolio/tree/main/projects/insurance-data-quality-reference",
+    features: [
+      "Completeness, uniqueness, validity and referential-integrity checks",
+      "Row-count and amount reconciliation between source and target",
+      "Rate-shift alert that flags sudden changes against a baseline",
+      "Tests on synthetic data, including the 5% to 80% case",
+      "Illustrative only: synthetic data and generic thresholds, not client code or results"
+    ],
+    image: "",
+    featured: false,
+  },
+  {
+    name: "Renewal and Premium-to-Claims Analytics — Reference Project",
+    context: "Illustrative reference project (synthetic data, not client work)",
+    description:
+      "Portable SQL for renewal rate and paid-claims-to-premium by product, runnable on a tiny synthetic SQLite database and written to translate directly to Snowflake or dbt models. Business definitions are deliberately simple demo definitions pending agreement with the insurance business.",
+    problem:
+      "Business teams want renewal and premium-to-claims views by product, but these metrics depend on agreed definitions that should not be inferred from raw fields alone.",
+    tech: ["SQL", "Snowflake", "dbt", "SQLite", "Python"],
+    github: "https://github.com/AmanDBohra/portfolio/tree/main/projects/insurance-renewal-analytics-reference",
+    features: [
+      "Renewal rate by product from expiring and renewed policies",
+      "Paid-claims-to-premium ratio by product using a left join so products with no claims are kept",
+      "Hand-checkable synthetic data and tests that assert the expected results",
+      "Illustrative only: demo metric definitions on synthetic data, not client code or results"
+    ],
+    image: "",
+    featured: false,
+  },
+  {
     name: "Assistive IoT Smart Stick",
     context: "Final-Year Academic Project · Guided by Prof. J. Y. Kapadnis",
     description:
@@ -866,6 +941,10 @@ const THUMBS: Record<string, string> = {
   "From 36 Hours to 2": "from-36-to-2",
   "Brain-Machine Interface (BMI)": "bmi",
   "Insurance Data Lakehouse — Reference Architecture": "etl-star-schema",
+  "Insurance Fraud Review Prioritisation — Reference Project": "anomaly-detection",
+  "Replay-Safe Claim Event Consumer — Reference Project": "etl-star-schema",
+  "Data Quality and Reconciliation Checks — Reference Project": "governance",
+  "Renewal and Premium-to-Claims Analytics — Reference Project": "interactive-bi",
   "Assistive IoT Smart Stick": "iot-smart-stick",
   "Leading the International Analytics Module": "leading-module",
   "Building & Mentoring a 10+ BI Team": "mentoring-team",

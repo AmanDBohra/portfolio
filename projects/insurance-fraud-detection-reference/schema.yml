@@ -1,0 +1,13 @@
+version: 2
+models:
+  - name: mart_fraud_review
+    columns:
+      - name: claim_id
+        data_tests: [not_null, unique]
+      - name: risk_score
+        data_tests: [not_null]
+      - name: review_status
+        data_tests:
+          - accepted_values:
+              arguments:
+                values: [PENDING, IN_REVIEW, CLOSED]
